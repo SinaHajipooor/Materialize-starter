@@ -56,6 +56,7 @@ import 'src/iconify-bundle/icons-bundle-react'
 
 // ** Global css styles
 import '../../styles/globals.css'
+import { useState } from 'react'
 
 const clientSideEmotionCache = createEmotionCache()
 
@@ -95,6 +96,10 @@ const App = props => {
     const authGuard = Component.authGuard ?? true
     const guestGuard = Component.guestGuard ?? false
     const aclAbilities = Component.acl ?? defaultACLObj
+    const [isLoading, setIsLoading] = useState(true)
+
+
+
 
     return (
 
