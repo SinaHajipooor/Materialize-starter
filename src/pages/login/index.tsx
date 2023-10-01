@@ -2,7 +2,7 @@
 import { useState, ReactNode, MouseEvent } from 'react'
 
 // ** Next Imports
-import Link from 'next/link'
+// import Link from 'next/link';
 
 // ** MUI Components
 import Alert from '@mui/material/Alert'
@@ -43,9 +43,10 @@ import BlankLayout from 'src/@core/layouts/BlankLayout'
 
 // ** Demo Imports
 import FooterIllustrationsV2 from 'src/views/pages/auth/FooterIllustrationsV2'
+import { Link } from '@mui/material'
 
 // ** Styled Components
-const LoginIllustrationWrapper = styled(Box)<BoxProps>(({ theme }: any) => ({
+const LoginIllustrationWrapper = styled(Box)<BoxProps>(({ theme }) => ({
     padding: theme.spacing(20),
     paddingRight: '0 !important',
     [theme.breakpoints.down('lg')]: {
@@ -53,7 +54,7 @@ const LoginIllustrationWrapper = styled(Box)<BoxProps>(({ theme }: any) => ({
     }
 }))
 
-const LoginIllustration = styled('img')(({ theme }: any) => ({
+const LoginIllustration = styled('img')(({ theme }) => ({
     maxWidth: '48rem',
     [theme.breakpoints.down('xl')]: {
         maxWidth: '38rem'
@@ -63,7 +64,7 @@ const LoginIllustration = styled('img')(({ theme }: any) => ({
     }
 }))
 
-const RightWrapper = styled(Box)<BoxProps>(({ theme }: any) => ({
+const RightWrapper = styled(Box)<BoxProps>(({ theme }) => ({
     width: '100%',
     [theme.breakpoints.up('md')]: {
         maxWidth: 400
@@ -73,21 +74,21 @@ const RightWrapper = styled(Box)<BoxProps>(({ theme }: any) => ({
     }
 }))
 
-const BoxWrapper = styled(Box)<BoxProps>(({ theme }: any) => ({
+const BoxWrapper = styled(Box)<BoxProps>(({ theme }) => ({
     width: '100%',
     [theme.breakpoints.down('md')]: {
         maxWidth: 400
     }
 }))
 
-const TypographyStyled = styled(Typography)<TypographyProps>(({ theme }: any) => ({
+const TypographyStyled = styled(Typography)<TypographyProps>(({ theme }) => ({
     fontWeight: 600,
     letterSpacing: '0.18px',
     marginBottom: theme.spacing(1.5),
     [theme.breakpoints.down('md')]: { marginTop: theme.spacing(8) }
 }))
 
-const FormControlLabel = styled(MuiFormControlLabel)<FormControlLabelProps>(({ theme }: any) => ({
+const FormControlLabel = styled(MuiFormControlLabel)<FormControlLabelProps>(({ theme }) => ({
     '& .MuiFormControlLabel-label': {
         fontSize: '0.875rem',
         color: theme.palette.text.secondary
@@ -395,8 +396,8 @@ const LoginPage = () => {
                         </form>
                     </BoxWrapper>
                 </Box>
-            </RightWrapper>
-        </Box>
+            </RightWrapper >
+        </Box >
     )
 }
 
