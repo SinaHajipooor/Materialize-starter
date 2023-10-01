@@ -1,6 +1,3 @@
-'use strict'
-Object.defineProperty(exports, '__esModule', { value: true })
-
 /**
  * This is an advanced example for creating icon bundles for Iconify SVG Framework.
  *
@@ -13,12 +10,13 @@ Object.defineProperty(exports, '__esModule', { value: true })
  * This example uses Iconify Tools to import and clean up icons.
  * For Iconify Tools documentation visit https://docs.iconify.design/tools/tools2/
  */
-const fs_1 = require('fs')
-const path_1 = require('path')
+import { promises as fs } from 'fs'
+import { dirname } from 'path'
 
 // Installation: npm install --save-dev @iconify/tools @iconify/utils @iconify/json @iconify/iconify
-const tools_1 = require('@iconify/tools')
-const utils_1 = require('@iconify/utils')
+import { importDirectory, cleanupSVG, parseColors, isEmptyColor, runSVGO } from '@iconify/tools'
+import { getIcons, stringToIcon, minifyIconSet } from '@iconify/utils'
+
 /* eslint-enable */
 const sources = {
   json: [
@@ -26,20 +24,15 @@ const sources = {
     require.resolve('@iconify/json/json/mdi.json'),
 
     // Custom file with only few icons
-
-/* 
-     {
+    {
       filename: require.resolve('@iconify/json/json/line-md.json'),
       icons: ['home-twotone-alt', 'github', 'document-list', 'document-code', 'image-twotone']
     }
- */
 
     // Custom JSON file
     // 'json/gg.json'
   ],
-
-/* 
-   icons: [
+  icons: [
     'bx:basket',
     'bi:airplane-engines',
     'tabler:anchor',
@@ -47,7 +40,6 @@ const sources = {
     'fa6-regular:comment',
     'twemoji:auto-rickshaw'
   ],
- */
   svg: [
     {
       dir: 'src/iconify-bundle/svg',
@@ -78,9 +70,9 @@ const target = 'src/iconify-bundle/icons-bundle-react.js'
     : "import { addCollection } from '" + component + "';\n\n"
 
   // Create directory for output if missing
-  const dir = (0, path_1.dirname)(target)
+  const dir = dirname(target)
   try {
-    await fs_1.promises.mkdir(dir, {
+    await fs.mkdir(dir, {
       recursive: true
     })
   } catch (err) {
@@ -113,11 +105,11 @@ const target = 'src/iconify-bundle/icons-bundle-react.js'
 
       // Load icon set
       const filename = typeof item === 'string' ? item : item.filename
-      let content = JSON.parse(await fs_1.promises.readFile(filename, 'utf8'))
+      let content = JSON.parse(await fs.readFile(filename, 'utf8'))
 
       // Filter icons
       if (typeof item !== 'string' && item.icons?.length) {
-        const filteredContent = (0, utils_1.getIcons)(content, item.icons)
+        const filteredContent = getIcons(content, item.icons)
         if (!filteredContent) {
           throw new Error(`Cannot find required icons in ${filename}`)
         }
@@ -126,7 +118,7 @@ const target = 'src/iconify-bundle/icons-bundle-react.js'
 
       // Remove metadata and add to bundle
       removeMetaData(content)
-      ;(0, utils_1.minifyIconSet)(content)
+      minifyIconSet(content)
       bundle += 'addCollection(' + JSON.stringify(content) + ');\n'
       console.log(`Bundled icons from ${filename}`)
     }
@@ -140,7 +132,7 @@ const target = 'src/iconify-bundle/icons-bundle-react.js'
       const source = sources.svg[i]
 
       // Import icons
-      const iconSet = await (0, tools_1.importDirectory)(source.dir, {
+      const iconSet = await importDirectory(source.dir, {
         prefix: source.prefix
       })
 
@@ -162,20 +154,20 @@ const target = 'src/iconify-bundle/icons-bundle-react.js'
         // Clean up and optimise icons
         try {
           // Clean up icon code
-          await (0, tools_1.cleanupSVG)(svg)
+          await cleanupSVG(svg)
           if (source.monotone) {
             // Replace color with currentColor, add if missing
             // If icon is not monotone, remove this code
-            await (0, tools_1.parseColors)(svg, {
+            await parseColors(svg, {
               defaultColor: 'currentColor',
               callback: (attr, colorStr, color) => {
-                return !color || (0, tools_1.isEmptyColor)(color) ? colorStr : 'currentColor'
+                return !color || isEmptyColor(color) ? colorStr : 'currentColor'
               }
             })
           }
 
           // Optimise
-          await (0, tools_1.runSVGO)(svg)
+          await runSVGO(svg)
         } catch (err) {
           // Invalid icon
           console.error(`Error parsing ${name} from ${source.dir}:`, err)
@@ -196,7 +188,7 @@ const target = 'src/iconify-bundle/icons-bundle-react.js'
   }
 
   // Save to file
-  await fs_1.promises.writeFile(target, bundle, 'utf8')
+  await fs.writeFile(target, bundle, 'utf8')
   console.log(`Saved ${target} (${bundle.length} bytes)`)
 })().catch(err => {
   console.error(err)
@@ -218,7 +210,7 @@ function removeMetaData(iconSet) {
 function organizeIconsList(icons) {
   const sorted = Object.create(null)
   icons.forEach(icon => {
-    const item = (0, utils_1.stringToIcon)(icon)
+    const item = stringToIcon(icon)
     if (!item) {
       return
     }
