@@ -30,7 +30,7 @@ const navigation = () => {
         },
         {
             title: 'سوابق فعالیت',
-            path: '/activityHistories',
+            path: '/activityHistories/index',
             icon: 'mdi:person-outline',
         },
         {
