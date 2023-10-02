@@ -67,3 +67,16 @@ export async function apiUpdateActivityHistory(updatedActivityHistory, file, id)
         throw new Error(error.message)
     }
 }
+
+
+// show detail
+export async function apiShowActivityHistory(id) {
+    try {
+        const response = await axiosConfig.get(`${ACTIVITY_BASE_URL}/show/${id}?user_id=1`);
+        const data = response.data.result;
+
+        return data;
+    } catch (error) {
+        throw new Error(error.message)
+    }
+}
