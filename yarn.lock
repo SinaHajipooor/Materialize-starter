@@ -1076,6 +1076,11 @@
     prop-types "^15.8.1"
     reselect "^4.1.6"
 
+"@neshan-maps-platform/react-openlayers@^2.0.16":
+  version "2.0.16"
+  resolved "https://registry.npmjs.org/@neshan-maps-platform/react-openlayers/-/react-openlayers-2.0.16.tgz"
+  integrity sha512-ycaprXj6Gdgb8ZpqtjmaHxO2tIx5tX6hZX9A9m4BUWy144wfludRgSzP7Zq2Cf9uDtWUolvo9YAvuVPTyW7Nvw==
+
 "@next/env@13.0.0":
   version "13.0.0"
   resolved "https://registry.npmjs.org/@next/env/-/env-13.0.0.tgz"
