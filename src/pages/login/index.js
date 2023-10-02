@@ -156,7 +156,7 @@ const LoginPage = () => {
 
 
     return (
-        <Box className='content-right'>
+        <Box className='content-right' >
             {!hidden ? (
                 <Box sx={{ flex: 1, display: 'flex', position: 'relative', alignItems: 'center', justifyContent: 'center' }}>
                     <LoginIllustrationWrapper>
@@ -265,8 +265,8 @@ const LoginPage = () => {
                             </Typography>
                         </Box>
                         <Box sx={{ mb: 6 }}>
-                            <TypographyStyled variant='h5'>{`Welcome to ${themeConfig.templateName}! 👋🏻`}</TypographyStyled>
-                            <Typography variant='body2'>Please sign-in to your account and start the adventure</Typography>
+                            <TypographyStyled variant='h5'>{`به سامانه تستی حاجی خوش آمدید👋🏻`}</TypographyStyled>
+                            <Typography variant='body2'>لطفا اطلاعات حساب کاربری خود را وارد کنید</Typography>
                         </Box>
                         <form noValidate autoComplete='off' onSubmit={handleSubmit(onSubmit)}>
                             <FormControl fullWidth sx={{ mb: 4 }}>
@@ -326,12 +326,8 @@ const LoginPage = () => {
                                 )}
                             </FormControl>
                             <Box
-                                sx={{ mb: 4, display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between' }}
+                                sx={{ mb: 5, mt: 8, display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between' }}
                             >
-                                <FormControlLabel
-                                    label='Remember Me'
-                                    control={<Checkbox checked={rememberMe} onChange={e => setRememberMe(e.target.checked)} />}
-                                />
                                 <Typography
                                     variant='body2'
                                     component={Link}
@@ -340,11 +336,19 @@ const LoginPage = () => {
                                 >
                                     رمز خود را فراموش کردم
                                 </Typography>
+                                <Typography
+                                    variant='body2'
+                                    component={Link}
+                                    href='/forgot-password'
+                                    sx={{ color: 'primary.main', textDecoration: 'none' }}
+                                >
+                                    ورود با تلفن همراه
+                                </Typography>
                             </Box>
                             <Button fullWidth size='large' type='submit' variant='contained' sx={{ mb: 7 }}>
                                 ورود
                             </Button>
-                            <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
+                            <Box mb={20} sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
                                 <Typography sx={{ mr: 2, color: 'text.secondary' }}>حسابی ندارید ؟</Typography>
                                 <Typography href='/register' component={Link} sx={{ color: 'primary.main', textDecoration: 'none' }}>
                                     ثبت نام
