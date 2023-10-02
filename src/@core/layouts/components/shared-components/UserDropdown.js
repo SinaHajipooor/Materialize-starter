@@ -90,7 +90,7 @@ const UserDropdown = props => {
                 <Avatar
                     alt='user avatar'
                     onClick={handleDropdownOpen}
-                    sx={{ width: 40, height: 40 }}
+                    sx={{ width: 30, height: 30 }}
                     src='/images/avatars/1.png'
                 />
             </Badge>
@@ -118,7 +118,7 @@ const UserDropdown = props => {
                             <Typography sx={{ fontWeight: 600 }}>{sessions?.data?.user?.first_name} {sessions?.data?.user?.last_name}</Typography>
                             <Typography variant='body2' sx={{ fontSize: '0.8rem', color: 'text.disabled' }}>
                                 {/* Admin */}
-                                {sessions.data?.user?.mobile}
+                                {sessions.data?.user?.role}
                             </Typography>
                         </Box>
                     </Box>
@@ -127,38 +127,38 @@ const UserDropdown = props => {
                 <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose()}>
                     <Box sx={styles}>
                         <Icon icon='mdi:account-outline' />
-                        Profile
+                        پروفایل
                     </Box>
                 </MenuItem>
                 <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose()}>
                     <Box sx={styles}>
                         <Icon icon='mdi:email-outline' />
-                        Inbox
+                        پیام ها
                     </Box>
                 </MenuItem>
-                <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose()}>
+                {/* <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose()}>
                     <Box sx={styles}>
                         <Icon icon='mdi:message-outline' />
                         Chat
                     </Box>
-                </MenuItem>
-                <Divider />
+                </MenuItem> */}
+                {/* <Divider /> */}
                 <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose()}>
                     <Box sx={styles}>
                         <Icon icon='mdi:cog-outline' />
-                        Settings
+                        تنظیمات
                     </Box>
                 </MenuItem>
-                <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose()}>
+                {/* <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose()}>
                     <Box sx={styles}>
                         <Icon icon='mdi:currency-usd' />
                         Pricing
                     </Box>
-                </MenuItem>
+                </MenuItem> */}
                 <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose()}>
                     <Box sx={styles}>
                         <Icon icon='mdi:help-circle-outline' />
-                        FAQ
+                        پشتیبانی
                     </Box>
                 </MenuItem>
                 <Divider />
@@ -172,7 +172,7 @@ const UserDropdown = props => {
                     sx={{ py: 2, '& svg': { mr: 2, fontSize: '1.375rem', color: 'text.primary' } }}
                 >
                     <Icon icon='mdi:logout-variant' />
-                    Logout
+                    خروج
                 </MenuItem>
             </Menu>
         </Fragment >

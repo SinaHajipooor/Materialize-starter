@@ -10,25 +10,25 @@ import ModeToggler from 'src/@core/layouts/components/shared-components/ModeTogg
 import UserDropdown from 'src/@core/layouts/components/shared-components/UserDropdown'
 
 const AppBarContent = props => {
-  // ** Props
-  const { hidden, settings, saveSettings, toggleNavVisibility } = props
+    // ** Props
+    const { hidden, settings, saveSettings, toggleNavVisibility } = props
 
-  return (
-    <Box sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-      <Box className='actions-left' sx={{ mr: 2, display: 'flex', alignItems: 'center' }}>
-        {hidden ? (
-          <IconButton color='inherit' sx={{ ml: -2.75 }} onClick={toggleNavVisibility}>
-            <Icon icon='mdi:menu' />
-          </IconButton>
-        ) : null}
+    return (
+        <Box sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'end' }}>
+            <Box className='actions-left' sx={{ mr: 2, display: 'flex', alignItems: 'center' }}>
+                {hidden ? (
+                    <IconButton color='inherit' sx={{ ml: -2.75 }} onClick={toggleNavVisibility}>
+                        <Icon icon='mdi:menu' />
+                    </IconButton>
+                ) : null}
 
-        <ModeToggler settings={settings} saveSettings={saveSettings} />
-      </Box>
-      <Box className='actions-right' sx={{ display: 'flex', alignItems: 'center' }}>
-        <UserDropdown settings={settings} />
-      </Box>
-    </Box>
-  )
+                <ModeToggler settings={settings} saveSettings={saveSettings} />
+            </Box>
+            <Box className='actions-right' sx={{ display: 'flex', alignItems: 'center' }}>
+                <UserDropdown settings={settings} />
+            </Box>
+        </Box>
+    )
 }
 
 export default AppBarContent
