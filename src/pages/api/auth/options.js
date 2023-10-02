@@ -15,7 +15,7 @@ export const options = {
                 // const userData = data.user
                 // return { ...userData, role: 'admin' }
                 // -------- test ----------
-                const user = { id: 1, username: 'sina', first_name: 'sina', last_name: 'hajipour', mobile: '09155613393', password: '123', role: 'admin', avatar: '', status: '' };
+                const user = { id: 1, username: 'sina', first_name: 'سینا', last_name: 'حاجی پور', mobile: '09155613393', password: '123', role: 'admin', avatar: '', status: '' };
                 if (credentials?.username === user.username && credentials?.password === user.password) {
                     return user
                 } else {

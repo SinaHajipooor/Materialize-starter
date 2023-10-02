@@ -18,8 +18,10 @@ import Typography from '@mui/material/Typography'
 import Icon from 'src/@core/components/icon'
 
 // ** Context
-import { useAuth } from 'src/hooks/useAuth'
-import { signOut } from 'next-auth/react'
+import { signOut, useSession } from 'next-auth/react'
+import { getServerSession } from 'next-auth'
+import { options } from 'src/pages/api/auth/options'
+import Link from 'next/link'
 
 // ** Styled Components
 const BadgeContentSpan = styled('span')(({ theme }) => ({
@@ -33,18 +35,19 @@ const BadgeContentSpan = styled('span')(({ theme }) => ({
 const UserDropdown = props => {
     // ** Props
     const { settings } = props
+    const sessions = useSession()
 
     // ** States
     const [anchorEl, setAnchorEl] = useState(null)
 
     // ** Hooks
     const router = useRouter()
-    const { logout } = useAuth()
 
     // ** Vars
     const { direction } = settings
 
     const handleDropdownOpen = event => {
+
         setAnchorEl(event.currentTarget)
     }
 
@@ -85,7 +88,7 @@ const UserDropdown = props => {
                 }}
             >
                 <Avatar
-                    alt='John Doe'
+                    alt='user avatar'
                     onClick={handleDropdownOpen}
                     sx={{ width: 40, height: 40 }}
                     src='/images/avatars/1.png'
@@ -112,9 +115,10 @@ const UserDropdown = props => {
                             <Avatar alt='John Doe' src='/images/avatars/1.png' sx={{ width: '2.5rem', height: '2.5rem' }} />
                         </Badge>
                         <Box sx={{ display: 'flex', ml: 3, alignItems: 'flex-start', flexDirection: 'column' }}>
-                            <Typography sx={{ fontWeight: 600 }}>John Doe</Typography>
+                            <Typography sx={{ fontWeight: 600 }}>{sessions?.data?.user?.first_name} {sessions?.data?.user?.last_name}</Typography>
                             <Typography variant='body2' sx={{ fontSize: '0.8rem', color: 'text.disabled' }}>
-                                Admin
+                                {/* Admin */}
+                                {sessions.data?.user?.mobile}
                             </Typography>
                         </Box>
                     </Box>
@@ -159,14 +163,19 @@ const UserDropdown = props => {
                 </MenuItem>
                 <Divider />
                 <MenuItem
-                    onClick={() => signOut()}
+                    LinkComponent={Link}
+                    href=''
+                    onClick={() => signOut({
+                        redirect: true,
+                        callbackUrl: `${window.location.origin}/login`
+                    })}
                     sx={{ py: 2, '& svg': { mr: 2, fontSize: '1.375rem', color: 'text.primary' } }}
                 >
                     <Icon icon='mdi:logout-variant' />
                     Logout
                 </MenuItem>
             </Menu>
-        </Fragment>
+        </Fragment >
     )
 }
 
