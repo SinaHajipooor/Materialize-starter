@@ -145,7 +145,7 @@ const LoginPage = () => {
 
     // onChange handler 
     function onChangeHandler(e, fieldName) {
-        setUser((prevUser) => ({ ...prevUser, [fieldName]: e.target.value }))
+        setUser((curUser) => ({ ...curUser, [fieldName]: e.target.value }))
     }
 
     // onLogin handler
@@ -264,7 +264,7 @@ const LoginPage = () => {
                                 {themeConfig.templateName}
                             </Typography>
                         </Box>
-                        <Box sx={{ mb: 6 }}>
+                        <Box sx={{ mb: 8 }}>
                             <TypographyStyled variant='h5'>{`به سامانه تستی حاجی خوش آمدید👋🏻`}</TypographyStyled>
                             <Typography variant='body2'>لطفا اطلاعات حساب کاربری خود را وارد کنید</Typography>
                         </Box>
@@ -278,18 +278,27 @@ const LoginPage = () => {
                                         <TextField
                                             autoFocus
                                             label='نام کاربری'
-                                            value={value}
+
+                                            //     value={value}
+                                            value={user.username}
                                             onBlur={onBlur}
-                                            onChange={onChange}
-                                            error={Boolean(errors.email)}
-                                            placeholder='admin@materialize.com'
+
+                                            //     onChange={onChange}
+                                            onChange={(e) => onChangeHandler(e, 'username')}
+
+                                        //     error={Boolean(errors.email)}
+                                        //     placeholder='نام کاربری خود را وارد کنید'
                                         />
                                     )}
                                 />
                                 {errors.email && <FormHelperText sx={{ color: 'error.main' }}>{errors.email.message}</FormHelperText>}
                             </FormControl>
                             <FormControl fullWidth>
-                                <InputLabel htmlFor='auth-login-v2-password' error={Boolean(errors.password)}>
+                                <InputLabel
+                                    htmlFor='auth-login-v2-password'
+
+                                //     error={Boolean(errors.password)}
+                                >
                                     رمز عبور
                                 </InputLabel>
                                 <Controller
@@ -298,10 +307,14 @@ const LoginPage = () => {
                                     rules={{ required: true }}
                                     render={({ field: { value, onChange, onBlur } }) => (
                                         <OutlinedInput
-                                            value={value}
+
+                                            //     value={value}
+                                            value={user.password}
                                             onBlur={onBlur}
                                             label='Password'
-                                            onChange={onChange}
+
+                                            //     onChange={onChange}
+                                            onChange={(e) => onChangeHandler(e, 'password')}
                                             id='auth-login-v2-password'
                                             error={Boolean(errors.password)}
                                             type={showPassword ? 'text' : 'password'}
@@ -345,7 +358,7 @@ const LoginPage = () => {
                                     ورود با تلفن همراه
                                 </Typography>
                             </Box>
-                            <Button fullWidth size='large' type='submit' variant='contained' sx={{ mb: 7 }}>
+                            <Button onClick={onLoginHandler} fullWidth size='large' type='submit' variant='contained' sx={{ mb: 7, fontFamily: 'inherit' }}>
                                 ورود
                             </Button>
                             <Box mb={20} sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>

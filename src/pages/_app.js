@@ -57,6 +57,7 @@ import 'src/iconify-bundle/icons-bundle-react'
 // ** Global css styles
 import '../../styles/globals.css'
 import { useState } from 'react'
+import NextAuthProvider from 'src/context/NextAuthProvider'
 
 const clientSideEmotionCache = createEmotionCache()
 
@@ -113,29 +114,30 @@ const App = props => {
                 <meta name='keywords' content='Material Design, MUI, Admin Template, React Admin Template' />
                 <meta name='viewport' content='initial-scale=1, width=device-width' />
             </Head>
-
-            <AuthProvider>
-                <SettingsProvider {...(setConfig ? { pageSettings: setConfig() } : {})}>
-                    <SettingsConsumer>
-                        {({ settings }) => {
-                            return (
-                                <ThemeComponent settings={settings}>
-                                    <WindowWrapper>
-                                        <Guard authGuard={authGuard} guestGuard={guestGuard}>
-                                            <AclGuard aclAbilities={aclAbilities} guestGuard={guestGuard}>
-                                                {getLayout(<Component {...pageProps} />)}
-                                            </AclGuard>
-                                        </Guard>
-                                    </WindowWrapper>
-                                    <ReactHotToast>
-                                        <Toaster position={settings.toastPosition} toastOptions={{ className: 'react-hot-toast' }} />
-                                    </ReactHotToast>
-                                </ThemeComponent>
-                            )
-                        }}
-                    </SettingsConsumer>
-                </SettingsProvider>
-            </AuthProvider>
+            <NextAuthProvider>
+                <AuthProvider>
+                    <SettingsProvider {...(setConfig ? { pageSettings: setConfig() } : {})}>
+                        <SettingsConsumer>
+                            {({ settings }) => {
+                                return (
+                                    <ThemeComponent settings={settings}>
+                                        <WindowWrapper>
+                                            <Guard authGuard={authGuard} guestGuard={guestGuard}>
+                                                <AclGuard aclAbilities={aclAbilities} guestGuard={guestGuard}>
+                                                    {getLayout(<Component {...pageProps} />)}
+                                                </AclGuard>
+                                            </Guard>
+                                        </WindowWrapper>
+                                        <ReactHotToast>
+                                            <Toaster position={settings.toastPosition} toastOptions={{ className: 'react-hot-toast' }} />
+                                        </ReactHotToast>
+                                    </ThemeComponent>
+                                )
+                            }}
+                        </SettingsConsumer>
+                    </SettingsProvider>
+                </AuthProvider>
+            </NextAuthProvider>
         </CacheProvider>
 
     )
