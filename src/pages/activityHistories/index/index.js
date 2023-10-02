@@ -22,7 +22,7 @@ const DataGrid = () => {
     const { isLoading, activityHistories } = useActivityIndex()
 
     return (
-        isLoading ? <CircularProgress /> : <Grid container spacing={6}>
+        <Grid container spacing={6}>
             <Grid item xs={12}>
                 <TableServerSide activityHistories={activityHistories} />
             </Grid>
