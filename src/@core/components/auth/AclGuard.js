@@ -5,7 +5,7 @@
 // import { useRouter } from 'next/router'
 
 // // ** Context Imports
-// import { AbilityContext } from 'src/layouts/components/acl/Can'
+// import { AbilityContext } from 'src/layouts/components/acl/'
 
 // // ** Config Import
 // import { buildAbilityFor } from 'src/configs/acl'
@@ -37,7 +37,7 @@
 //   }
 
 //   // Check the access of current user and render pages
-//   if (ability && ability.can(aclAbilities.action, aclAbilities.subject)) {
+//   if (ability && ability.(aclAbilities.action, aclAbilities.subject)) {
 //     return <AbilityContext.Provider value={ability}>{children}</AbilityContext.Provider>
 //   }
 
