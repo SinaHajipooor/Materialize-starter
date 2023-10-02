@@ -14,3 +14,25 @@ export async function apiFetchAllActivityHistories() {
         throw new Error(error.message)
     }
 }
+
+
+// delete 
+export async function apiDeleteActivityHistory(id) {
+    try {
+        const response = await axiosConfig.delete(`${ACTIVITY_BASE_URL}/destroy/${id}`);
+
+        return response;
+    } catch (error) {
+        throw new Error(error.message)
+    }
+}
+
+
+// create 
+// export async function apiCreateActivityHistory(newActivityHistory , file){
+//     try {
+//         const form
+//     } catch (error) {
+        
+//     }
+// }
