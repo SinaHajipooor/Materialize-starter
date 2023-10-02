@@ -8,7 +8,7 @@ const navigation = () => {
         {
             title: 'تقویم',
             path: '/calendar',
-            icon: 'mdi:home-outline',
+            icon: 'mdi:calendar-outline',
         },
         {
             title: 'اعضای سیستم',
