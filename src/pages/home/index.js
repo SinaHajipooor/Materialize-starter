@@ -74,15 +74,7 @@ const Home = () => {
                         <CrmTotalProfit />
                     </Grid>
                 </Grow>
-                {/* <Grid item xs={12} md={4}>
-                    <CrmOrganicSessions />
-                </Grid> */}
-                {/* <Grid item xs={12} md={8}>
-                    <CrmProjectTimeline />
-                </Grid> */}
-                {/* <Grid item xs={12} sm={6} md={4}>
-                    <CrmWeeklyOverview />
-                </Grid> */}
+
                 <Grow in timeout={2.5 * 500}>
                     <Grid item xs={12} sm={6} md={4}>
                         <CrmSocialNetworkVisits />
@@ -103,12 +95,7 @@ const Home = () => {
                         <CrmExternalLinks />
                     </Grid>
                 </Grow>
-                {/* <Grid item xs={12} sm={6} md={4}>
-                    <CrmPaymentHistory />
-                </Grid>
-                <Grid item xs={12} md={4}>
-                    <CrmMostSalesInCountries />
-                </Grid> */}
+
                 <Grow in timeout={6.5 * 500}>
                     <Grid item xs={12} md={8}>
                         <CrmTable />
