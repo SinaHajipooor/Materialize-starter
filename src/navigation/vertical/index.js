@@ -5,6 +5,16 @@ const navigation = () => {
             path: '/home',
             icon: 'mdi:home-outline',
         },
+        {
+            title: 'سوابق فعالیت',
+            path: '/activityHistories',
+            icon: 'mdi:person-outline',
+        },
+        {
+            title: 'نقشه',
+            path: '/map',
+            icon: 'mdi:map-outline',
+        },
 
         //     {
         //       path: '/acl',
