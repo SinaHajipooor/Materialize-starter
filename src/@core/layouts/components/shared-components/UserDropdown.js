@@ -19,9 +19,6 @@ import Icon from 'src/@core/components/icon'
 
 // ** Context
 import { signOut, useSession } from 'next-auth/react'
-import { getServerSession } from 'next-auth'
-import { options } from 'src/pages/api/auth/options'
-import Link from 'next/link'
 
 // ** Styled Components
 const BadgeContentSpan = styled('span')(({ theme }) => ({
@@ -163,12 +160,12 @@ const UserDropdown = props => {
                 </MenuItem>
                 <Divider />
                 <MenuItem
-                    LinkComponent={Link}
-                    href=''
-                    onClick={() => signOut({
-                        redirect: true,
-                        callbackUrl: `${window.location.origin}/login`
-                    })}
+                    onClick={() => {
+                        signOut({
+                            redirect: false
+                        })
+                        router.push('/login')
+                    }}
                     sx={{ py: 2, '& svg': { mr: 2, fontSize: '1.375rem', color: 'text.primary' } }}
                 >
                     <Icon icon='mdi:logout-variant' />
