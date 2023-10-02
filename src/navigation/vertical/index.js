@@ -6,6 +6,11 @@ const navigation = () => {
             icon: 'mdi:home-outline',
         },
         {
+            title: 'تقویم',
+            path: '/calendar',
+            icon: 'mdi:home-outline',
+        },
+        {
             title: 'اعضای سیستم',
             icon: 'mdi:users-outline',
             children: [
