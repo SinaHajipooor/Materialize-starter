@@ -6,6 +6,24 @@ const navigation = () => {
             icon: 'mdi:home-outline',
         },
         {
+            title: 'اعضای سیستم',
+            icon: 'mdi:users-outline',
+            children: [
+                {
+                    title: 'مدیر',
+                    path: '/authorize/manager'
+                },
+                {
+                    title: 'ادمین',
+                    path: '/authorize/admin'
+                },
+                {
+                    title: 'کاربر',
+                    path: '/authorize/user'
+                },
+            ]
+        },
+        {
             title: 'سوابق فعالیت',
             path: '/activityHistories',
             icon: 'mdi:person-outline',
@@ -15,6 +33,7 @@ const navigation = () => {
             path: '/map',
             icon: 'mdi:map-outline',
         },
+
 
         //     {
         //       path: '/acl',
