@@ -29,10 +29,41 @@ export async function apiDeleteActivityHistory(id) {
 
 
 // create 
-// export async function apiCreateActivityHistory(newActivityHistory , file){
-//     try {
-//         const form
-//     } catch (error) {
-        
-//     }
-// }
+export async function apiCreateActivityHistory(newActivityHistory, file) {
+    try {
+        const formData = new FormData();
+        Object.entries(newActivityHistory).forEach(([key, value]) => {
+            formData.append(key, value);
+        });
+        formData.append('file', file[0]);
+
+        const response = await axiosConfig.post(`${ACTIVITY_BASE_URL}/store`, formData, {
+            headers: {}
+        });
+
+        return response;
+    } catch (error) {
+        throw new Error(error.message)
+    }
+}
+
+
+// update 
+export async function apiUpdateActivityHistory(updatedActivityHistory, file, id) {
+    try {
+        const formData = new FormData();
+        Object.entries(updatedActivityHistory).forEach(([key, value]) => {
+            formData.append(key, value)
+        });
+        formData.append('file', file[0]);
+        formData.append('_method', 'put');
+
+        const response = await axiosConfig.post(`${ACTIVITY_BASE_URL}/update/${id}`, formData, {
+            headers: {}
+        });
+
+        return response;
+    } catch (error) {
+        throw new Error(error.message)
+    }
+}
