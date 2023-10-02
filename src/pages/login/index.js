@@ -21,6 +21,8 @@ import FormHelperText from '@mui/material/FormHelperText'
 import InputAdornment from '@mui/material/InputAdornment'
 import Typography from '@mui/material/Typography'
 import MuiFormControlLabel from '@mui/material/FormControlLabel'
+import { signIn } from 'next-auth/react'
+
 
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
@@ -43,6 +45,7 @@ import BlankLayout from 'src/@core/layouts/BlankLayout'
 
 // ** Demo Imports
 import FooterIllustrationsV2 from 'src/views/pages/auth/FooterIllustrationsV2'
+import { useRouter } from 'next/router'
 
 // ** Styled Components
 const LoginIllustrationWrapper = styled(Box)(({ theme }) => ({
@@ -109,7 +112,7 @@ const LoginPage = () => {
     const [showPassword, setShowPassword] = useState(false)
 
     // ** Hooks
-    const auth = useAuth()
+    //     const auth = useAuth()
     const theme = useTheme()
     const bgColors = useBgColor()
     const { settings } = useSettings()
@@ -143,6 +146,9 @@ const LoginPage = () => {
     // user info 
     const [user, setUser] = useState({ username: '', password: '' })
 
+    // router obj
+    const router = useRouter()
+
     // onChange handler 
     function onChangeHandler(e, fieldName) {
         setUser((curUser) => ({ ...curUser, [fieldName]: e.target.value }))
@@ -151,7 +157,13 @@ const LoginPage = () => {
     // onLogin handler
     async function onLoginHandler(e) {
         e.preventDefault()
-        console.log(user)
+        const response = await signIn('credentials', { username: user.username, password: user.password, redirect: false });
+        if (response?.error) {
+            console.log(response)
+            throw new Error(response.error)
+        } else {
+            router.push('/')
+        }
     }
 
 

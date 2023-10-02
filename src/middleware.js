@@ -33,5 +33,5 @@ export default withAuth(
 
 
 export const config = {
-    matcher: ['/', '/authorize/admin/:path*', '/authorize/user/:path*', '/authorize/manager/:path*']
+    matcher: ['/', '/home', '/authorize/admin/:path*', '/authorize/user/:path*', '/authorize/manager/:path*']
 }
