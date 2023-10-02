@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import "@neshan-maps-platform/react-openlayers/dist/style.css";
 import NeshanMap from "@neshan-maps-platform/react-openlayers";
-import { Box } from "@mui/material";
+import { Box, Grow } from "@mui/material";
 
 const CACHE_DURATION = 600000; // 10 minutes in milliseconds
 
@@ -20,14 +20,16 @@ function MapPage({ userLocation }) {
     }, []);
 
     return (
-        <Box mt={2}>
-            <NeshanMap
-                center={userLocation}
-                mapKey="web.5d4589bb590945249a496c878c8d3f56"
-                defaultType="neshan"
-                zoom={13}
-            ></NeshanMap>
-        </Box>
+        <Grow in timeout={2 * 600}>
+            <Box mt={2}>
+                <NeshanMap
+                    center={userLocation}
+                    mapKey="web.5d4589bb590945249a496c878c8d3f56"
+                    defaultType="neshan"
+                    zoom={13}
+                ></NeshanMap>
+            </Box>
+        </Grow>
     );
 }
 
