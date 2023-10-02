@@ -1,24 +1,36 @@
+@font-face {
+    font-family: IRANSans;
+    src: url('../src/assets/fonts/iransans/IRANSansWeb.eot');
+    src: url('../src/assets/fonts/iransans/IRANSansWeb.eot') format('embedded-opentype'), url('../src/assets/fonts/iransans/IRANSansWeb(FaNum).woff') format('woff'), url('../src/assets/fonts/iransans/IRANSansWeb.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+
 html,
 body {
-  min-height: 100%;
+    min-height: 100%;
+    font-family: 'IRANSans' !important;
+
 }
 
 #__next {
-  height: 100%;
+    height: 100%;
 }
 
 code {
-  font-family: 'Inter', sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue';
-  padding: 0.1rem 0.4rem;
-  font-size: 90%;
-  color: #d400ff;
-  border-radius: 0.1335rem;
+    font-family: 'IRANSans' !important;
+    padding: 0.1rem 0.4rem;
+    font-size: 90%;
+    color: #d400ff;
+    border-radius: 0.1335rem;
 }
+
 code:not([class*='language-']):before,
 code:not([class*='language-']):after {
-  content: '`';
+    content: '`';
 }
+
 code[class*='language-'] {
-  padding: 0;
+    padding: 0;
 }
