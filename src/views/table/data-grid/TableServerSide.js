@@ -38,9 +38,6 @@ import { getInitials } from 'src/@core/utils/get-initials'
 
 // ** renders client column
 const renderClient = params => {
-
-
-
     const { row } = params
     const stateNum = Math.floor(Math.random() * 6)
     const states = ['success', 'error', 'warning', 'info', 'primary', 'secondary']
@@ -55,7 +52,7 @@ const getFullName = params =>
             {renderClient(params)}
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                 <Typography noWrap variant='body2' sx={{ color: 'text.primary', fontWeight: 600 }}>
-                    {params.row.start_date}
+                    {params?.row.start_date}
                 </Typography>
             </Box>
         </Box>
@@ -120,7 +117,7 @@ const columns = [
         field: 'start_date',
         renderCell: params => (
             <Typography variant='body2' sx={{ color: 'text.primary' }}>
-                {params.row.start_date}
+                {params?.row.start_date}
             </Typography>
         )
     },
@@ -131,7 +128,7 @@ const columns = [
         headerName: 'تاریخ پایان',
         renderCell: params => (
             <Typography variant='body2' sx={{ color: 'text.primary' }}>
-                {params.row.end_date}
+                {params?.row.end_date}
             </Typography>
         )
     },
@@ -142,7 +139,7 @@ const columns = [
         headerName: 'نوع همکاری',
         renderCell: params => (
             <Typography variant='body2' sx={{ color: 'text.primary' }}>
-                {params.row?.work_type}
+                {params?.row?.work_type}
             </Typography>
         )
     },
@@ -165,8 +162,7 @@ const columns = [
                         <IconDotsVertical size={24} />
                     </IconButton>
                     <Menu
-
-                        id={`menu-${params.id}`}
+                        id={`menu-${params?.row.id}`}
                         anchorEl={menuAnchorEl}
                         open={Boolean(menuAnchorEl)}
                         onClose={handleMenuClose}
