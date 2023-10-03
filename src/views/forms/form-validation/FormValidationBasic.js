@@ -269,29 +269,54 @@ const FormValidationBasic = () => {
                             )}
                         </Grid>
                         <Grid item xs={12} sm={4} mt={3}>
-                            <FormControl fullWidth>
-                                <Controller
-                                    name='position'
-                                    control={control}
-                                    rules={{ required: true }}
-                                    render={({ field: { value, onChange } }) => (
-                                        <TextField
-                                            type='text'
-                                            value={value}
-                                            label='سمت'
-                                            onChange={onChange}
-                                            error={Boolean(errors.position)}
-                                            placeholder='سمت را وارد کنید'
-                                            aria-describedby='validation-basic-email'
-                                        />
-                                    )}
-                                />
-                                {errors.position && (
-                                    <FormHelperText sx={{ color: 'error.main' }} id='validation-basic-email'>
-                                        سمت اجباری است
-                                    </FormHelperText>
-                                )}
-                            </FormControl>
+                            <Grid>
+                                <Box
+                                    border={0.3}
+                                    borderRadius={1}
+                                    overflow="hidden"
+                                    display="flex"
+                                    justifyContent="start"
+                                    height={51}
+                                    borderColor='#465670'
+                                >
+                                    <label htmlFor="file-input">
+                                        <Button
+                                            variant="contained"
+                                            component="span"
+                                            style={{
+                                                height: '100%', overflow: 'hidden', width: '105px', borderTopRightRadius: 1,
+                                                borderBottomRightRadius: 1,
+                                                borderTopLeftRadius: 0,
+                                                borderBottomLeftRadius: 0,
+
+                                            }}
+                                        >
+                                            آپلود فایل
+                                        </Button>
+                                    </label>
+                                    <span
+                                        style={{
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'start',
+                                            paddingRight: '18px',
+                                            paddingLeft: '8px',
+                                            fontSize: '13px',
+                                            color: 'grey'
+                                        }}
+                                    >
+                                        {file ? 'فایل مورد نظر انتخاب شد' : 'یک فایل انتخاب کنید'}
+                                    </span>
+                                    <TextField
+                                        name="file"
+                                        type="file"
+                                        id="file-input"
+                                        onChange={handleFileUpload}
+                                        style={{ display: 'none' }}
+                                    />
+                                </Box>
+
+                            </Grid>
                         </Grid>
 
                         <Grid container spacing={3} sm={8} mt={7}>
