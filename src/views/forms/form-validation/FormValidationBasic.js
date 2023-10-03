@@ -122,8 +122,6 @@ const FormValidationBasic = () => {
                             </FormControl>
 
                         </Grid>
-
-
                         <Grid item xs={12} sm={4}>
                             <FormControl fullWidth>
                                 <Controller
@@ -270,7 +268,72 @@ const FormValidationBasic = () => {
                                 </FormHelperText>
                             )}
                         </Grid>
-                        <Grid item xs={12}>
+                        <Grid item xs={12} sm={4} mt={3}>
+                            <FormControl fullWidth>
+                                <Controller
+                                    name='position'
+                                    control={control}
+                                    rules={{ required: true }}
+                                    render={({ field: { value, onChange } }) => (
+                                        <TextField
+                                            type='text'
+                                            value={value}
+                                            label='سمت'
+                                            onChange={onChange}
+                                            error={Boolean(errors.position)}
+                                            placeholder='سمت را وارد کنید'
+                                            aria-describedby='validation-basic-email'
+                                        />
+                                    )}
+                                />
+                                {errors.position && (
+                                    <FormHelperText sx={{ color: 'error.main' }} id='validation-basic-email'>
+                                        سمت اجباری است
+                                    </FormHelperText>
+                                )}
+                            </FormControl>
+                        </Grid>
+
+                        <Grid container spacing={3} sm={8} mt={7}>
+                            <Grid item xs={12} sm={4} ml={7}>
+                                <FormControlLabel
+                                    control={
+                                        <Switch
+
+                                        // checked={switches[0].checked}
+                                        // onChange={(event) => handleSwitchChange(event, 0)}
+                                        />
+                                    }
+                                    label={'دارای گواهینامه'}
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={4} ml={0}>
+                                <FormControlLabel
+                                    control={
+                                        <Switch
+
+                                        // checked={switches[1].checked}
+                                        // onChange={(event) => handleSwitchChange(event, 1)}
+                                        />
+                                    }
+                                    label={'فعالیت مرتبط'}
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={3}>
+                                <FormControlLabel
+                                    control={
+                                        <Switch
+
+                                        // checked={switches[2].checked}
+                                        // onChange={(event) => handleSwitchChange(event, 2)}
+                                        />
+                                    }
+                                    label={'فعالیت جاری'}
+                                />
+                            </Grid>
+                        </Grid>
+
+                        <Grid item xs={12} mt={2}>
                             <FormControl fullWidth>
                                 <Controller
                                     name='address'
@@ -295,59 +358,17 @@ const FormValidationBasic = () => {
                                 )}
                             </FormControl>
                         </Grid>
+                        <Grid item xs={12} sm={3} ml={3}>
+                            <FormControlLabel
+                                control={
+                                    <Switch
 
-                        <Grid item xs={12}>
-                            <Grid container spacing={5}>
-                                <Grid item xs={12} sm={3}>
-                                    <FormControlLabel
-                                        control={
-                                            <Switch
-
-                                            // checked={switches[0].checked}
-                                            // onChange={(event) => handleSwitchChange(event, 0)}
-                                            />
-                                        }
-                                        label={'دارای گواهینامه'}
+                                    // checked={switches[3].checked}
+                                    // onChange={(event) => handleSwitchChange(event, 3)}
                                     />
-                                </Grid>
-                                <Grid item xs={12} sm={3}>
-                                    <FormControlLabel
-                                        control={
-                                            <Switch
-
-                                            // checked={switches[1].checked}
-                                            // onChange={(event) => handleSwitchChange(event, 1)}
-                                            />
-                                        }
-                                        label={'فعالیت مرتبط'}
-                                    />
-                                </Grid>
-                                <Grid item xs={12} sm={3}>
-                                    <FormControlLabel
-                                        control={
-                                            <Switch
-
-                                            // checked={switches[2].checked}
-                                            // onChange={(event) => handleSwitchChange(event, 2)}
-                                            />
-                                        }
-                                        label={'فعالیت جاری'}
-                                    />
-                                </Grid>
-                                <Grid item xs={12} sm={3}>
-                                    <FormControlLabel
-                                        control={
-                                            <Switch
-
-                                            // checked={switches[3].checked}
-                                            // onChange={(event) => handleSwitchChange(event, 3)}
-                                            />
-                                        }
-                                        label={'وضعیت'}
-                                    />
-                                </Grid>
-                            </Grid>
-
+                                }
+                                label={'وضعیت'}
+                            />
                         </Grid>
                         <Grid item xs={12}>
                             <Stack
@@ -376,7 +397,7 @@ const FormValidationBasic = () => {
                     </Grid>
                 </form>
             </CardContent>
-        </Card>
+        </Card >
     )
 }
 
