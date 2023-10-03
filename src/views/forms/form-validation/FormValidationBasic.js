@@ -31,6 +31,7 @@ import { useForm, Controller } from 'react-hook-form'
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
 import Link from 'next/link'
+import { useSettings } from 'src/@core/hooks/useSettings'
 
 const defaultValues = {
     dob: null,
@@ -51,6 +52,7 @@ const CustomInput = forwardRef(({ ...props }, ref) => {
 const FormValidationBasic = () => {
     // ** States
     const [file, setFile] = useState(null);
+    const { settings } = useSettings()
 
     const [state, setState] = useState({
         password: '',
@@ -272,12 +274,12 @@ const FormValidationBasic = () => {
                             <Grid>
                                 <Box
                                     border={0.3}
-                                    borderRadius={1}
+                                    borderRadius={0.8}
                                     overflow="hidden"
                                     display="flex"
                                     justifyContent="start"
                                     height={51}
-                                    borderColor='#465670'
+                                    borderColor={settings.mode === 'dark' ? '#57596C' : '#BFBFD5'}
                                 >
                                     <label htmlFor="file-input">
                                         <Button
