@@ -7,6 +7,22 @@ import Card from '@mui/material/Card'
 import Typography from '@mui/material/Typography'
 import CardHeader from '@mui/material/CardHeader'
 import { DataGrid } from '@mui/x-data-grid'
+import {
+    TableContainer,
+    Table,
+    TableHead,
+    TableRow,
+    TableCell,
+    TableBody,
+
+    //     Typography,
+    Chip,
+    Menu,
+    MenuItem,
+    IconButton,
+    ListItemIcon,
+} from '@mui/material';
+import { IconDotsVertical, IconEdit, IconEye, IconTrash } from '@tabler/icons-react';
 
 // ** ThirdParty Components
 import axios from 'axios'
@@ -21,21 +37,28 @@ import { getInitials } from 'src/@core/utils/get-initials'
 
 // ** renders client column
 const renderClient = params => {
+
+
+
     const { row } = params
     const stateNum = Math.floor(Math.random() * 6)
     const states = ['success', 'error', 'warning', 'info', 'primary', 'secondary']
     const color = states[stateNum]
-
-    //     if (row.avatar?.length) {
-    //         return <CustomAvatar src={`/images/avatars/${row?.avatar}`} sx={{ mr: 3, width: '1.875rem', height: '1.875rem' }} />
-    //     } else {
-    //         return (
-    //             <CustomAvatar skin='light' color={color} sx={{ mr: 3, fontSize: '.8rem', width: '1.875rem', height: '1.875rem' }}>
-    //                 {getInitials(row.full_name ? row.full_name : 'John Doe')}
-    //             </CustomAvatar>
-    //         )
-    //     }
 }
+
+
+// ** Full Name Getter
+const getFullName = params =>
+    toast(
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            {renderClient(params)}
+            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                <Typography noWrap variant='body2' sx={{ color: 'text.primary', fontWeight: 600 }}>
+                    {params.row.start_date}
+                </Typography>
+            </Box>
+        </Box>
+    )
 
 const statusObj = {
     1: { title: 'current', color: 'primary' },
@@ -45,11 +68,31 @@ const statusObj = {
     5: { title: 'applied', color: 'info' }
 }
 
+const useVerticalMenu = () => {
+    const [menuAnchorEl, setMenuAnchorEl] = useState(null);
+
+    const handleMenuOpen = (event) => {
+        setMenuAnchorEl(event.currentTarget);
+    };
+
+    const handleMenuClose = () => {
+        setMenuAnchorEl(null);
+    };
+
+    return {
+        menuAnchorEl,
+        handleMenuOpen,
+        handleMenuClose,
+    };
+};
+
+
+
 const columns = [
     {
         flex: 0.25,
         minWidth: 290,
-        field: 'full_name',
+        field: 'title',
         headerName: 'عنوان',
         renderCell: params => {
             const { row } = params
@@ -103,16 +146,51 @@ const columns = [
         )
     },
     {
-        flex: 0.175,
-        minWidth: 140,
-        field: 'position',
-        headerName: 'سمت',
-        renderCell: params => (
-            <Typography variant='body2' sx={{ color: 'text.primary' }}>
-                {params.row?.position}
-            </Typography>
-        )
+        flex: 0.1,
+        minWidth: 100,
+        field: 'actions',
+        headerName: 'عملیات',
+        renderCell: (params) => {
+            // eslint-disable-next-line react-hooks/rules-of-hooks
+            const { menuAnchorEl, handleMenuOpen, handleMenuClose } = useVerticalMenu();
 
+            return (
+                <div>
+                    <IconButton
+                        aria-controls={`menu-${params.id}`}
+                        aria-haspopup="true"
+                        onClick={handleMenuOpen}
+                    >
+                        <IconDotsVertical size={24} />
+                    </IconButton>
+                    <Menu
+                        id={`menu-${params.id}`}
+                        anchorEl={menuAnchorEl}
+                        open={Boolean(menuAnchorEl)}
+                        onClose={handleMenuClose}
+                    >
+                        <MenuItem onClick={() => console.log(params?.row.id)}>
+                            <ListItemIcon>
+                                <IconEye size={18} />
+                            </ListItemIcon>
+                            جزییات
+                        </MenuItem>
+                        <MenuItem onClick={handleMenuClose}>
+                            <ListItemIcon>
+                                <IconEdit size={18} />
+                            </ListItemIcon>
+                            تغییر
+                        </MenuItem>
+                        <MenuItem onClick={handleMenuClose}>
+                            <ListItemIcon>
+                                <IconTrash size={18} />
+                            </ListItemIcon>
+                            حذف
+                        </MenuItem>
+                    </Menu>
+                </div>
+            );
+        },
     }
 ]
 
@@ -170,15 +248,32 @@ const TableServerSide = ({ activityHistories }) => {
 
     return (
         <Card>
-            <CardHeader title='فهرست سوابق فعالیت' />
+            <Box
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    minHeight: '4rem',
+                }}
+            >
+                <Typography fontWeight={600} fontSize={19}>فهرست سوابق فعالیت</Typography>
+            </Box>
             <DataGrid
                 autoHeight
                 pagination
                 rows={activityHistories}
-                rowCount={total}
+                rowCount={pageSize}
                 columns={columns}
-                checkboxSelection
+
+                // checkboxSelection
                 pageSize={pageSize}
+                onRowClick={() => { }}
+                onCellClick={() => { }}
+                hideFooterSelectedRowCount
+                disableSelectionOnClick
+                disableColumnFilter
+                disableColumnMenu
+
                 sortingMode='server'
                 paginationMode='server'
                 onSortModelChange={handleSortModel}
