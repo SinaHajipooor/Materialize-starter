@@ -21,6 +21,7 @@ import {
     MenuItem,
     IconButton,
     ListItemIcon,
+    Divider,
 } from '@mui/material';
 import { IconDotsVertical, IconEdit, IconEye, IconTrash } from '@tabler/icons-react';
 
@@ -164,26 +165,30 @@ const columns = [
                         <IconDotsVertical size={24} />
                     </IconButton>
                     <Menu
+
                         id={`menu-${params.id}`}
                         anchorEl={menuAnchorEl}
                         open={Boolean(menuAnchorEl)}
                         onClose={handleMenuClose}
                     >
-                        <MenuItem onClick={() => console.log(params?.row.id)}>
+                        <MenuItem sx={{ fontSize: 13 }} onClick={() => console.log(params?.row.id)}>
                             <ListItemIcon>
-                                <IconEye size={18} />
+                                <IconEye color='yellow' size={18} />
                             </ListItemIcon>
                             جزییات
                         </MenuItem>
-                        <MenuItem onClick={handleMenuClose}>
+                        <Divider />
+                        <MenuItem sx={{ fontSize: 13 }} onClick={handleMenuClose}>
                             <ListItemIcon>
-                                <IconEdit size={18} />
+                                <IconEdit color='orange' size={18} />
                             </ListItemIcon>
                             تغییر
                         </MenuItem>
-                        <MenuItem onClick={handleMenuClose}>
+                        <Divider />
+
+                        <MenuItem sx={{ fontSize: 13 }} onClick={handleMenuClose}>
                             <ListItemIcon>
-                                <IconTrash size={18} />
+                                <IconTrash color='red' size={18} />
                             </ListItemIcon>
                             حذف
                         </MenuItem>
