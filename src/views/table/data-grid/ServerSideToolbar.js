@@ -7,6 +7,7 @@ import { GridToolbarExport } from '@mui/x-data-grid'
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
 import { Button } from '@mui/material'
+import Link from 'next/link'
 
 const ServerSideToolbar = props => {
     return (
@@ -20,7 +21,7 @@ const ServerSideToolbar = props => {
                 p: theme => theme.spacing(2, 5, 4, 5)
             }}
         >
-            <Button variant='contained' href='/activityHistories/create'>ایجاد</Button>
+            <Button variant='contained' LinkComponent={Link} href='/activityHistories/create'>ایجاد</Button>
             {/* <GridToolbarExport printOptions={{ disableToolbarButton: true }} /> */}
             <TextField
                 size='small'

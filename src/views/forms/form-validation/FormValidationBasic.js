@@ -88,48 +88,50 @@ const FormValidationBasic = () => {
                         <Grid item xs={12} sm={6}>
                             <FormControl fullWidth>
                                 <Controller
-                                    name='firstName'
+                                    name='title'
                                     control={control}
                                     rules={{ required: true }}
                                     render={({ field: { value, onChange } }) => (
                                         <TextField
                                             value={value}
-                                            label='First Name'
+                                            label='عنوان'
                                             onChange={onChange}
-                                            placeholder='Leonard'
-                                            error={Boolean(errors.firstName)}
+                                            placeholder='عنوان را وارد کنید'
+                                            error={Boolean(errors.title)}
                                             aria-describedby='validation-basic-first-name'
                                         />
                                     )}
                                 />
-                                {errors.firstName && (
+                                {errors.title && (
                                     <FormHelperText sx={{ color: 'error.main' }} id='validation-basic-first-name'>
-                                        This field is required
+                                        عنوان اجباری است
                                     </FormHelperText>
                                 )}
                             </FormControl>
+
                         </Grid>
+
 
                         <Grid item xs={12} sm={6}>
                             <FormControl fullWidth>
                                 <Controller
-                                    name='lastName'
+                                    name='instituteTitle'
                                     control={control}
                                     rules={{ required: true }}
                                     render={({ field: { value, onChange } }) => (
                                         <TextField
                                             value={value}
-                                            label='Last Name'
+                                            label='نام موسسه'
                                             onChange={onChange}
-                                            placeholder='Carter'
-                                            error={Boolean(errors.lastName)}
+                                            placeholder='نام موسسه را وارد کنید'
+                                            error={Boolean(errors.instituteTitle)}
                                             aria-describedby='validation-basic-last-name'
                                         />
                                     )}
                                 />
-                                {errors.lastName && (
+                                {errors.instituteTitle && (
                                     <FormHelperText sx={{ color: 'error.main' }} id='validation-basic-last-name'>
-                                        This field is required
+                                        نام موسسه اجباری است
                                     </FormHelperText>
                                 )}
                             </FormControl>
