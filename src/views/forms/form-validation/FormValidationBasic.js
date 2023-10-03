@@ -21,7 +21,7 @@ import OutlinedInput from '@mui/material/OutlinedInput'
 import FormHelperText from '@mui/material/FormHelperText'
 import InputAdornment from '@mui/material/InputAdornment'
 import FormControlLabel from '@mui/material/FormControlLabel'
-import { Box, Typography } from '@mui/material'
+import { Box, Switch, Typography, Stack } from '@mui/material'
 
 // ** Third Party Imports
 import toast from 'react-hot-toast'
@@ -30,6 +30,7 @@ import { useForm, Controller } from 'react-hook-form'
 
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
+import Link from 'next/link'
 
 const defaultValues = {
     dob: null,
@@ -49,10 +50,21 @@ const CustomInput = forwardRef(({ ...props }, ref) => {
 
 const FormValidationBasic = () => {
     // ** States
+    const [file, setFile] = useState(null);
+
     const [state, setState] = useState({
         password: '',
         showPassword: false
     })
+
+    const handleFileUpload = (event) => {
+        const selectedFile = event.target.files[0];
+        if (selectedFile) {
+            setFile(selectedFile);
+        } else {
+            setFile(null);
+        }
+    };
 
     // ** Hooks
     const {
@@ -85,7 +97,7 @@ const FormValidationBasic = () => {
             <CardContent>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <Grid container spacing={5}>
-                        <Grid item xs={12} sm={6}>
+                        <Grid item xs={12} sm={4}>
                             <FormControl fullWidth>
                                 <Controller
                                     name='title'
@@ -112,7 +124,7 @@ const FormValidationBasic = () => {
                         </Grid>
 
 
-                        <Grid item xs={12} sm={6}>
+                        <Grid item xs={12} sm={4}>
                             <FormControl fullWidth>
                                 <Controller
                                     name='instituteTitle'
@@ -137,75 +149,70 @@ const FormValidationBasic = () => {
                             </FormControl>
                         </Grid>
 
-                        <Grid item xs={12} sm={6}>
+                        <Grid item xs={12} sm={4}>
                             <FormControl fullWidth>
                                 <Controller
-                                    name='email'
+                                    name='position'
                                     control={control}
                                     rules={{ required: true }}
                                     render={({ field: { value, onChange } }) => (
                                         <TextField
-                                            type='email'
+                                            type='text'
                                             value={value}
-                                            label='Email'
+                                            label='سمت'
                                             onChange={onChange}
-                                            error={Boolean(errors.email)}
-                                            placeholder='carterleonard@gmail.com'
+                                            error={Boolean(errors.position)}
+                                            placeholder='سمت را وارد کنید'
                                             aria-describedby='validation-basic-email'
                                         />
                                     )}
                                 />
-                                {errors.email && (
+                                {errors.position && (
                                     <FormHelperText sx={{ color: 'error.main' }} id='validation-basic-email'>
-                                        This field is required
+                                        سمت اجباری است
                                     </FormHelperText>
                                 )}
                             </FormControl>
                         </Grid>
-
-                        <Grid item xs={12} sm={6}>
+                        <Grid item xs={12} sm={4}>
                             <FormControl fullWidth>
-                                <InputLabel htmlFor='validation-basic-password' error={Boolean(errors.password)}>
-                                    Password
+                                <InputLabel
+                                    id='validation-basic-select'
+                                    error={Boolean(errors.select)}
+                                    htmlFor='validation-basic-select'
+                                >
+                                    نوع همکاری
                                 </InputLabel>
                                 <Controller
-                                    name='password'
+                                    name='workType'
                                     control={control}
                                     rules={{ required: true }}
                                     render={({ field: { value, onChange } }) => (
-                                        <OutlinedInput
+                                        <Select
                                             value={value}
-                                            label='Password'
+                                            label='نوع همکاری'
                                             onChange={onChange}
-                                            id='validation-basic-password'
-                                            error={Boolean(errors.password)}
-                                            type={state.showPassword ? 'text' : 'password'}
-                                            endAdornment={
-                                                <InputAdornment position='end'>
-                                                    <IconButton
-                                                        edge='end'
-                                                        onClick={handleClickShowPassword}
-                                                        onMouseDown={handleMouseDownPassword}
-                                                        aria-label='toggle password visibility'
-                                                    >
-                                                        <Icon icon={state.showPassword ? 'mdi:eye-outline' : 'mdi:eye-off-outline'} />
-                                                    </IconButton>
-                                                </InputAdornment>
-                                            }
-                                        />
+                                            error={Boolean(errors.workType)}
+                                            labelId='validation-basic-select'
+                                            aria-describedby='validation-basic-select'
+                                        >
+                                            <MenuItem value='Australia'>تمام وقت</MenuItem>
+                                            <MenuItem value='Germany'>پاره وقت</MenuItem>
+                                        </Select>
                                     )}
                                 />
-                                {errors.password && (
-                                    <FormHelperText sx={{ color: 'error.main' }} id='validation-basic-password'>
-                                        This field is required
+                                {errors.workType && (
+                                    <FormHelperText sx={{ color: 'error.main' }} id='validation-basic-select'>
+                                        انتخاب نوع همکاری اجباری است
                                     </FormHelperText>
                                 )}
                             </FormControl>
                         </Grid>
 
-                        <Grid item xs={12} sm={6}>
+
+                        <Grid item xs={12} sm={4}>
                             <Controller
-                                name='dob'
+                                name='startDate'
                                 control={control}
                                 rules={{ required: true }}
                                 render={({ field: { value, onChange } }) => (
@@ -219,153 +226,152 @@ const FormValidationBasic = () => {
                                             <CustomInput
                                                 value={value}
                                                 onChange={onChange}
-                                                label='Date of Birth'
-                                                error={Boolean(errors.dob)}
+                                                label='تاریخ شروع'
+                                                error={Boolean(errors.startDate)}
                                                 aria-describedby='validation-basic-dob'
                                             />
                                         }
                                     />
                                 )}
                             />
-                            {errors.dob && (
+                            {errors.startDate && (
                                 <FormHelperText sx={{ mx: 3.5, color: 'error.main' }} id='validation-basic-dob'>
-                                    This field is required
+                                    تاریخ شروع اجباری است
                                 </FormHelperText>
                             )}
                         </Grid>
-
-                        <Grid item xs={12} sm={6}>
-                            <FormControl fullWidth>
-                                <InputLabel
-                                    id='validation-basic-select'
-                                    error={Boolean(errors.select)}
-                                    htmlFor='validation-basic-select'
-                                >
-                                    Country
-                                </InputLabel>
-                                <Controller
-                                    name='select'
-                                    control={control}
-                                    rules={{ required: true }}
-                                    render={({ field: { value, onChange } }) => (
-                                        <Select
-                                            value={value}
-                                            label='Country'
-                                            onChange={onChange}
-                                            error={Boolean(errors.select)}
-                                            labelId='validation-basic-select'
-                                            aria-describedby='validation-basic-select'
-                                        >
-                                            <MenuItem value='UK'>UK</MenuItem>
-                                            <MenuItem value='USA'>USA</MenuItem>
-                                            <MenuItem value='Australia'>Australia</MenuItem>
-                                            <MenuItem value='Germany'>Germany</MenuItem>
-                                        </Select>
-                                    )}
-                                />
-                                {errors.select && (
-                                    <FormHelperText sx={{ color: 'error.main' }} id='validation-basic-select'>
-                                        This field is required
-                                    </FormHelperText>
+                        <Grid item xs={12} sm={4}>
+                            <Controller
+                                name='endDate'
+                                control={control}
+                                rules={{ required: true }}
+                                render={({ field: { value, onChange } }) => (
+                                    <DatePicker
+                                        selected={value}
+                                        showYearDropdown
+                                        showMonthDropdown
+                                        onChange={e => onChange(e)}
+                                        placeholderText='MM/DD/YYYY'
+                                        customInput={
+                                            <CustomInput
+                                                value={value}
+                                                onChange={onChange}
+                                                label='تاریخ پایان'
+                                                error={Boolean(errors.endDate)}
+                                                aria-describedby='validation-basic-dob'
+                                            />
+                                        }
+                                    />
                                 )}
-                            </FormControl>
+                            />
+                            {errors.endDate && (
+                                <FormHelperText sx={{ mx: 3.5, color: 'error.main' }} id='validation-basic-dob'>
+                                    تاریخ پایان اجباری است
+                                </FormHelperText>
+                            )}
                         </Grid>
-
                         <Grid item xs={12}>
                             <FormControl fullWidth>
                                 <Controller
-                                    name='textarea'
+                                    name='address'
                                     control={control}
                                     rules={{ required: true }}
                                     render={({ field }) => (
                                         <TextField
+                                            placeholder='ادرس را وارد کنید'
                                             rows={4}
                                             multiline
                                             {...field}
-                                            label='Bio'
-                                            error={Boolean(errors.textarea)}
+                                            label='آدرس'
+                                            error={Boolean(errors.address)}
                                             aria-describedby='validation-basic-textarea'
                                         />
                                     )}
                                 />
-                                {errors.textarea && (
+                                {errors.address && (
                                     <FormHelperText sx={{ color: 'error.main' }} id='validation-basic-textarea'>
-                                        This field is required
+                                        وارد کردن آدرس اجباری است
                                     </FormHelperText>
                                 )}
                             </FormControl>
                         </Grid>
 
                         <Grid item xs={12}>
-                            <FormControl error={Boolean(errors.radio)}>
-                                <FormLabel>Gender</FormLabel>
-                                <Controller
-                                    name='radio'
-                                    control={control}
-                                    rules={{ required: true }}
-                                    render={({ field }) => (
-                                        <RadioGroup row {...field} aria-label='gender' name='validation-basic-radio'>
-                                            <FormControlLabel
-                                                value='female'
-                                                label='Female'
-                                                sx={errors.radio ? { color: 'error.main' } : null}
-                                                control={<Radio sx={errors.radio ? { color: 'error.main' } : null} />}
-                                            />
-                                            <FormControlLabel
-                                                value='male'
-                                                label='Male'
-                                                sx={errors.radio ? { color: 'error.main' } : null}
-                                                control={<Radio sx={errors.radio ? { color: 'error.main' } : null} />}
-                                            />
-                                            <FormControlLabel
-                                                value='other'
-                                                label='Other'
-                                                sx={errors.radio ? { color: 'error.main' } : null}
-                                                control={<Radio sx={errors.radio ? { color: 'error.main' } : null} />}
-                                            />
-                                        </RadioGroup>
-                                    )}
-                                />
-                                {errors.radio && (
-                                    <FormHelperText sx={{ color: 'error.main' }} id='validation-basic-radio'>
-                                        This field is required
-                                    </FormHelperText>
-                                )}
-                            </FormControl>
-                        </Grid>
+                            <Grid container spacing={5}>
+                                <Grid item xs={12} sm={3}>
+                                    <FormControlLabel
+                                        control={
+                                            <Switch
 
-                        <Grid item xs={12}>
-                            <FormControl>
-                                <Controller
-                                    name='checkbox'
-                                    control={control}
-                                    rules={{ required: true }}
-                                    render={({ field }) => (
-                                        <FormControlLabel
-                                            label='Agree to our terms and conditions'
-                                            sx={errors.checkbox ? { color: 'error.main' } : null}
-                                            control={
-                                                <Checkbox
-                                                    {...field}
-                                                    name='validation-basic-checkbox'
-                                                    sx={errors.checkbox ? { color: 'error.main' } : null}
-                                                />
-                                            }
-                                        />
-                                    )}
-                                />
-                                {errors.checkbox && (
-                                    <FormHelperText sx={{ color: 'error.main' }} id='validation-basic-checkbox'>
-                                        This field is required
-                                    </FormHelperText>
-                                )}
-                            </FormControl>
-                        </Grid>
+                                            // checked={switches[0].checked}
+                                            // onChange={(event) => handleSwitchChange(event, 0)}
+                                            />
+                                        }
+                                        label={'دارای گواهینامه'}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={3}>
+                                    <FormControlLabel
+                                        control={
+                                            <Switch
 
+                                            // checked={switches[1].checked}
+                                            // onChange={(event) => handleSwitchChange(event, 1)}
+                                            />
+                                        }
+                                        label={'فعالیت مرتبط'}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={3}>
+                                    <FormControlLabel
+                                        control={
+                                            <Switch
+
+                                            // checked={switches[2].checked}
+                                            // onChange={(event) => handleSwitchChange(event, 2)}
+                                            />
+                                        }
+                                        label={'فعالیت جاری'}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={3}>
+                                    <FormControlLabel
+                                        control={
+                                            <Switch
+
+                                            // checked={switches[3].checked}
+                                            // onChange={(event) => handleSwitchChange(event, 3)}
+                                            />
+                                        }
+                                        label={'وضعیت'}
+                                    />
+                                </Grid>
+                            </Grid>
+
+                        </Grid>
                         <Grid item xs={12}>
-                            <Button size='large' type='submit' variant='contained'>
-                                Submit
-                            </Button>
+                            <Stack
+                                direction={{ xs: 'column', sm: 'row' }}
+                                spacing={2}
+                                justifyContent="space-between"
+                                mt={2}
+                            >
+                                <Stack spacing={1} direction="row">
+                                </Stack>
+                                <Stack direction="row" spacing={1}>
+                                    <Button LinkComponent={Link} href='/activity-histories/index' variant="contained" type='reset' color="error">
+                                        لغو
+                                    </Button>
+                                    <Button
+                                        type='submit'
+                                        style={{ fontFamily: 'IRANSans' }}
+                                        variant="contained"
+                                        color="primary"
+                                    >
+                                        ثبت
+                                    </Button>
+                                </Stack>
+                            </Stack>
                         </Grid>
                     </Grid>
                 </form>
