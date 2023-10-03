@@ -14,7 +14,7 @@ import TableEditable from 'src/views/table/data-grid/TableEditable'
 import TableBasicSort from 'src/views/table/data-grid/TableBasicSort'
 import TableSelection from 'src/views/table/data-grid/TableSelection'
 import TableServerSide from 'src/views/table/data-grid/TableServerSide'
-import useActivityIndex from '../hooks/useActivityIndex'
+import useActivityIndex from './hooks/useActivityIndex'
 import { CircularProgress } from '@mui/material'
 
 const DataGrid = () => {
