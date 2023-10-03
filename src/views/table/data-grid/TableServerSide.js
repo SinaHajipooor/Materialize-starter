@@ -271,12 +271,13 @@ const TableServerSide = ({ activityHistories }) => {
                 onCellClick={() => { }}
                 hideFooterSelectedRowCount
                 disableSelectionOnClick
-                disableColumnFilter
-                disableColumnMenu
+                disableColumnFilter={true}
+                disableColumnMenu={true}
 
                 sortingMode='server'
                 paginationMode='server'
-                onSortModelChange={handleSortModel}
+
+                // onSortModelChange={handleSortModel}
                 rowsPerPageOptions={[7, 10, 25, 50]}
                 onPageChange={newPage => setPage(newPage)}
                 components={{ Toolbar: ServerSideToolbar }}
