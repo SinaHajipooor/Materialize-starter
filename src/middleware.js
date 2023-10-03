@@ -6,21 +6,21 @@ export default withAuth(
         // admin middleware
         if (request.nextUrl.pathname.startsWith('/authorize/admin') && request.nextauth.token?.role !== 'admin') {
             return NextResponse.rewrite(
-                new URL('/denied', request.url)
+                new URL('/401', request.url)
             )
         }
 
         // client middleware
         if (request.nextUrl.pathname.startsWith('/authorize/user') && request.nextauth.token?.role !== 'user') {
             return NextResponse.rewrite(
-                new URL('/denied', request.url)
+                new URL('/401', request.url)
             )
         }
 
         // manager middleware
         if (request.nextUrl.pathname.startsWith('/authorize/manager') && request.nextauth.token?.role !== 'manager') {
             return NextResponse.rewrite(
-                new URL('/denied', request.url)
+                new URL('/401', request.url)
             )
         }
     },
