@@ -6,7 +6,7 @@ const navigation = () => {
     return [
         {
             title: 'داشبورد',
-            path: '/home',
+            path: '/',
             icon: 'mdi:home-outline',
         },
         {

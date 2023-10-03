@@ -162,7 +162,7 @@ const LoginPage = () => {
             console.log(response)
             throw new Error(response.error)
         } else {
-            router.push('/home')
+            router.push('/')
         }
     }
 
