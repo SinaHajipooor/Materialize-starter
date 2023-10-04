@@ -25,6 +25,7 @@ import { useForm, Controller } from 'react-hook-form'
 import Link from 'next/link'
 import { useSettings } from 'src/@core/hooks/useSettings'
 import DatePickerWrapper from 'src/@core/styles/libs/react-datepicker'
+import useUpdateActivity from '../../hooks/useUpdateActivity'
 
 
 
@@ -33,7 +34,7 @@ function UpdateActivityHistory({ activityHistory }) {
     const { settings } = useSettings()
     const [file, setFile] = useState(activityHistory?.file);
     const [fileHelper, setfileHelper] = useState('')
-
+    const { mutate, isLoading } = useUpdateActivity(file, activityHistory.id);
 
     useEffect(() => {
         activityHistory?.file ? setfileHelper('یک فایل وجود دارد') : setfileHelper('فایل مورد نظر را انتخاب کنید')
@@ -67,9 +68,8 @@ function UpdateActivityHistory({ activityHistory }) {
 
 
     const onSubmit = (values) => {
-        console.log(file)
-        const newActivityHistory = { ...values, user_id: 1, start_date: '1402-09-20', end_date: '1402-09-10', work_type_id: 1 }
-        console.log(newActivityHistory)
+        const updatedActivityHistory = { ...values, user_id: 1, start_date: '1402-09-20', end_date: '1402-09-10', work_type_id: 1 }
+        mutate(updatedActivityHistory, file)
     }
 
     // form
@@ -466,6 +466,7 @@ function UpdateActivityHistory({ activityHistory }) {
                                             برگشت
                                         </Button>
                                         <Button
+                                            disabled={isLoading}
                                             type='submit'
                                             style={{ fontFamily: 'IRANSans' }}
                                             variant="contained"
