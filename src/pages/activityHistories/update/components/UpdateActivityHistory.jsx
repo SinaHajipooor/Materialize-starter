@@ -24,22 +24,21 @@ import { useForm, Controller } from 'react-hook-form'
 // ** Icon Imports
 import Link from 'next/link'
 import { useSettings } from 'src/@core/hooks/useSettings'
-import useCreateActivity from 'src/pages/activityHistories/hooks/useCreateActivity'
 import DatePickerWrapper from 'src/@core/styles/libs/react-datepicker'
-import useActivityDetails from '../../hooks/useActivityDetails'
-import { useRouter } from 'next/router'
+
 
 
 function UpdateActivityHistory({ activityHistory }) {
 
     const { settings } = useSettings()
-    const [file, setFile] = useState(null);
+    const [file, setFile] = useState(activityHistory?.file);
     const [fileHelper, setfileHelper] = useState('')
 
 
     useEffect(() => {
         activityHistory?.file ? setfileHelper('یک فایل وجود دارد') : setfileHelper('فایل مورد نظر را انتخاب کنید')
 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     console.log('slm')
