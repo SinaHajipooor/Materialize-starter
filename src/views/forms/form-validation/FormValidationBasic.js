@@ -75,7 +75,7 @@ const FormValidationBasic = () => {
 
 
     const onSubmit = (values) => {
-        console.log()
+        console.log(values)
         toast.success('Form Submitted')
     }
 
