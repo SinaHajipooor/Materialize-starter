@@ -33,9 +33,6 @@ import { useRouter } from 'next/router'
 function ShowActivityHistory({ activityHistory }) {
 
     const { settings } = useSettings()
-    const [file, setFile] = useState(null);
-
-    console.log(activityHistory)
 
     const {
         control,
@@ -77,9 +74,6 @@ function ShowActivityHistory({ activityHistory }) {
                                             <TextField
                                                 value={activityHistory.title ?? 'عنوان وارد نشده است'}
                                                 label='عنوان'
-
-                                                // disabled={true}
-
                                                 placeholder='عنوان را وارد کنید'
                                                 error={Boolean(errors.title)}
                                                 aria-describedby='validation-basic-first-name'
@@ -103,12 +97,8 @@ function ShowActivityHistory({ activityHistory }) {
                                         rules={{ required: true }}
                                         render={({ field: { value, onChange } }) => (
                                             <TextField
-
-                                                // disabled={true}
                                                 value={activityHistory?.institute_title ?? 'نام موسسه وارد نشده است'}
                                                 label='نام موسسه'
-
-                                                // onChange={onChange}
                                                 placeholder='نام موسسه را وارد کنید'
                                                 error={Boolean(errors.institute_title)}
                                                 aria-describedby='validation-basic-last-name'
@@ -134,9 +124,6 @@ function ShowActivityHistory({ activityHistory }) {
                                                 type='text'
                                                 value={activityHistory?.position ?? 'سمت وارد نشده است'}
                                                 label='سمت'
-
-                                                // disabled
-                                                // onChange={onChange}
                                                 error={Boolean(errors.position)}
                                                 placeholder='سمت را وارد کنید'
                                                 aria-describedby='validation-basic-email'
@@ -168,8 +155,6 @@ function ShowActivityHistory({ activityHistory }) {
                                             <Select
                                                 value={activityHistory?.work_type}
                                                 label='نوع همکاری'
-
-                                                // onChange={onChange}
                                                 error={Boolean(errors.work_type_id)}
                                                 labelId='validation-basic-select'
                                                 aria-describedby='validation-basic-select'
@@ -197,8 +182,6 @@ function ShowActivityHistory({ activityHistory }) {
                                     render={({ field: { value, onChange } }) => (
                                         <DatePicker
                                             value={activityHistory?.start_date ?? ''}
-
-                                            // selected={value}
                                             showYearDropdown
                                             showMonthDropdown
                                             onChange={() => { }}
@@ -206,8 +189,6 @@ function ShowActivityHistory({ activityHistory }) {
                                             customInput={
                                                 <CustomInput
                                                     value={activityHistory?.start_date ?? ''}
-
-                                                    //     onChange={onChange}
                                                     label='تاریخ شروع'
                                                     error={Boolean(errors.start_date)}
                                                     aria-describedby='validation-basic-dob'
@@ -230,8 +211,6 @@ function ShowActivityHistory({ activityHistory }) {
                                     render={({ field: { value, onChange } }) => (
                                         <DatePicker
                                             value={activityHistory?.end_date ?? ''}
-
-                                            //     selected={value}
                                             showYearDropdown
                                             showMonthDropdown
                                             onChange={e => { }}
@@ -295,8 +274,6 @@ function ShowActivityHistory({ activityHistory }) {
                                         </span>
                                         <TextField
                                             name="file"
-
-                                            //     type="file"
                                             id="file-input"
                                             onChange={() => { }}
                                             style={{ display: 'none' }}
@@ -312,7 +289,6 @@ function ShowActivityHistory({ activityHistory }) {
                                         <Controller
                                             name='has_certificate'
                                             control={control}
-
                                             rules={{ required: false }}
                                             render={({ field: { value, onChange } }) => (
                                                 <FormControlLabel
