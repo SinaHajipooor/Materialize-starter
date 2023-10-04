@@ -16,13 +16,14 @@ import TableSelection from 'src/views/table/data-grid/TableSelection'
 import TableServerSide from 'src/views/table/data-grid/TableServerSide'
 import useActivityIndex from './hooks/useActivityIndex'
 import { CircularProgress } from '@mui/material'
+import Spinner from 'src/components/Spinner'
 
 const DataGrid = () => {
 
     const { isLoading, activityHistories } = useActivityIndex()
 
     return (
-        isLoading ? <CircularProgress /> : <Grid container spacing={6}>
+        isLoading ? <Spinner /> : <Grid container spacing={6}>
             <Grid item xs={12}>
                 <TableServerSide activityHistories={activityHistories} />
             </Grid>

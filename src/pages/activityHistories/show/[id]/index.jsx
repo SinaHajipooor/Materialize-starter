@@ -6,6 +6,7 @@ import ShowActivityHistory from '../components/ShowActivityHistory'
 import { useRouter } from 'next/router'
 import useActivityDetails from '../../hooks/useActivityDetails'
 import { CircularProgress } from '@mui/material'
+import Spinner from 'src/components/Spinner'
 
 const FormValidation = () => {
     const router = useRouter()
@@ -14,7 +15,7 @@ const FormValidation = () => {
 
     return (
         <Grid item xs={12}>
-            {isLoading ? <CircularProgress /> : <ShowActivityHistory activityHistory={activityHistory} />}
+            {isLoading ? <Spinner /> : <ShowActivityHistory activityHistory={activityHistory} />}
         </Grid>
     )
 }
