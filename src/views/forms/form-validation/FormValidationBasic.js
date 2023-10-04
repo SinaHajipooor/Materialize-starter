@@ -35,15 +35,15 @@ import { useSettings } from 'src/@core/hooks/useSettings'
 
 const defaultValues = {
     title: '',
-    instituteTitle: '',
+    institute_title: '',
     position: '',
-    workType: '',
-    startDate: null,
-    endDate: null,
+    work_type_id: null,
+    start_date: null,
+    end_date: null,
     address: '',
-    hasCertificate: false,
-    isRelated: false,
-    isCurrent: false,
+    has_certificate: false,
+    is_related: false,
+    current_position: false,
     status: false
 }
 
@@ -75,8 +75,9 @@ const FormValidationBasic = () => {
 
 
     const onSubmit = (values) => {
-        console.log(values)
-        toast.success('Form Submitted')
+        console.log(file)
+        const newActivityHistory = { ...values, user_id: 1, start_date: '1402-09-20', end_date: '1402-09-10', work_type_id: 1 }
+        console.log(newActivityHistory)
     }
 
     return (
@@ -122,7 +123,7 @@ const FormValidationBasic = () => {
                         <Grid item xs={12} sm={4}>
                             <FormControl fullWidth>
                                 <Controller
-                                    name='instituteTitle'
+                                    name='institute_title'
                                     control={control}
                                     rules={{ required: true }}
                                     render={({ field: { value, onChange } }) => (
@@ -131,12 +132,12 @@ const FormValidationBasic = () => {
                                             label='نام موسسه'
                                             onChange={onChange}
                                             placeholder='نام موسسه را وارد کنید'
-                                            error={Boolean(errors.instituteTitle)}
+                                            error={Boolean(errors.institute_title)}
                                             aria-describedby='validation-basic-last-name'
                                         />
                                     )}
                                 />
-                                {errors.instituteTitle && (
+                                {errors.institute_title && (
                                     <FormHelperText sx={{ color: 'error.main' }} id='validation-basic-last-name'>
                                         نام موسسه اجباری است
                                     </FormHelperText>
@@ -179,7 +180,7 @@ const FormValidationBasic = () => {
                                     نوع همکاری
                                 </InputLabel>
                                 <Controller
-                                    name='workType'
+                                    name='work_type_id'
                                     control={control}
                                     rules={{ required: true }}
                                     render={({ field: { value, onChange } }) => (
@@ -187,16 +188,16 @@ const FormValidationBasic = () => {
                                             value={value}
                                             label='نوع همکاری'
                                             onChange={onChange}
-                                            error={Boolean(errors.workType)}
+                                            error={Boolean(errors.work_type_id)}
                                             labelId='validation-basic-select'
                                             aria-describedby='validation-basic-select'
                                         >
-                                            <MenuItem value='1'>تمام وقت</MenuItem>
-                                            <MenuItem value='2'>پاره وقت</MenuItem>
+                                            <MenuItem value={1}>تمام وقت</MenuItem>
+                                            <MenuItem value={2}>پاره وقت</MenuItem>
                                         </Select>
                                     )}
                                 />
-                                {errors.workType && (
+                                {errors.work_type_id && (
                                     <FormHelperText sx={{ color: 'error.main' }} id='validation-basic-select'>
                                         انتخاب نوع همکاری اجباری است
                                     </FormHelperText>
@@ -207,7 +208,7 @@ const FormValidationBasic = () => {
 
                         <Grid item xs={12} sm={4}>
                             <Controller
-                                name='startDate'
+                                name='start_date'
                                 control={control}
                                 rules={{ required: true }}
                                 render={({ field: { value, onChange } }) => (
@@ -223,14 +224,14 @@ const FormValidationBasic = () => {
                                                 value={value}
                                                 onChange={onChange}
                                                 label='تاریخ شروع'
-                                                error={Boolean(errors.startDate)}
+                                                error={Boolean(errors.start_date)}
                                                 aria-describedby='validation-basic-dob'
                                             />
                                         }
                                     />
                                 )}
                             />
-                            {errors.startDate && (
+                            {errors.start_date && (
                                 <FormHelperText sx={{ mx: 3.5, color: 'error.main' }} id='validation-basic-dob'>
                                     تاریخ شروع اجباری است
                                 </FormHelperText>
@@ -238,7 +239,7 @@ const FormValidationBasic = () => {
                         </Grid>
                         <Grid item xs={12} sm={4}>
                             <Controller
-                                name='endDate'
+                                name='end_date'
                                 control={control}
                                 rules={{ required: true }}
                                 render={({ field: { value, onChange } }) => (
@@ -253,14 +254,14 @@ const FormValidationBasic = () => {
                                                 value={value}
                                                 onChange={onChange}
                                                 label='تاریخ پایان'
-                                                error={Boolean(errors.endDate)}
+                                                error={Boolean(errors.end_date)}
                                                 aria-describedby='validation-basic-dob'
                                             />
                                         }
                                     />
                                 )}
                             />
-                            {errors.endDate && (
+                            {errors.end_date && (
                                 <FormHelperText sx={{ mx: 3.5, color: 'error.main' }} id='validation-basic-dob'>
                                     تاریخ پایان اجباری است
                                 </FormHelperText>
@@ -321,12 +322,12 @@ const FormValidationBasic = () => {
                             <Grid item xs={12} sm={4} ml={7}>
                                 <FormControl fullWidth>
                                     <Controller
-                                        name='hasCertificate'
+                                        name='has_certificate'
                                         control={control}
                                         rules={{ required: true }}
                                         render={({ field: { value, onChange } }) => (
                                             <FormControlLabel
-                                                name='hasCertificate'
+                                                name='has_certificate'
                                                 control={
                                                     <Switch
                                                         checked={value}
@@ -343,12 +344,12 @@ const FormValidationBasic = () => {
                             <Grid item xs={12} sm={4} ml={0}>
                                 <FormControl fullWidth>
                                     <Controller
-                                        name='isRelated'
+                                        name='is_related'
                                         control={control}
                                         rules={{ required: true }}
                                         render={({ field: { value, onChange } }) => (
                                             <FormControlLabel
-                                                name='isRelated'
+                                                name='is_related'
                                                 control={
                                                     <Switch
                                                         checked={value}
@@ -365,12 +366,12 @@ const FormValidationBasic = () => {
                             <Grid item xs={12} sm={3}>
                                 <FormControl fullWidth>
                                     <Controller
-                                        name='isCurrent'
+                                        name='current_position'
                                         control={control}
                                         rules={{ required: true }}
                                         render={({ field: { value, onChange } }) => (
                                             <FormControlLabel
-                                                name='isCurrent'
+                                                name='current_position'
                                                 control={
                                                     <Switch
                                                         checked={value}
