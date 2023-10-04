@@ -35,6 +35,7 @@ import ServerSideToolbar from 'src/views/table/data-grid/ServerSideToolbar'
 
 // ** Utils Import
 import { getInitials } from 'src/@core/utils/get-initials'
+import useDeleteActivity from 'src/pages/activityHistories/hooks/useDeleteActivity'
 
 // ** renders client column
 const renderClient = params => {
@@ -68,6 +69,7 @@ const statusObj = {
 
 const useVerticalMenu = () => {
     const [menuAnchorEl, setMenuAnchorEl] = useState(null);
+    const { isLoading, mutate } = useDeleteActivity()
 
     const handleMenuOpen = (event) => {
         setMenuAnchorEl(event.currentTarget);
@@ -81,6 +83,8 @@ const useVerticalMenu = () => {
         menuAnchorEl,
         handleMenuOpen,
         handleMenuClose,
+        isLoading,
+        mutate
     };
 };
 
@@ -150,7 +154,7 @@ const columns = [
         headerName: 'عملیات',
         renderCell: (params) => {
             // eslint-disable-next-line react-hooks/rules-of-hooks
-            const { menuAnchorEl, handleMenuOpen, handleMenuClose } = useVerticalMenu();
+            const { menuAnchorEl, handleMenuOpen, handleMenuClose, mutate, isLoading } = useVerticalMenu();
 
             return (
                 <div>
@@ -181,8 +185,11 @@ const columns = [
                             تغییر
                         </MenuItem>
                         <Divider />
+                        <MenuItem sx={{ fontSize: 13 }} disabled={isLoading} onClick={() => {
+                            mutate(params?.row.id);
 
-                        <MenuItem sx={{ fontSize: 13 }} onClick={handleMenuClose}>
+                            handleMenuClose()
+                        }}>
                             <ListItemIcon>
                                 <IconTrash color='red' size={18} />
                             </ListItemIcon>
