@@ -2,21 +2,21 @@
 import Grid from '@mui/material/Grid'
 
 // ** Demo Components Imports
-import ShowActivityHistory from '../components/ShowActivityHistory'
 import { useRouter } from 'next/router'
 import useActivityDetails from '../../hooks/useActivityDetails'
 import Spinner from 'src/components/Spinner'
+import UpdateActivityHistory from '../components/UpdateActivityHistory'
 
-const FormValidation = () => {
+const UpdateForm = () => {
     const router = useRouter()
     const id = router.query.id
     const { isLoading, activityHistory } = useActivityDetails(id)
 
     return (
         <Grid item xs={12}>
-            {isLoading ? <Spinner /> : <ShowActivityHistory activityHistory={activityHistory} />}
+            {isLoading ? <Spinner /> : <UpdateActivityHistory activityHistory={activityHistory} />}
         </Grid>
     )
 }
 
-export default FormValidation
+export default UpdateForm
