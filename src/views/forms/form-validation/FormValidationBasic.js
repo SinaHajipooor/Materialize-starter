@@ -32,12 +32,13 @@ import { useForm, Controller } from 'react-hook-form'
 import Icon from 'src/@core/components/icon'
 import Link from 'next/link'
 import { useSettings } from 'src/@core/hooks/useSettings'
+import useCreateActivity from 'src/pages/activityHistories/hooks/useCreateActivity'
 
 const defaultValues = {
     title: '',
     institute_title: '',
     position: '',
-    work_type_id: null,
+    work_type_id: 1,
     start_date: null,
     end_date: null,
     address: '',
@@ -55,6 +56,8 @@ const FormValidationBasic = () => {
     // ** States
     const [file, setFile] = useState(null);
     const { settings } = useSettings()
+    const { mutate, isLoading } = useCreateActivity(file)
+
 
     // methods
     const handleFileUpload = (event) => {
@@ -77,7 +80,7 @@ const FormValidationBasic = () => {
     const onSubmit = (values) => {
         console.log(file)
         const newActivityHistory = { ...values, user_id: 1, start_date: '1402-09-20', end_date: '1402-09-10', work_type_id: 1 }
-        console.log(newActivityHistory)
+        mutate(newActivityHistory, file)
     }
 
     return (
@@ -318,13 +321,13 @@ const FormValidationBasic = () => {
                             </Grid>
                         </Grid>
 
-                        <Grid container spacing={3} sm={8} mt={7}>
+                        <Grid container spacing={3} sm={8} item mt={4}>
                             <Grid item xs={12} sm={4} ml={7}>
                                 <FormControl fullWidth>
                                     <Controller
                                         name='has_certificate'
                                         control={control}
-                                        rules={{ required: true }}
+                                        rules={{ required: false }}
                                         render={({ field: { value, onChange } }) => (
                                             <FormControlLabel
                                                 name='has_certificate'
@@ -346,7 +349,7 @@ const FormValidationBasic = () => {
                                     <Controller
                                         name='is_related'
                                         control={control}
-                                        rules={{ required: true }}
+                                        rules={{ required: false }}
                                         render={({ field: { value, onChange } }) => (
                                             <FormControlLabel
                                                 name='is_related'
@@ -368,7 +371,7 @@ const FormValidationBasic = () => {
                                     <Controller
                                         name='current_position'
                                         control={control}
-                                        rules={{ required: true }}
+                                        rules={{ required: false }}
                                         render={({ field: { value, onChange } }) => (
                                             <FormControlLabel
                                                 name='current_position'
@@ -417,7 +420,7 @@ const FormValidationBasic = () => {
                                 <Controller
                                     name='status'
                                     control={control}
-                                    rules={{ required: true }}
+                                    rules={{ required: false }}
                                     render={({ field: { value, onChange } }) => (
                                         <FormControlLabel
                                             name='status'
@@ -448,6 +451,7 @@ const FormValidationBasic = () => {
                                         لغو
                                     </Button>
                                     <Button
+                                        disabled={isLoading}
                                         type='submit'
                                         style={{ fontFamily: 'IRANSans' }}
                                         variant="contained"
