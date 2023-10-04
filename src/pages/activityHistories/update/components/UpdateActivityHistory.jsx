@@ -1,5 +1,5 @@
 // ** React Imports
-import { forwardRef, useState } from 'react'
+import { forwardRef, useEffect, useState } from 'react'
 
 // ** MUI Imports
 import Card from '@mui/material/Card'
@@ -33,9 +33,20 @@ import { useRouter } from 'next/router'
 function UpdateActivityHistory({ activityHistory }) {
 
     const { settings } = useSettings()
+    const [file, setFile] = useState(null);
+    const [fileHelper, setfileHelper] = useState('')
+
+
+    useEffect(() => {
+        activityHistory?.file ? setfileHelper('یک فایل وجود دارد') : setfileHelper('فایل مورد نظر را انتخاب کنید')
+
+    }, [])
+
+    console.log('slm')
 
     const {
         control,
+        handleSubmit,
         formState: { errors },
     } = useForm({ activityHistory })
 
@@ -44,6 +55,23 @@ function UpdateActivityHistory({ activityHistory }) {
     const CustomInput = forwardRef(({ ...props }, ref) => {
         return <TextField inputRef={ref} {...props} sx={{ width: '100%' }} />
     })
+
+    const handleFileUpload = (event) => {
+        const selectedFile = event.target.files[0];
+        if (selectedFile) {
+            setFile(selectedFile);
+            setfileHelper('فایل مورد نظر جایگزین شد')
+        } else {
+            setFile(null);
+        }
+    };
+
+
+    const onSubmit = (values) => {
+        console.log(file)
+        const newActivityHistory = { ...values, user_id: 1, start_date: '1402-09-20', end_date: '1402-09-10', work_type_id: 1 }
+        console.log(newActivityHistory)
+    }
 
     // form
     return (
@@ -60,11 +88,10 @@ function UpdateActivityHistory({ activityHistory }) {
                     <Typography fontWeight={600} fontSize={19}>جزییات سوابق فعالیت</Typography>
                 </Box>
                 <CardContent>
-                    <form >
+                    <form onSubmit={handleSubmit(onSubmit)} >
                         <Grid container spacing={5}>
                             <Grid item xs={12} sm={4}>
                                 <FormControl fullWidth>
-
                                     <Controller
                                         defaultValue={activityHistory?.title}
                                         name='title'
@@ -72,7 +99,8 @@ function UpdateActivityHistory({ activityHistory }) {
                                         rules={{ required: true }}
                                         render={({ field: { value, onChange } }) => (
                                             <TextField
-                                                value={activityHistory.title ?? 'عنوان وارد نشده است'}
+                                                value={value}
+                                                onChange={onChange}
                                                 label='عنوان'
                                                 placeholder='عنوان را وارد کنید'
                                                 error={Boolean(errors.title)}
@@ -91,13 +119,14 @@ function UpdateActivityHistory({ activityHistory }) {
                             <Grid item xs={12} sm={4}>
                                 <FormControl fullWidth>
                                     <Controller
-                                        defaultValue={activityHistory?.institute_title}
+                                        defaultValue={activityHistory?.institute_title ?? null}
                                         name='institute_title'
                                         control={control}
                                         rules={{ required: true }}
                                         render={({ field: { value, onChange } }) => (
                                             <TextField
-                                                value={activityHistory?.institute_title ?? 'نام موسسه وارد نشده است'}
+                                                value={value}
+                                                onChange={onChange}
                                                 label='نام موسسه'
                                                 placeholder='نام موسسه را وارد کنید'
                                                 error={Boolean(errors.institute_title)}
@@ -122,7 +151,8 @@ function UpdateActivityHistory({ activityHistory }) {
                                         render={({ field: { value, onChange } }) => (
                                             <TextField
                                                 type='text'
-                                                value={activityHistory?.position ?? 'سمت وارد نشده است'}
+                                                value={value}
+                                                onChange={onChange}
                                                 label='سمت'
                                                 error={Boolean(errors.position)}
                                                 placeholder='سمت را وارد کنید'
@@ -147,13 +177,14 @@ function UpdateActivityHistory({ activityHistory }) {
                                         نوع همکاری
                                     </InputLabel>
                                     <Controller
-                                        defaultValue={activityHistory?.work_type}
+                                        defaultValue={activityHistory?.work_type ?? 1}
                                         name='work_type_id'
                                         control={control}
                                         rules={{ required: true }}
                                         render={({ field: { value, onChange } }) => (
                                             <Select
-                                                value={activityHistory?.work_type}
+                                                onChange={onChange}
+                                                value={value}
                                                 label='نوع همکاری'
                                                 error={Boolean(errors.work_type_id)}
                                                 labelId='validation-basic-select'
@@ -175,20 +206,21 @@ function UpdateActivityHistory({ activityHistory }) {
 
                             <Grid item xs={12} sm={4}>
                                 <Controller
-                                    defaultValue={activityHistory?.start_date}
+                                    defaultValue={new Date(activityHistory?.start_date)}
                                     name='start_date'
                                     control={control}
                                     rules={{ required: true }}
                                     render={({ field: { value, onChange } }) => (
                                         <DatePicker
-                                            value={activityHistory?.start_date ?? ''}
+                                            selected={value}
                                             showYearDropdown
                                             showMonthDropdown
-                                            onChange={() => { }}
+                                            onChange={e => onChange(e)}
                                             placeholderText='MM/DD/YYYY'
                                             customInput={
                                                 <CustomInput
-                                                    value={activityHistory?.start_date ?? ''}
+                                                    onChange={onChange}
+                                                    value={value}
                                                     label='تاریخ شروع'
                                                     error={Boolean(errors.start_date)}
                                                     aria-describedby='validation-basic-dob'
@@ -205,20 +237,21 @@ function UpdateActivityHistory({ activityHistory }) {
                             </Grid>
                             <Grid item xs={12} sm={4}>
                                 <Controller
+                                    defaultValue={new Date(activityHistory?.end_date)}
                                     name='end_date'
                                     control={control}
                                     rules={{ required: true }}
                                     render={({ field: { value, onChange } }) => (
                                         <DatePicker
-                                            value={activityHistory?.end_date ?? ''}
+                                            selected={value}
                                             showYearDropdown
                                             showMonthDropdown
-                                            onChange={e => { }}
+                                            onChange={e => onChange(e)}
                                             placeholderText='MM/DD/YYYY'
                                             customInput={
                                                 <CustomInput
                                                     value={activityHistory?.end_date ?? ''}
-                                                    onChange={() => { }}
+                                                    onChange={onchange}
                                                     label='تاریخ پایان'
                                                     error={Boolean(errors.end_date)}
                                                     aria-describedby='validation-basic-dob'
@@ -256,7 +289,7 @@ function UpdateActivityHistory({ activityHistory }) {
 
                                                 }}
                                             >
-                                                دانلود فایل
+                                                آپلود فایل
                                             </Button>
                                         </label>
                                         <span
@@ -270,12 +303,13 @@ function UpdateActivityHistory({ activityHistory }) {
                                                 color: 'grey'
                                             }}
                                         >
-                                            {activityHistory?.file ? 'یک فایل وجود دارد' : 'فایلی وجود ندارد'}
+                                            {fileHelper}
                                         </span>
                                         <TextField
                                             name="file"
+                                            type='file'
                                             id="file-input"
-                                            onChange={() => { }}
+                                            onChange={handleFileUpload}
                                             style={{ display: 'none' }}
                                         />
                                     </Box>
@@ -289,16 +323,18 @@ function UpdateActivityHistory({ activityHistory }) {
                                         <Controller
                                             name='has_certificate'
                                             control={control}
+                                            defaultValue={activityHistory?.has_certificate ?? false}
                                             rules={{ required: false }}
                                             render={({ field: { value, onChange } }) => (
                                                 <FormControlLabel
-                                                    defaultChecked={activityHistory?.has_certificate}
-                                                    defaultValue={activityHistory?.has_certificate}
+
                                                     name='has_certificate'
                                                     control={
                                                         <Switch
+
                                                             defaultChecked={activityHistory?.has_certificate ?? false}
-                                                            checked={activityHistory?.has_certificate ?? false}
+                                                            value={value}
+                                                            onChange={onChange}
                                                         />
                                                     }
                                                     label={'دارای گواهینامه'}
@@ -313,16 +349,18 @@ function UpdateActivityHistory({ activityHistory }) {
                                         <Controller
                                             name='is_related'
                                             control={control}
+                                            defaultValue={activityHistory?.is_related ?? false}
                                             rules={{ required: false }}
                                             render={({ field: { value, onChange } }) => (
                                                 <FormControlLabel
-                                                    defaultValue={activityHistory?.is_related}
-                                                    defaultChecked={activityHistory?.is_related}
+
                                                     name='is_related'
                                                     control={
                                                         <Switch
                                                             defaultChecked={activityHistory?.is_related ?? false}
-                                                            checked={activityHistory?.is_related ?? false}
+
+                                                            value={value}
+                                                            onChange={onChange}
                                                         />
                                                     }
                                                     label={'فعالیت مرتبط'}
@@ -336,17 +374,19 @@ function UpdateActivityHistory({ activityHistory }) {
                                     <FormControl fullWidth>
                                         <Controller
                                             name='current_position'
+                                            defaultValue={activityHistory?.current_position ?? false}
                                             control={control}
                                             rules={{ required: false }}
                                             render={({ field: { value, onChange } }) => (
                                                 <FormControlLabel
-                                                    defaultChecked={activityHistory?.current_position}
-                                                    defaultValue={activityHistory?.current_position}
+
                                                     name='current_position'
                                                     control={
                                                         <Switch
+                                                            value={value}
+                                                            onChange={onChange}
                                                             defaultChecked={activityHistory?.current_position ?? false}
-                                                            checked={activityHistory?.current_position ?? false}
+
 
                                                         />
                                                     }
@@ -369,11 +409,9 @@ function UpdateActivityHistory({ activityHistory }) {
                                         render={({ field }) => (
                                             <TextField
                                                 aria-readonly
-                                                defaultValue={activityHistory?.address ?? ''}
-                                                value={activityHistory?.address ?? 'آدرس وارد نشده است'}
+                                                value={activityHistory?.address}
                                                 placeholder='ادرس را وارد کنید'
-                                                onChange={() => { }}
-                                                disabled
+                                                onChange={onchange}
                                                 rows={4}
                                                 multiline
                                                 {...field}
@@ -396,15 +434,16 @@ function UpdateActivityHistory({ activityHistory }) {
                                         name='status'
                                         control={control}
                                         rules={{ required: false }}
+                                        defaultValue={activityHistory?.status ?? false}
                                         render={({ field: { value, onChange } }) => (
                                             <FormControlLabel
-                                                defaultValue={activityHistory?.status ?? false}
-                                                defaultChecked={activityHistory?.status ?? false}
                                                 name='status'
                                                 control={
                                                     <Switch
+                                                        value={value}
+                                                        onChange={onChange}
                                                         defaultChecked={activityHistory?.status ?? false}
-                                                        checked={activityHistory?.status ?? false}
+
                                                     />
                                                 }
                                                 label={'وضعیت'}
@@ -426,6 +465,14 @@ function UpdateActivityHistory({ activityHistory }) {
                                     <Stack direction="row" spacing={1}>
                                         <Button LinkComponent={Link} href='/activityHistories' variant="contained" type='reset' color="error">
                                             برگشت
+                                        </Button>
+                                        <Button
+                                            type='submit'
+                                            style={{ fontFamily: 'IRANSans' }}
+                                            variant="contained"
+                                            color="primary"
+                                        >
+                                            ثبت
                                         </Button>
                                     </Stack>
                                 </Stack>
