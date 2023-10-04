@@ -67,7 +67,9 @@ function ShowActivityHistory({ activityHistory }) {
                         <Grid container spacing={5}>
                             <Grid item xs={12} sm={4}>
                                 <FormControl fullWidth>
+
                                     <Controller
+                                        defaultValue={activityHistory?.title}
                                         name='title'
                                         control={control}
                                         rules={{ required: true }}
@@ -75,7 +77,8 @@ function ShowActivityHistory({ activityHistory }) {
                                             <TextField
                                                 value={activityHistory.title}
                                                 label='عنوان'
-                                                onChange={onChange}
+                                                disabled={true}
+
                                                 placeholder='عنوان را وارد کنید'
                                                 error={Boolean(errors.title)}
                                                 aria-describedby='validation-basic-first-name'
@@ -93,11 +96,13 @@ function ShowActivityHistory({ activityHistory }) {
                             <Grid item xs={12} sm={4}>
                                 <FormControl fullWidth>
                                     <Controller
+                                        defaultValue={activityHistory?.institute_title}
                                         name='institute_title'
                                         control={control}
                                         rules={{ required: true }}
                                         render={({ field: { value, onChange } }) => (
                                             <TextField
+                                                disabled={true}
                                                 value={activityHistory?.institute_title}
                                                 label='نام موسسه'
                                                 onChange={onChange}
@@ -114,10 +119,10 @@ function ShowActivityHistory({ activityHistory }) {
                                     )}
                                 </FormControl>
                             </Grid>
-
                             <Grid item xs={12} sm={4}>
                                 <FormControl fullWidth>
                                     <Controller
+                                        defaultValue={activityHistory?.position}
                                         name='position'
                                         control={control}
                                         rules={{ required: true }}
@@ -126,6 +131,7 @@ function ShowActivityHistory({ activityHistory }) {
                                                 type='text'
                                                 value={activityHistory?.position}
                                                 label='سمت'
+                                                disabled
                                                 onChange={onChange}
                                                 error={Boolean(errors.position)}
                                                 placeholder='سمت را وارد کنید'
@@ -150,11 +156,13 @@ function ShowActivityHistory({ activityHistory }) {
                                         نوع همکاری
                                     </InputLabel>
                                     <Controller
+                                        defaultValue={activityHistory?.work_type}
                                         name='work_type_id'
                                         control={control}
                                         rules={{ required: true }}
                                         render={({ field: { value, onChange } }) => (
                                             <Select
+                                                disabled
                                                 value={activityHistory?.work_type}
                                                 label='نوع همکاری'
                                                 onChange={onChange}
@@ -178,19 +186,21 @@ function ShowActivityHistory({ activityHistory }) {
 
                             <Grid item xs={12} sm={4}>
                                 <Controller
+                                    defaultValue={activityHistory?.start_date}
                                     name='start_date'
                                     control={control}
                                     rules={{ required: true }}
                                     render={({ field: { value, onChange } }) => (
                                         <DatePicker
 
-                                            selected={value}
+                                            //     selected={value}
                                             showYearDropdown
                                             showMonthDropdown
                                             onChange={e => onChange(e)}
                                             placeholderText='MM/DD/YYYY'
                                             customInput={
                                                 <CustomInput
+
                                                     value={activityHistory?.start_date}
                                                     onChange={onChange}
                                                     label='تاریخ شروع'
@@ -214,7 +224,8 @@ function ShowActivityHistory({ activityHistory }) {
                                     rules={{ required: true }}
                                     render={({ field: { value, onChange } }) => (
                                         <DatePicker
-                                            selected={value}
+
+                                            //     selected={value}
                                             showYearDropdown
                                             showMonthDropdown
                                             onChange={e => onChange(e)}
@@ -253,14 +264,14 @@ function ShowActivityHistory({ activityHistory }) {
                                                 variant="contained"
                                                 component="span"
                                                 style={{
-                                                    height: '100%', overflow: 'hidden', width: '105px', borderTopRightRadius: 1,
+                                                    height: '100%', overflow: 'hidden', width: '110px', borderTopRightRadius: 1,
                                                     borderBottomRightRadius: 1,
                                                     borderTopLeftRadius: 0,
                                                     borderBottomLeftRadius: 0,
 
                                                 }}
                                             >
-                                                آپلود فایل
+                                                دانلود فایل
                                             </Button>
                                         </label>
                                         <span
@@ -294,6 +305,7 @@ function ShowActivityHistory({ activityHistory }) {
                                         <Controller
                                             name='has_certificate'
                                             control={control}
+
                                             rules={{ required: false }}
                                             render={({ field: { value, onChange } }) => (
                                                 <FormControlLabel
@@ -301,7 +313,9 @@ function ShowActivityHistory({ activityHistory }) {
                                                     control={
                                                         <Switch
                                                             defaultChecked={activityHistory?.has_certificate}
+                                                            disabled
 
+                                                            //     disabled
                                                             checked={activityHistory?.has_certificate}
 
                                                         />
