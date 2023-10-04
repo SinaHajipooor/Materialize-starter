@@ -36,6 +36,7 @@ import ServerSideToolbar from 'src/views/table/data-grid/ServerSideToolbar'
 // ** Utils Import
 import { getInitials } from 'src/@core/utils/get-initials'
 import useDeleteActivity from 'src/pages/activityHistories/hooks/useDeleteActivity'
+import { useRouter } from 'next/router'
 
 // ** renders client column
 const renderClient = params => {
@@ -70,6 +71,7 @@ const statusObj = {
 const useVerticalMenu = () => {
     const [menuAnchorEl, setMenuAnchorEl] = useState(null);
     const { isLoading, mutate } = useDeleteActivity()
+    const router = useRouter()
 
     const handleMenuOpen = (event) => {
         setMenuAnchorEl(event.currentTarget);
@@ -79,12 +81,17 @@ const useVerticalMenu = () => {
         setMenuAnchorEl(null);
     };
 
+    function navigating(destination, id) {
+        router.push(`/activityHistories/${destination}/${id}`)
+    }
+
     return {
         menuAnchorEl,
         handleMenuOpen,
         handleMenuClose,
         isLoading,
-        mutate
+        mutate,
+        navigating
     };
 };
 
@@ -154,7 +161,7 @@ const columns = [
         headerName: 'عملیات',
         renderCell: (params) => {
             // eslint-disable-next-line react-hooks/rules-of-hooks
-            const { menuAnchorEl, handleMenuOpen, handleMenuClose, mutate, isLoading } = useVerticalMenu();
+            const { menuAnchorEl, handleMenuOpen, handleMenuClose, mutate, isLoading, navigating } = useVerticalMenu();
 
             return (
                 <div>
@@ -171,14 +178,14 @@ const columns = [
                         open={Boolean(menuAnchorEl)}
                         onClose={handleMenuClose}
                     >
-                        <MenuItem sx={{ fontSize: 13 }} onClick={() => console.log(params?.row.id)}>
+                        <MenuItem sx={{ fontSize: 13 }} onClick={() => navigating('show', params?.row.id)}>
                             <ListItemIcon>
                                 <IconEye color='yellow' size={18} />
                             </ListItemIcon>
                             جزییات
                         </MenuItem>
                         <Divider />
-                        <MenuItem sx={{ fontSize: 13 }} onClick={handleMenuClose}>
+                        <MenuItem sx={{ fontSize: 13 }} onClick={() => navigating('update', params?.row.id)}>
                             <ListItemIcon>
                                 <IconEdit color='orange' size={18} />
                             </ListItemIcon>
@@ -187,8 +194,6 @@ const columns = [
                         <Divider />
                         <MenuItem sx={{ fontSize: 13 }} disabled={isLoading} onClick={() => {
                             mutate(params?.row.id);
-
-                            handleMenuClose()
                         }}>
                             <ListItemIcon>
                                 <IconTrash color='red' size={18} />

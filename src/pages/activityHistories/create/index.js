@@ -20,7 +20,7 @@ const FormValidation = () => {
             <Grid item xs={12}>
                 <FormValidationBasic />
             </Grid>
-        </DatePickerWrapper>
+        </DatePickerWrapper >
     )
 }
 
