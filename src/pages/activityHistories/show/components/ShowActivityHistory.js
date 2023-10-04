@@ -75,9 +75,10 @@ function ShowActivityHistory({ activityHistory }) {
                                         rules={{ required: true }}
                                         render={({ field: { value, onChange } }) => (
                                             <TextField
-                                                value={activityHistory.title}
+                                                value={activityHistory.title ?? 'عنوان وارد نشده است'}
                                                 label='عنوان'
-                                                disabled={true}
+
+                                                // disabled={true}
 
                                                 placeholder='عنوان را وارد کنید'
                                                 error={Boolean(errors.title)}
@@ -102,10 +103,12 @@ function ShowActivityHistory({ activityHistory }) {
                                         rules={{ required: true }}
                                         render={({ field: { value, onChange } }) => (
                                             <TextField
-                                                disabled={true}
-                                                value={activityHistory?.institute_title}
+
+                                                // disabled={true}
+                                                value={activityHistory?.institute_title ?? 'نام موسسه وارد نشده است'}
                                                 label='نام موسسه'
-                                                onChange={onChange}
+
+                                                // onChange={onChange}
                                                 placeholder='نام موسسه را وارد کنید'
                                                 error={Boolean(errors.institute_title)}
                                                 aria-describedby='validation-basic-last-name'
@@ -129,10 +132,11 @@ function ShowActivityHistory({ activityHistory }) {
                                         render={({ field: { value, onChange } }) => (
                                             <TextField
                                                 type='text'
-                                                value={activityHistory?.position}
+                                                value={activityHistory?.position ?? 'سمت وارد نشده است'}
                                                 label='سمت'
-                                                disabled
-                                                onChange={onChange}
+
+                                                // disabled
+                                                // onChange={onChange}
                                                 error={Boolean(errors.position)}
                                                 placeholder='سمت را وارد کنید'
                                                 aria-describedby='validation-basic-email'
@@ -162,10 +166,10 @@ function ShowActivityHistory({ activityHistory }) {
                                         rules={{ required: true }}
                                         render={({ field: { value, onChange } }) => (
                                             <Select
-                                                disabled
                                                 value={activityHistory?.work_type}
                                                 label='نوع همکاری'
-                                                onChange={onChange}
+
+                                                // onChange={onChange}
                                                 error={Boolean(errors.work_type_id)}
                                                 labelId='validation-basic-select'
                                                 aria-describedby='validation-basic-select'
@@ -192,17 +196,18 @@ function ShowActivityHistory({ activityHistory }) {
                                     rules={{ required: true }}
                                     render={({ field: { value, onChange } }) => (
                                         <DatePicker
+                                            value={activityHistory?.start_date ?? ''}
 
-                                            //     selected={value}
+                                            // selected={value}
                                             showYearDropdown
                                             showMonthDropdown
-                                            onChange={e => onChange(e)}
+                                            onChange={() => { }}
                                             placeholderText='MM/DD/YYYY'
                                             customInput={
                                                 <CustomInput
+                                                    value={activityHistory?.start_date ?? ''}
 
-                                                    value={activityHistory?.start_date}
-                                                    onChange={onChange}
+                                                    //     onChange={onChange}
                                                     label='تاریخ شروع'
                                                     error={Boolean(errors.start_date)}
                                                     aria-describedby='validation-basic-dob'
@@ -224,16 +229,17 @@ function ShowActivityHistory({ activityHistory }) {
                                     rules={{ required: true }}
                                     render={({ field: { value, onChange } }) => (
                                         <DatePicker
+                                            value={activityHistory?.end_date ?? ''}
 
                                             //     selected={value}
                                             showYearDropdown
                                             showMonthDropdown
-                                            onChange={e => onChange(e)}
+                                            onChange={e => { }}
                                             placeholderText='MM/DD/YYYY'
                                             customInput={
                                                 <CustomInput
-                                                    value={activityHistory?.end_date}
-                                                    onChange={onChange}
+                                                    value={activityHistory?.end_date ?? ''}
+                                                    onChange={() => { }}
                                                     label='تاریخ پایان'
                                                     error={Boolean(errors.end_date)}
                                                     aria-describedby='validation-basic-dob'
@@ -285,11 +291,12 @@ function ShowActivityHistory({ activityHistory }) {
                                                 color: 'grey'
                                             }}
                                         >
-                                            {activityHistory?.file ? 'فایل مورد نظر انتخاب شد' : 'یک فایل انتخاب کنید'}
+                                            {activityHistory?.file ? 'یک فایل وجود دارد' : 'فایلی وجود ندارد'}
                                         </span>
                                         <TextField
                                             name="file"
-                                            type="file"
+
+                                            //     type="file"
                                             id="file-input"
                                             onChange={() => { }}
                                             style={{ display: 'none' }}
@@ -309,15 +316,13 @@ function ShowActivityHistory({ activityHistory }) {
                                             rules={{ required: false }}
                                             render={({ field: { value, onChange } }) => (
                                                 <FormControlLabel
+                                                    defaultChecked={activityHistory?.has_certificate}
+                                                    defaultValue={activityHistory?.has_certificate}
                                                     name='has_certificate'
                                                     control={
                                                         <Switch
-                                                            defaultChecked={activityHistory?.has_certificate}
-                                                            disabled
-
-                                                            //     disabled
-                                                            checked={activityHistory?.has_certificate}
-
+                                                            defaultChecked={activityHistory?.has_certificate ?? false}
+                                                            checked={activityHistory?.has_certificate ?? false}
                                                         />
                                                     }
                                                     label={'دارای گواهینامه'}
@@ -335,13 +340,13 @@ function ShowActivityHistory({ activityHistory }) {
                                             rules={{ required: false }}
                                             render={({ field: { value, onChange } }) => (
                                                 <FormControlLabel
+                                                    defaultValue={activityHistory?.is_related}
+                                                    defaultChecked={activityHistory?.is_related}
                                                     name='is_related'
                                                     control={
                                                         <Switch
-
-                                                            defaultChecked={activityHistory?.is_related}
-                                                            checked={activityHistory?.is_related}
-
+                                                            defaultChecked={activityHistory?.is_related ?? false}
+                                                            checked={activityHistory?.is_related ?? false}
                                                         />
                                                     }
                                                     label={'فعالیت مرتبط'}
@@ -359,12 +364,13 @@ function ShowActivityHistory({ activityHistory }) {
                                             rules={{ required: false }}
                                             render={({ field: { value, onChange } }) => (
                                                 <FormControlLabel
+                                                    defaultChecked={activityHistory?.current_position}
+                                                    defaultValue={activityHistory?.current_position}
                                                     name='current_position'
                                                     control={
                                                         <Switch
-                                                            defaultChecked={activityHistory?.current_position}
-
-                                                            checked={activityHistory?.current_position}
+                                                            defaultChecked={activityHistory?.current_position ?? false}
+                                                            checked={activityHistory?.current_position ?? false}
 
                                                         />
                                                     }
@@ -380,15 +386,18 @@ function ShowActivityHistory({ activityHistory }) {
                             <Grid item xs={12} mt={2}>
                                 <FormControl fullWidth>
                                     <Controller
-                                        defaultValue={activityHistory?.address}
+                                        defaultValue={activityHistory?.address ?? ''}
                                         name='address'
                                         control={control}
                                         rules={{ required: true }}
                                         render={({ field }) => (
                                             <TextField
-                                                defaultValue={activityHistory?.address}
-                                                value={activityHistory?.address}
+                                                aria-readonly
+                                                defaultValue={activityHistory?.address ?? ''}
+                                                value={activityHistory?.address ?? 'آدرس وارد نشده است'}
                                                 placeholder='ادرس را وارد کنید'
+                                                onChange={() => { }}
+                                                disabled
                                                 rows={4}
                                                 multiline
                                                 {...field}
@@ -413,11 +422,13 @@ function ShowActivityHistory({ activityHistory }) {
                                         rules={{ required: false }}
                                         render={({ field: { value, onChange } }) => (
                                             <FormControlLabel
+                                                defaultValue={activityHistory?.status ?? false}
+                                                defaultChecked={activityHistory?.status ?? false}
                                                 name='status'
                                                 control={
                                                     <Switch
-                                                        defaultChecked={activityHistory?.status}
-                                                        checked={activityHistory?.status}
+                                                        defaultChecked={activityHistory?.status ?? false}
+                                                        checked={activityHistory?.status ?? false}
                                                     />
                                                 }
                                                 label={'وضعیت'}
@@ -438,15 +449,7 @@ function ShowActivityHistory({ activityHistory }) {
                                     </Stack>
                                     <Stack direction="row" spacing={1}>
                                         <Button LinkComponent={Link} href='/activityHistories' variant="contained" type='reset' color="error">
-                                            لغو
-                                        </Button>
-                                        <Button
-                                            type='submit'
-                                            style={{ fontFamily: 'IRANSans' }}
-                                            variant="contained"
-                                            color="primary"
-                                        >
-                                            ثبت
+                                            برگشت
                                         </Button>
                                     </Stack>
                                 </Stack>
