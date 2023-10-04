@@ -45,7 +45,6 @@ const defaultValues = {
     isRelated: false,
     isCurrent: false,
     status: false
-
 }
 
 const CustomInput = forwardRef(({ ...props }, ref) => {
@@ -76,7 +75,7 @@ const FormValidationBasic = () => {
 
 
     const onSubmit = (values) => {
-        console.log(values)
+        console.log()
         toast.success('Form Submitted')
     }
 
@@ -213,6 +212,7 @@ const FormValidationBasic = () => {
                                 rules={{ required: true }}
                                 render={({ field: { value, onChange } }) => (
                                     <DatePicker
+
                                         selected={value}
                                         showYearDropdown
                                         showMonthDropdown
