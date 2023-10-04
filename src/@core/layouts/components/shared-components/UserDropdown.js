@@ -19,6 +19,7 @@ import Icon from 'src/@core/components/icon'
 
 // ** Context
 import { signOut, useSession } from 'next-auth/react'
+import toast from 'react-hot-toast'
 
 // ** Styled Components
 const BadgeContentSpan = styled('span')(({ theme }) => ({
@@ -165,6 +166,7 @@ const UserDropdown = props => {
                             redirect: false
                         })
                         router.push('/login')
+                        toast.success('از حساب خود خارج شدید')
                     }}
                     sx={{ py: 2, '& svg': { mr: 2, fontSize: '1.375rem', color: 'text.primary' } }}
                 >
