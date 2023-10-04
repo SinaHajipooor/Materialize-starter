@@ -34,15 +34,18 @@ import Link from 'next/link'
 import { useSettings } from 'src/@core/hooks/useSettings'
 
 const defaultValues = {
-    dob: null,
-    email: '',
-    radio: '',
-    select: '',
-    lastName: '',
-    password: '',
-    textarea: '',
-    firstName: '',
-    checkbox: false
+    title: '',
+    instituteTitle: '',
+    position: '',
+    workType: '',
+    startDate: null,
+    endDate: null,
+    address: '',
+    hasCertificate: false,
+    isRelated: false,
+    isCurrent: false,
+    status: false
+
 }
 
 const CustomInput = forwardRef(({ ...props }, ref) => {
@@ -54,11 +57,7 @@ const FormValidationBasic = () => {
     const [file, setFile] = useState(null);
     const { settings } = useSettings()
 
-    const [state, setState] = useState({
-        password: '',
-        showPassword: false
-    })
-
+    // methods
     const handleFileUpload = (event) => {
         const selectedFile = event.target.files[0];
         if (selectedFile) {
@@ -75,14 +74,11 @@ const FormValidationBasic = () => {
         formState: { errors }
     } = useForm({ defaultValues })
 
-    const handleClickShowPassword = () => {
-        setState({ ...state, showPassword: !state.showPassword })
-    }
 
-    const handleMouseDownPassword = event => {
-        event.preventDefault()
+    const onSubmit = (values) => {
+        console.log(values)
+        toast.success('Form Submitted')
     }
-    const onSubmit = () => toast.success('Form Submitted')
 
     return (
         <Card>
@@ -196,8 +192,8 @@ const FormValidationBasic = () => {
                                             labelId='validation-basic-select'
                                             aria-describedby='validation-basic-select'
                                         >
-                                            <MenuItem value='Australia'>تمام وقت</MenuItem>
-                                            <MenuItem value='Germany'>پاره وقت</MenuItem>
+                                            <MenuItem value='1'>تمام وقت</MenuItem>
+                                            <MenuItem value='2'>پاره وقت</MenuItem>
                                         </Select>
                                     )}
                                 />
@@ -323,40 +319,70 @@ const FormValidationBasic = () => {
 
                         <Grid container spacing={3} sm={8} mt={7}>
                             <Grid item xs={12} sm={4} ml={7}>
-                                <FormControlLabel
-                                    control={
-                                        <Switch
+                                <FormControl fullWidth>
+                                    <Controller
+                                        name='hasCertificate'
+                                        control={control}
+                                        rules={{ required: true }}
+                                        render={({ field: { value, onChange } }) => (
+                                            <FormControlLabel
+                                                name='hasCertificate'
+                                                control={
+                                                    <Switch
+                                                        checked={value}
+                                                        onChange={onChange}
+                                                    />
+                                                }
+                                                label={'دارای گواهینامه'}
+                                            />
+                                        )}
+                                    />
 
-                                        // checked={switches[0].checked}
-                                        // onChange={(event) => handleSwitchChange(event, 0)}
-                                        />
-                                    }
-                                    label={'دارای گواهینامه'}
-                                />
+                                </FormControl>
                             </Grid>
                             <Grid item xs={12} sm={4} ml={0}>
-                                <FormControlLabel
-                                    control={
-                                        <Switch
+                                <FormControl fullWidth>
+                                    <Controller
+                                        name='isRelated'
+                                        control={control}
+                                        rules={{ required: true }}
+                                        render={({ field: { value, onChange } }) => (
+                                            <FormControlLabel
+                                                name='isRelated'
+                                                control={
+                                                    <Switch
+                                                        checked={value}
+                                                        onChange={onChange}
+                                                    />
+                                                }
+                                                label={'فعالیت مرتبط'}
+                                            />
+                                        )}
+                                    />
 
-                                        // checked={switches[1].checked}
-                                        // onChange={(event) => handleSwitchChange(event, 1)}
-                                        />
-                                    }
-                                    label={'فعالیت مرتبط'}
-                                />
+                                </FormControl>
                             </Grid>
                             <Grid item xs={12} sm={3}>
-                                <FormControlLabel
-                                    control={
-                                        <Switch
+                                <FormControl fullWidth>
+                                    <Controller
+                                        name='isCurrent'
+                                        control={control}
+                                        rules={{ required: true }}
+                                        render={({ field: { value, onChange } }) => (
+                                            <FormControlLabel
+                                                name='isCurrent'
+                                                control={
+                                                    <Switch
+                                                        checked={value}
+                                                        onChange={onChange}
+                                                    />
+                                                }
+                                                label={'فعالیت جاری'}
+                                            />
+                                        )}
+                                    />
 
-                                        // checked={switches[2].checked}
-                                        // onChange={(event) => handleSwitchChange(event, 2)}
-                                        />
-                                    }
-                                    label={'فعالیت جاری'}
-                                />
+                                </FormControl>
                             </Grid>
                         </Grid>
 
@@ -386,16 +412,26 @@ const FormValidationBasic = () => {
                             </FormControl>
                         </Grid>
                         <Grid item xs={12} sm={3} ml={3}>
-                            <FormControlLabel
-                                control={
-                                    <Switch
+                            <FormControl fullWidth>
+                                <Controller
+                                    name='status'
+                                    control={control}
+                                    rules={{ required: true }}
+                                    render={({ field: { value, onChange } }) => (
+                                        <FormControlLabel
+                                            name='status'
+                                            control={
+                                                <Switch
+                                                    checked={value}
+                                                    onChange={onChange}
+                                                />
+                                            }
+                                            label={'وضعیت'}
+                                        />
+                                    )}
+                                />
 
-                                    // checked={switches[3].checked}
-                                    // onChange={(event) => handleSwitchChange(event, 3)}
-                                    />
-                                }
-                                label={'وضعیت'}
-                            />
+                            </FormControl>
                         </Grid>
                         <Grid item xs={12}>
                             <Stack
@@ -407,7 +443,7 @@ const FormValidationBasic = () => {
                                 <Stack spacing={1} direction="row">
                                 </Stack>
                                 <Stack direction="row" spacing={1}>
-                                    <Button LinkComponent={Link} href='/activity-histories/index' variant="contained" type='reset' color="error">
+                                    <Button LinkComponent={Link} href='/activityHistories' variant="contained" type='reset' color="error">
                                         لغو
                                     </Button>
                                     <Button
