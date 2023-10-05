@@ -42,7 +42,6 @@ function UpdateActivityHistory({ activityHistory }) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    console.log('slm')
 
     const {
         control,
@@ -84,7 +83,7 @@ function UpdateActivityHistory({ activityHistory }) {
                         minHeight: '4rem',
                     }}
                 >
-                    <Typography fontWeight={600} fontSize={19}>جزییات سوابق فعالیت</Typography>
+                    <Typography fontWeight={600} fontSize={19}>تغییر سوابق فعالیت</Typography>
                 </Box>
                 <CardContent>
                     <form onSubmit={handleSubmit(onSubmit)} >
