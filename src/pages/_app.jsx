@@ -117,7 +117,6 @@ const App = props => {
     return (
         <NextAuthProvider>
             <Provider store={store}>
-
                 <QueryClientProvider client={queryClientSetup}>
                     <CacheProvider value={emotionCache}>
                         <ReactQueryDevtools initialIsOpen={false} />
