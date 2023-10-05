@@ -16,6 +16,8 @@ import FormControl from '@mui/material/FormControl'
 import FormHelperText from '@mui/material/FormHelperText'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import { Box, Switch, Typography, Stack, CircularProgress } from '@mui/material'
+import fa from 'date-fns/locale/fa-IR'
+
 
 // ** Third Party Imports
 import DatePicker from 'react-datepicker'
@@ -204,12 +206,15 @@ function UpdateActivityHistory({ activityHistory }) {
 
                             <Grid item xs={12} sm={4}>
                                 <Controller
+
                                     defaultValue={new Date(activityHistory?.start_date)}
                                     name='start_date'
                                     control={control}
                                     rules={{ required: true }}
                                     render={({ field: { value, onChange } }) => (
                                         <DatePicker
+
+                                            locale={fa}
                                             selected={value}
                                             showYearDropdown
                                             showMonthDropdown
