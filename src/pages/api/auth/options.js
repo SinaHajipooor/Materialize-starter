@@ -14,6 +14,7 @@ export const options = {
                 }
                 const userData = data.user
                 const token = data.token;
+                console.log(token)
 
                 return { ...userData, role: 'manager', token }
             }
@@ -29,11 +30,13 @@ export const options = {
 
             return token
         },
+
         async session({ session, token }) {
             return {
                 ...session, user: token
             }
-        }
+        },
+
     },
     pages: {
         signIn: '/login',
