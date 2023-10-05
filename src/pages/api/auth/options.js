@@ -1,5 +1,5 @@
 import CredentialsProvider from "next-auth/providers/credentials";
-
+import axiosConfig from "src/utils/axios";
 
 export const options = {
     providers: [
@@ -7,20 +7,15 @@ export const options = {
             name: 'Credentials',
             credentials: {},
             async authorize(credentials) {
-                // const response = await axiosConfig.post('/api/auth/base/login', credentials);
-                // const data = response.data.result;
-                // if (response.status !== 200) {
-                //     throw new Error('Failed to login user')
-                // }
-                // const userData = data.user
-                // return { ...userData, role: 'admin' }
-                // -------- test ----------
-                const user = { id: 1, username: 'sina', first_name: 'سینا', last_name: 'حاجی پور', mobile: '09155613393', password: '123', role: 'manager', avatar: '', status: '' };
-                if (credentials?.username === user.username && credentials?.password === user.password) {
-                    return user
-                } else {
-                    return null;
+                const response = await axiosConfig.post('/api/auth/base/login', credentials);
+                const data = response.data.result;
+                if (response.status !== 200) {
+                    throw new Error('Failed to login user')
                 }
+                const userData = data.user
+                const token = data.token;
+
+                return { ...userData, role: 'manager', token }
             }
         }),
     ],
