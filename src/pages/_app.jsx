@@ -44,6 +44,12 @@ import ReactHotToast from 'src/@core/styles/libs/react-hot-toast'
 // ** Utils Imports
 import { createEmotionCache } from 'src/@core/utils/create-emotion-cache'
 
+
+// ** Store Imports
+import { store } from 'src/store'
+import { Provider } from 'react-redux'
+
+
 // ** Prismjs Styles
 import 'prismjs'
 import 'prismjs/themes/prism-tomorrow.css'
@@ -110,44 +116,48 @@ const App = props => {
 
     return (
         <NextAuthProvider>
-            <QueryClientProvider client={queryClientSetup}>
-                <CacheProvider value={emotionCache}>
-                    <ReactQueryDevtools initialIsOpen={false} />
-                    <Head>
-                        <title>{`${themeConfig.templateName} - Material Design React Admin Template`}</title>
-                        <meta
-                            name='description'
-                            content={`${themeConfig.templateName} – Material Design React Admin Dashboard Template – is the most developer friendly & highly customizable Admin Dashboard Template based on MUI v5.`}
-                        />
-                        <meta name='keywords' content='Material Design, MUI, Admin Template, React Admin Template' />
-                        <meta name='viewport' content='initial-scale=1, width=device-width' />
-                    </Head>
-                    {/* <NextAuthProvider> */}
-                    {/* <AuthProvider> */}
-                    <SettingsProvider {...(setConfig ? { pageSettings: setConfig() } : {})}>
-                        <SettingsConsumer>
-                            {({ settings }) => {
-                                return (
-                                    <ThemeComponent settings={settings}>
-                                        <WindowWrapper>
-                                            {/* <Guard authGuard={authGuard} guestGuard={guestGuard}> */}
-                                            {/* <AclGuard aclAbilities={aclAbilities} guestGuard={guestGuard}> */}
-                                            {getLayout(<Component {...pageProps} />)}
-                                            {/* </AclGuard> */}
-                                            {/* </Guard> */}
-                                        </WindowWrapper>
-                                        <ReactHotToast>
-                                            <Toaster position={settings.toastPosition} toastOptions={{ className: 'react-hot-toast' }} />
-                                        </ReactHotToast>
-                                    </ThemeComponent>
-                                )
-                            }}
-                        </SettingsConsumer>
-                    </SettingsProvider>
-                    {/* </AuthProvider> */}
-                    {/* </NextAuthProvider> */}
-                </CacheProvider>
-            </QueryClientProvider>
+            <Provider store={store}>
+
+                <QueryClientProvider client={queryClientSetup}>
+                    <CacheProvider value={emotionCache}>
+                        <ReactQueryDevtools initialIsOpen={false} />
+                        <Head>
+                            <title>{`${themeConfig.templateName} - Material Design React Admin Template`}</title>
+                            <meta
+                                name='description'
+                                content={`${themeConfig.templateName} – Material Design React Admin Dashboard Template – is the most developer friendly & highly customizable Admin Dashboard Template based on MUI v5.`}
+                            />
+                            <meta name='keywords' content='Material Design, MUI, Admin Template, React Admin Template' />
+                            <meta name='viewport' content='initial-scale=1, width=device-width' />
+                        </Head>
+                        {/* <NextAuthProvider> */}
+                        {/* <AuthProvider> */}
+                        <SettingsProvider {...(setConfig ? { pageSettings: setConfig() } : {})}>
+                            <SettingsConsumer>
+                                {({ settings }) => {
+                                    return (
+                                        <ThemeComponent settings={settings}>
+                                            <WindowWrapper>
+                                                {/* <Guard authGuard={authGuard} guestGuard={guestGuard}> */}
+                                                {/* <AclGuard aclAbilities={aclAbilities} guestGuard={guestGuard}> */}
+                                                {getLayout(<Component {...pageProps} />)}
+                                                {/* </AclGuard> */}
+                                                {/* </Guard> */}
+                                            </WindowWrapper>
+                                            <ReactHotToast>
+                                                <Toaster position={settings.toastPosition} toastOptions={{ className: 'react-hot-toast' }} />
+                                            </ReactHotToast>
+                                        </ThemeComponent>
+                                    )
+                                }}
+                            </SettingsConsumer>
+                        </SettingsProvider>
+                        {/* </AuthProvider> */}
+                        {/* </NextAuthProvider> */}
+                    </CacheProvider>
+                </QueryClientProvider>
+            </Provider>
+
         </NextAuthProvider>
     )
 }
