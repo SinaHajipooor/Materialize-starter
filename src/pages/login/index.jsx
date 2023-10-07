@@ -147,6 +147,8 @@ const LoginPage = () => {
     // user info 
     const [user, setUser] = useState({ username: '', password: '' })
 
+    const [isLoading, setIsLoading] = useState(false)
+
     // router obj
     const router = useRouter()
 
@@ -157,13 +159,16 @@ const LoginPage = () => {
 
     // onLogin handler
     async function onLoginHandler(e) {
+        setIsLoading(true)
         e.preventDefault()
         const response = await signIn('credentials', { username: user.username, password: user.password, redirect: false });
         if (response?.error) {
             toast.error('اطلاعات وارد شده نادرست است')
+            setIsLoading(false)
 
             return;
         } else {
+            setIsLoading(false)
             router.push('/')
             toast.success('خوش آمدید')
         }
@@ -293,16 +298,9 @@ const LoginPage = () => {
                                         <TextField
                                             autoFocus
                                             label='نام کاربری'
-
-                                            //     value={value}
                                             value={user.username}
                                             onBlur={onBlur}
-
-                                            //     onChange={onChange}
                                             onChange={(e) => onChangeHandler(e, 'username')}
-
-                                        //     error={Boolean(errors.email)}
-                                        //     placeholder='نام کاربری خود را وارد کنید'
                                         />
                                     )}
                                 />
@@ -311,8 +309,6 @@ const LoginPage = () => {
                             <FormControl fullWidth>
                                 <InputLabel
                                     htmlFor='auth-login-v2-password'
-
-                                //     error={Boolean(errors.password)}
                                 >
                                     رمز عبور
                                 </InputLabel>
@@ -322,13 +318,9 @@ const LoginPage = () => {
                                     rules={{ required: true }}
                                     render={({ field: { value, onChange, onBlur } }) => (
                                         <OutlinedInput
-
-                                            //     value={value}
                                             value={user.password}
                                             onBlur={onBlur}
                                             label='Password'
-
-                                            //     onChange={onChange}
                                             onChange={(e) => onChangeHandler(e, 'password')}
                                             id='auth-login-v2-password'
                                             error={Boolean(errors.password)}
@@ -373,7 +365,7 @@ const LoginPage = () => {
                                     ورود با تلفن همراه
                                 </Typography>
                             </Box>
-                            <Button onClick={onLoginHandler} fullWidth size='large' type='submit' variant='contained' sx={{ mb: 7, fontFamily: 'inherit' }}>
+                            <Button disabled={isLoading} onClick={onLoginHandler} fullWidth size='large' type='submit' variant='contained' sx={{ mb: 7, fontFamily: 'inherit' }}>
                                 ورود
                             </Button>
                             <Box mb={20} sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
