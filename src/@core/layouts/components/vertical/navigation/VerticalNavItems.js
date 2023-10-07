@@ -2,25 +2,29 @@
 import VerticalNavLink from './VerticalNavLink'
 import VerticalNavGroup from './VerticalNavGroup'
 import VerticalNavSectionTitle from './VerticalNavSectionTitle'
+import { useSession } from 'next-auth/react'
 
 const resolveNavItemComponent = item => {
-  if (item.sectionTitle) return VerticalNavSectionTitle
-  if (item.children) return VerticalNavGroup
+    if (item.sectionTitle) return VerticalNavSectionTitle
+    if (item.children) return VerticalNavGroup
 
-  return VerticalNavLink
+    return VerticalNavLink
 }
 
 const VerticalNavItems = props => {
-  // ** Props
-  const { verticalNavItems } = props
 
-  const RenderMenuItems = verticalNavItems?.map((item, index) => {
-    const TagName = resolveNavItemComponent(item)
+    // ** Props
+    const { verticalNavItems } = props
 
-    return <TagName {...props} key={index} item={item} />
-  })
+    const RenderMenuItems = verticalNavItems?.map((item, index) => {
+        const TagName = resolveNavItemComponent(item)
 
-  return <>{RenderMenuItems}</>
+
+
+        return <TagName {...props} key={index} item={item} />
+    })
+
+    return <>{RenderMenuItems}</>
 }
 
 export default VerticalNavItems
