@@ -25,7 +25,7 @@ export const options = {
         async jwt({ token, user }) {
             if (user) {
                 return {
-                    ...token, user
+                    ...token, ...user
 
                 }
             }
@@ -34,7 +34,6 @@ export const options = {
         },
 
         async session({ session, token }) {
-            console.log(token.user.token)
 
             return {
                 ...session, user: token
