@@ -2,6 +2,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import axiosConfig from "src/utils/axios";
 
 export const options = {
+
     providers: [
         CredentialsProvider({
             name: 'Credentials',
@@ -14,17 +15,18 @@ export const options = {
                 }
                 const userData = data.user
                 const token = data.token;
-                console.log(token)
 
                 return { ...userData, role: 'manager', token }
-            }
+            },
         }),
     ],
+
     callbacks: {
         async jwt({ token, user }) {
             if (user) {
                 return {
-                    ...token, ...user
+                    ...token, user
+
                 }
             }
 
@@ -32,11 +34,12 @@ export const options = {
         },
 
         async session({ session, token }) {
+            console.log(token.user.token)
+
             return {
                 ...session, user: token
             }
         },
-
     },
     pages: {
         signIn: '/login',
