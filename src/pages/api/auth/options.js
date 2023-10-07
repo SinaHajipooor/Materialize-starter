@@ -20,21 +20,18 @@ export const options = {
             },
         }),
     ],
-
     callbacks: {
         async jwt({ token, user }) {
             if (user) {
                 return {
                     ...token, ...user
-
                 }
             }
 
             return token
+
         },
-
         async session({ session, token }) {
-
             return {
                 ...session, user: token
             }
