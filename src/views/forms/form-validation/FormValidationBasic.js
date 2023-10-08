@@ -18,7 +18,7 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 import { Box, Switch, Typography, Stack } from '@mui/material'
 
 // ** Third Party Imports
-import DatePicker from 'react-multi-date-picker'
+import DatePicker from 'react-datepicker'
 import { useForm, Controller } from 'react-hook-form'
 import fa from 'date-fns/locale/fa-IR'
 import { registerLocale } from "react-datepicker";
