@@ -46,9 +46,9 @@ const Error404 = () => {
                     </Typography>
                     <Typography variant='body2'>ما نتوانستیم صفحه مورد نظر شما را پیدا کنیم</Typography>
                 </BoxWrapper>
-                <Img alt='error-illustration' src='/images/pages/404.png' />
+                <Img alt='error-illustration' src='/images/pages/404.png' height={300} width={150} />
                 <Button href='/' component={Link} variant='contained' sx={{ px: 5.5 }}>
-                    Back to Home
+                    بازگشت به داشبورد
                 </Button>
             </Box>
             <FooterIllustrations image='/images/pages/misc-404-object.png' />
