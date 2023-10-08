@@ -1,22 +1,12 @@
 // ** React Imports
-import { useEffect, useState, useCallback } from 'react'
+import { useState } from 'react'
 
 // ** MUI Imports
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import Typography from '@mui/material/Typography'
-import CardHeader from '@mui/material/CardHeader'
 import { DataGrid } from '@mui/x-data-grid'
 import {
-    TableContainer,
-    Table,
-    TableHead,
-    TableRow,
-    TableCell,
-    TableBody,
-
-    //     Typography,
-    Chip,
     Menu,
     MenuItem,
     IconButton,
@@ -25,16 +15,9 @@ import {
 } from '@mui/material';
 import { IconDotsVertical, IconEdit, IconEye, IconTrash } from '@tabler/icons-react';
 
-// ** ThirdParty Components
-import axios from 'axios'
-
-// ** Custom Components
-import CustomChip from 'src/@core/components/mui/chip'
-import CustomAvatar from 'src/@core/components/mui/avatar'
 import ServerSideToolbar from 'src/views/table/data-grid/ServerSideToolbar'
 
 // ** Utils Import
-import { getInitials } from 'src/@core/utils/get-initials'
 import useDeleteActivity from 'src/pages/activityHistories/hooks/useDeleteActivity'
 import { useRouter } from 'next/router'
 
@@ -277,8 +260,6 @@ const TableServerSide = ({ activityHistories }) => {
                 rows={activityHistories}
                 rowCount={pageSize}
                 columns={columns}
-
-                // checkboxSelection
                 pageSize={pageSize}
                 onRowClick={() => { }}
                 onCellClick={() => { }}
@@ -286,11 +267,8 @@ const TableServerSide = ({ activityHistories }) => {
                 disableSelectionOnClick
                 disableColumnFilter={true}
                 disableColumnMenu={true}
-
                 sortingMode='server'
                 paginationMode='server'
-
-                // onSortModelChange={handleSortModel}
                 rowsPerPageOptions={[7, 10, 25, 50]}
                 onPageChange={newPage => setPage(newPage)}
                 components={{ Toolbar: ServerSideToolbar }}
