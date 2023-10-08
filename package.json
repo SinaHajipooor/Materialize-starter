@@ -72,6 +72,7 @@
         "react-hook-form": "7.38.0",
         "react-hot-toast": "2.4.0",
         "react-i18next": "12.0.0",
+        "react-multi-date-picker": "^4.3.3",
         "react-perfect-scrollbar": "1.5.8",
         "react-persian-datepicker": "^3.0.2",
         "react-popper": "2.3.0",

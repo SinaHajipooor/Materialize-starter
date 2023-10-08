@@ -18,17 +18,12 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 import { Box, Switch, Typography, Stack } from '@mui/material'
 
 // ** Third Party Imports
-import DatePicker from 'react-datepicker'
+import DatePicker from 'react-multi-date-picker'
 import { useForm, Controller } from 'react-hook-form'
 import fa from 'date-fns/locale/fa-IR'
-import faIR from 'date-fns/locale/fa-IR'
 import { registerLocale } from "react-datepicker";
 
-
-registerLocale('faIR', faIR);
-
-
-
+registerLocale('fa', fa);
 
 // ** Icon Imports
 import Link from 'next/link'
@@ -59,10 +54,6 @@ const FormValidationBasic = () => {
     const [file, setFile] = useState(null);
     const { settings } = useSettings()
     const { mutate, isLoading } = useCreateActivity(file)
-
-
-
-
 
     // methods
     const handleFileUpload = (event) => {
@@ -127,7 +118,6 @@ const FormValidationBasic = () => {
                                         </FormHelperText>
                                     )}
                                 </FormControl>
-
                             </Grid>
                             <Grid item xs={12} sm={4}>
                                 <FormControl fullWidth>
@@ -153,7 +143,6 @@ const FormValidationBasic = () => {
                                     )}
                                 </FormControl>
                             </Grid>
-
                             <Grid item xs={12} sm={4}>
                                 <FormControl fullWidth>
                                     <Controller
@@ -213,18 +202,14 @@ const FormValidationBasic = () => {
                                     )}
                                 </FormControl>
                             </Grid>
-
-
                             <Grid item xs={12} sm={4}>
                                 <Controller
                                     name='start_date'
                                     control={control}
                                     rules={{ required: true }}
                                     render={({ field: { value, onChange } }) => (
-
                                         <DatePicker
-
-                                            locale='faIR'
+                                            locale='fa'
                                             selected={value}
                                             showYearDropdown
                                             showMonthDropdown

@@ -4447,6 +4447,11 @@ react-credit-cards@0.8.3:
   dependencies:
     payment "^2.3.0"
 
+react-date-object@^2.1.5:
+  version "2.1.7"
+  resolved "https://registry.npmjs.org/react-date-object/-/react-date-object-2.1.7.tgz"
+  integrity sha512-810eaGk/xvQBJNncPvhwXaKcSwPRKX48jtY/5U5T1bSUnGFqmBdMvl4EVl76cyzQ8U3KX6hpF6xZ1c0eY9vvJA==
+
 react-datepicker@4.8.0:
   version "4.8.0"
   resolved "https://registry.npmjs.org/react-datepicker/-/react-datepicker-4.8.0.tgz"
@@ -4486,6 +4491,11 @@ react-dropzone@14.2.3:
     attr-accept "^2.2.2"
     file-selector "^0.6.0"
     prop-types "^15.8.1"
+
+react-element-popper@^2.1.6:
+  version "2.1.6"
+  resolved "https://registry.npmjs.org/react-element-popper/-/react-element-popper-2.1.6.tgz"
+  integrity sha512-8va7mUmrKIkUnaM2t5Dyctd8cjgVgVcrv5vVD0FRay0sN6EPBCKa0bDi1/KmVDAjfgSIn7zQnjtc4VojcGrkgQ==
 
 react-fast-compare@^3.0.1:
   version "3.2.0"
@@ -4546,6 +4556,14 @@ react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.npmjs.org/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
+
+react-multi-date-picker@^4.3.3:
+  version "4.3.3"
+  resolved "https://registry.npmjs.org/react-multi-date-picker/-/react-multi-date-picker-4.3.3.tgz"
+  integrity sha512-C/AcCx3sH1mrkj0C7Me7rU/8MWHf8KQSVKuKVO7mN+MlWaoQkhvB2PVYHMUKewH6oSobS85XY+7Ta5PfDUsfoQ==
+  dependencies:
+    react-date-object "^2.1.5"
+    react-element-popper "^2.1.6"
 
 react-onclickoutside@^5.3.3:
   version "5.11.1"
