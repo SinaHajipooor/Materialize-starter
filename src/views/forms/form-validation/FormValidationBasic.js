@@ -20,10 +20,6 @@ import { Box, Switch, Typography, Stack } from '@mui/material'
 // ** Third Party Imports
 import DatePicker from 'react-datepicker'
 import { useForm, Controller } from 'react-hook-form'
-import fa from 'date-fns/locale/fa-IR'
-import { registerLocale, setDefaultLocale } from "react-datepicker";
-
-registerLocale('fa', fa)
 
 
 // ** Icon Imports
@@ -31,7 +27,6 @@ import Link from 'next/link'
 import { useSettings } from 'src/@core/hooks/useSettings'
 import useCreateActivity from 'src/pages/activityHistories/hooks/useCreateActivity'
 import DatePickerWrapper from 'src/@core/styles/libs/react-datepicker'
-import faIR from 'date-fns/locale/fa-IR'
 
 const defaultValues = {
     title: '',
@@ -56,6 +51,7 @@ const FormValidationBasic = () => {
     const [file, setFile] = useState(null);
     const { settings } = useSettings()
     const { mutate, isLoading } = useCreateActivity(file)
+
 
 
     // methods
@@ -216,16 +212,13 @@ const FormValidationBasic = () => {
                                     rules={{ required: true }}
                                     render={({ field: { value, onChange } }) => (
                                         <DatePicker
-                                            locale={fa}
                                             selected={value}
                                             showYearDropdown
                                             showMonthDropdown
                                             onChange={e => onChange(e)}
                                             placeholderText='MM/DD/YYYY'
-
                                             customInput={
                                                 <CustomInput
-
                                                     value={value}
                                                     onChange={onChange}
                                                     label='تاریخ شروع'
@@ -249,7 +242,6 @@ const FormValidationBasic = () => {
                                     rules={{ required: true }}
                                     render={({ field: { value, onChange } }) => (
                                         <DatePicker
-                                            locale='fa'
                                             selected={value}
                                             showYearDropdown
                                             showMonthDropdown
