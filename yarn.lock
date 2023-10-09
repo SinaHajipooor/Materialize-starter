@@ -2841,6 +2841,11 @@ file-selector@^0.6.0:
   dependencies:
     tslib "^2.4.0"
 
+filepond-plugin-image-crop@^2.0.6:
+  version "2.0.6"
+  resolved "https://registry.npmjs.org/filepond-plugin-image-crop/-/filepond-plugin-image-crop-2.0.6.tgz"
+  integrity sha512-bSy/KND4EP/QtW8MxIj23qgSEPUVRrT8XdktJ+OU9y8xRjFjTG+qcuw1LsycARQYRtzi8cZrD3P4POOITfkywQ==
+
 filepond-plugin-image-exif-orientation@^1.0.11:
   version "1.0.11"
   resolved "https://registry.npmjs.org/filepond-plugin-image-exif-orientation/-/filepond-plugin-image-exif-orientation-1.0.11.tgz"
@@ -2850,6 +2855,11 @@ filepond-plugin-image-preview@^4.6.11:
   version "4.6.11"
   resolved "https://registry.npmjs.org/filepond-plugin-image-preview/-/filepond-plugin-image-preview-4.6.11.tgz"
   integrity sha512-0EmQ9HnOb/X0xc5rLcNRhhmdUbp7oiicRwQrcr90ZfVmPJOOZoX3ZGUEsEPj7luMI55huguhcVozdESxtqnuRw==
+
+filepond-plugin-image-resize@^2.0.10:
+  version "2.0.10"
+  resolved "https://registry.npmjs.org/filepond-plugin-image-resize/-/filepond-plugin-image-resize-2.0.10.tgz"
+  integrity sha512-irX+J275u8Ph1KcciCeSQmxeFjbu0+co5XVCkiwdSNnz6KiqrCKN7RXTvEbdgSdDzyi5omr2oP1rKWps5L1RsQ==
 
 filepond@^4.30.4:
   version "4.30.4"

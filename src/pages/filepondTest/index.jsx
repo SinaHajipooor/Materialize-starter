@@ -11,14 +11,19 @@ import 'filepond/dist/filepond.min.css'
 // `npm i filepond-plugin-image-preview filepond-plugin-image-exif-orientation --save`
 import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation'
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview'
+import FilePondPluginImageResize from "filepond-plugin-image-resize";
+import FilePondPluginImageCrop from "filepond-plugin-image-crop";
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css'
 
 // Register the plugins
-registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview)
+registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview, FilePondPluginImageResize, FilePondPluginImageCrop)
 
 // Our app
 export default function App() {
     const [files, setFiles] = useState([])
+
+    console.log(files)
+
 
 
     return (
@@ -28,6 +33,17 @@ export default function App() {
             onupdatefiles={setFiles}
             allowMultiple={true}
             maxFiles={20}
+
+            allowImageTransform
+
+            //     imagePreviewHeight={400}
+
+            imageCropAspectRatio={"1:1"}
+            imageResizeTargetWidth={100}
+            imageResizeTargetHeight={100}
+            imageResizeMode={"cover"}
+
+            //     imageResizeMode='cover'
 
             //     server="/api"
 
