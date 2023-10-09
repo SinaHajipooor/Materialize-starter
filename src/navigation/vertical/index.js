@@ -1,4 +1,3 @@
-import { useSession } from "next-auth/react"
 
 
 const navigation = () => {
@@ -43,15 +42,6 @@ const navigation = () => {
             path: '/map',
             icon: 'mdi:map-outline',
         },
-
-
-        //     {
-        //       path: '/acl',
-        //       action: 'read',
-        //       subject: 'acl-page',
-        //       title: 'Access Control',
-        //       icon: 'mdi:shield-outline',
-        //     }
     ]
 }
 
