@@ -167,14 +167,14 @@ const columns = [
                             </ListItemIcon>
                             جزییات
                         </MenuItem>
-                        <Divider />
+                        {/* <Divider /> */}
                         <MenuItem sx={{ fontSize: 13 }} onClick={() => navigating('update', params?.row.id)}>
                             <ListItemIcon>
                                 <IconEdit color='orange' size={18} />
                             </ListItemIcon>
                             تغییر
                         </MenuItem>
-                        <Divider />
+                        {/* <Divider /> */}
                         <MenuItem sx={{ fontSize: 13 }} disabled={isLoading} onClick={() => {
                             mutate(params?.row.id);
                         }}>
