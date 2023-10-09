@@ -21,9 +21,6 @@ const VerticalNavItems = props => {
     const RenderMenuItems = verticalNavItems?.map((item, index) => {
         const TagName = resolveNavItemComponent(item)
 
-        console.log(session.data.user.role)
-        console.log(item)
-
         if (session.data.user.role === 'manager' && item.title === 'کاربر') {
             return <></>
         }
