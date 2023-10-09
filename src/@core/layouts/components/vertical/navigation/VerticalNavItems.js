@@ -13,13 +13,20 @@ const resolveNavItemComponent = item => {
 
 const VerticalNavItems = props => {
 
+    const session = useSession()
+
     // ** Props
     const { verticalNavItems } = props
 
     const RenderMenuItems = verticalNavItems?.map((item, index) => {
         const TagName = resolveNavItemComponent(item)
 
+        console.log(session.data.user.role)
+        console.log(item)
 
+        if (session.data.user.role === 'manager' && item.title === 'کاربر') {
+            return <></>
+        }
 
         return <TagName {...props} key={index} item={item} />
     })
