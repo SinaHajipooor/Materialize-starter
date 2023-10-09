@@ -42,6 +42,11 @@ const navigation = () => {
             path: '/map',
             icon: 'mdi:map-outline',
         },
+        {
+            title: 'آپلود فایل',
+            path: '/filepondTest',
+            icon: 'mdi:upload-outline',
+        },
     ]
 }
 
