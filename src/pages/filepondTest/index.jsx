@@ -20,16 +20,17 @@ registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview)
 export default function App() {
     const [files, setFiles] = useState([])
 
+
     return (
-
         <FilePond
-
             imagePreviewHeight={200}
             files={files}
             onupdatefiles={setFiles}
             allowMultiple={true}
             maxFiles={20}
-            server="/api"
+
+            //     server="/api"
+
             name="files"
             labelIdle='فایل های مورد نظر خود را انتخاب کنید'
             labelFileProcessingError='خطایی رخ داد'
