@@ -67,7 +67,7 @@ const AppCalendar = () => {
                 ...(skin === 'bordered' && { border: theme => `1px solid ${theme.palette.divider}` })
             }}
         >
-            <SidebarLeft
+            {/* <SidebarLeft
                 store={store}
                 mdAbove={mdAbove}
                 dispatch={dispatch}
@@ -79,7 +79,7 @@ const AppCalendar = () => {
                 handleCalendarsUpdate={handleCalendarsUpdate}
                 handleLeftSidebarToggle={handleLeftSidebarToggle}
                 handleAddEventSidebarToggle={handleAddEventSidebarToggle}
-            />
+            /> */}
             <Box
                 sx={{
                     px: 5,

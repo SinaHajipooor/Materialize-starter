@@ -94,7 +94,7 @@ const App = props => {
                     <CacheProvider value={emotionCache}>
                         <ReactQueryDevtools initialIsOpen={false} />
                         <Head>
-                            <title>{`${themeConfig.templateName} - Material Design React Admin Template`}</title>
+                            <title>{`haji`}</title>
                             <meta
                                 name='description'
                                 content={`${themeConfig.templateName} – Material Design React Admin Dashboard Template – is the most developer friendly & highly customizable Admin Dashboard Template based on MUI v5.`}
