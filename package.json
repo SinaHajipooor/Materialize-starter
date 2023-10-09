@@ -5,7 +5,7 @@
     "scripts": {
         "dev": "next dev",
         "build": "next build --no-lint",
-        "start": "next start",
+        "start": "next start --port=3001",
         "export": "next export",
         "lint": "eslint --fix \"src/**/*.{js,jsx}\"",
         "format": "prettier --write \"src/**/*.{js,jsx}\"",
