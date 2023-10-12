@@ -37,6 +37,11 @@ const navigation = () => {
             icon: 'mdi:person-outline',
         },
         {
+            title: 'ssr',
+            path: '/ssr',
+            icon: 'mdi:home-outline',
+        },
+        {
             title: 'نقشه',
             path: '/map',
             icon: 'mdi:map-outline',

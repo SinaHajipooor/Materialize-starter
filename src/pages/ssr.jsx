@@ -30,7 +30,7 @@ const DataGrid = ({ activityHistories }) => {
 export default DataGrid
 
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     const data = await apiFetchAllActivityHistories();
 
 
@@ -38,7 +38,7 @@ export async function getStaticProps() {
         props: {
             activityHistories: data
         },
-        revalidate: 1,
+
     }
 }
 
