@@ -27,7 +27,7 @@ import { useForm, Controller } from 'react-hook-form'
 import Link from 'next/link'
 import { useSettings } from 'src/@core/hooks/useSettings'
 import DatePickerWrapper from 'src/@core/styles/libs/react-datepicker'
-import useUpdateActivity from '../../hooks/useUpdateActivity'
+import useUpdateActivity from '../../../../hooks/activity-history/useUpdateActivity'
 
 
 

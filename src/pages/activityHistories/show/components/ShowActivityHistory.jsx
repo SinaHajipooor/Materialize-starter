@@ -24,9 +24,9 @@ import { useForm, Controller } from 'react-hook-form'
 // ** Icon Imports
 import Link from 'next/link'
 import { useSettings } from 'src/@core/hooks/useSettings'
-import useCreateActivity from 'src/pages/activityHistories/hooks/useCreateActivity'
+import useCreateActivity from 'src/hooks/activity-history/useCreateActivity'
 import DatePickerWrapper from 'src/@core/styles/libs/react-datepicker'
-import useActivityDetails from '../../hooks/useActivityDetails'
+import useActivityDetails from '../../../../hooks/activity-history/useActivityDetails'
 import { useRouter } from 'next/router'
 
 

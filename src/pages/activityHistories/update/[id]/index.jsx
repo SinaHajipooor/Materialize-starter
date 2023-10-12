@@ -3,7 +3,7 @@ import Grid from '@mui/material/Grid'
 
 // ** Demo Components Imports
 import { useRouter } from 'next/router'
-import useActivityDetails from '../../hooks/useActivityDetails'
+import useActivityDetails from '../../../../hooks/activity-history/useActivityDetails'
 import Spinner from 'src/components/Spinner'
 import UpdateActivityHistory from '../components/UpdateActivityHistory'
 import { apiShowActivityHistory } from 'src/api/activityHistories/apiActivityHistories'

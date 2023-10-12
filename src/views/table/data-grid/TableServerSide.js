@@ -18,7 +18,7 @@ import { IconDotsVertical, IconEdit, IconEye, IconTrash } from '@tabler/icons-re
 import ServerSideToolbar from 'src/views/table/data-grid/ServerSideToolbar'
 
 // ** Utils Import
-import useDeleteActivity from 'src/pages/activityHistories/hooks/useDeleteActivity'
+import useDeleteActivity from 'src/hooks/activity-history/useDeleteActivity'
 import { useRouter } from 'next/router'
 
 // ** renders client column
