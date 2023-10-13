@@ -32,7 +32,7 @@ export async function getStaticProps() {
         props: {
             activityHistories: data
         },
-        revalidate: 1
+        revalidate: 10
     }
 }
 
