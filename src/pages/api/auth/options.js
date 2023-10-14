@@ -19,10 +19,13 @@ export const options = {
     callbacks: {
         async session({ session, token }) {
 
+            const myToken = token.apiToken
+            session.myToken = myToken
 
             return {
                 ...session, user: token
             }
+
         },
 
         async jwt({ token, user }) {
@@ -36,6 +39,7 @@ export const options = {
             return token
         },
     },
+
     pages: {
         signIn: '/login',
     },
