@@ -18,7 +18,6 @@ export const options = {
     callbacks: {
         async jwt({ token, user }) {
 
-
             if (user) {
                 return {
                     ...token, ...user
@@ -27,6 +26,7 @@ export const options = {
 
             return token
         },
+
         async session({ session, token }) {
 
             console.log(token)
@@ -35,6 +35,7 @@ export const options = {
                 ...session, user: token
             }
         },
+
     },
     pages: {
         signIn: '/login',
