@@ -12,7 +12,7 @@ export const options = {
                 const userData = response.data.result.user;
                 const apiToken = response.data.result.token;
 
-                const nextResponse = await fetch('/api/auth/token', {
+                const nextResponse = await fetch('/api/login/token', {
                     method: 'POST',
                     body: JSON.stringify({ token: apiToken }),
                     headers: {
