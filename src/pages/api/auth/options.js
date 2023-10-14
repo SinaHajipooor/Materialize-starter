@@ -19,6 +19,7 @@ export const options = {
     callbacks: {
         async session({ session, token }) {
 
+
             return {
                 ...session, user: token
             }

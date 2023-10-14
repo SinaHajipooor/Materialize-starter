@@ -18,7 +18,7 @@ import FormHelperText from '@mui/material/FormHelperText'
 import InputAdornment from '@mui/material/InputAdornment'
 import Typography from '@mui/material/Typography'
 import MuiFormControlLabel from '@mui/material/FormControlLabel'
-import { signIn } from 'next-auth/react'
+import { signIn, useSession } from 'next-auth/react'
 
 
 // ** Icon Imports
@@ -149,6 +149,7 @@ const LoginPage = () => {
 
     // router obj
     const router = useRouter()
+    const session = useSession()
 
     // onChange handler 
     function onChangeHandler(e, fieldName) {
@@ -158,18 +159,29 @@ const LoginPage = () => {
     // onLogin handler
     async function onLoginHandler(e) {
         e.preventDefault()
-        setIsLoading(true)
-        const response = await signIn('credentials', { username: user.username, password: user.password, redirect: false });
-        if (response?.error) {
-            toast.error('اطلاعات وارد شده نادرست است')
-            setIsLoading(false)
 
-            return;
-        } else {
-            setIsLoading(false)
-            router.push('/')
-            toast.success('خوش آمدید')
-        }
+
+
+        await fetch('/api/token', {
+            method: 'POST', headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ token: 'test token' })
+        }).then(res => res.json()).then(data => console.log(data))
+
+        // setIsLoading(true)
+        // const response = await signIn('credentials', { username: user.username, password: user.password, redirect: false });
+        // if (response?.error) {
+        //     toast.error('اطلاعات وارد شده نادرست است')
+        //     setIsLoading(false)
+
+        //     return;
+        // } else {
+        //     setIsLoading(false)
+        //     router.push('/')
+        //     toast.success('خوش آمدید')
+        // }
+
     }
 
 
