@@ -12,15 +12,14 @@ export const options = {
                 const userData = response.data.result.user;
                 const apiToken = response.data.result.token;
 
-                const nextResponse = await fetch('/api/login/token', {
+                fetch('/api/login/token/', {
                     method: 'POST',
                     body: JSON.stringify({ token: apiToken }),
                     headers: {
                         'Content-Type': 'application/json'
                     }
-                });
+                }).then(res => res.json()).then(data => console.log(data))
 
-                console.log(nextResponse)
 
                 return { ...userData, role: 'manager' }
             },
