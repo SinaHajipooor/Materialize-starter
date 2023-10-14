@@ -17,7 +17,6 @@ export const options = {
     ],
     callbacks: {
         async session({ session, token }) {
-            console.log(session)
 
             return {
                 ...session, user: token
