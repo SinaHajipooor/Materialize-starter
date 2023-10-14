@@ -20,10 +20,11 @@ import { Box, Switch, Typography, Stack } from '@mui/material'
 // ** Third Party Imports
 import DatePicker from 'react-datepicker'
 import { useForm, Controller } from 'react-hook-form'
-import fa from 'date-fns/locale/fa-IR'
-import { registerLocale } from "react-datepicker";
 
-registerLocale('fa', fa);
+// import fa from 'date-fns/locale/fa-IR'
+import fa from 'date-fns/locale/fa-IR'
+
+// import { registerLocale } from "react-datepicker";
 
 // ** Icon Imports
 import Link from 'next/link'
@@ -209,7 +210,7 @@ const FormValidationBasic = () => {
                                     rules={{ required: true }}
                                     render={({ field: { value, onChange } }) => (
                                         <DatePicker
-                                            locale='fa'
+                                            locale={fa}
                                             selected={value}
                                             showYearDropdown
                                             showMonthDropdown
@@ -240,7 +241,8 @@ const FormValidationBasic = () => {
                                     rules={{ required: true }}
                                     render={({ field: { value, onChange } }) => (
                                         <DatePicker
-                                            locale='fa'
+
+                                            locale={fa}
                                             selected={value}
                                             showYearDropdown
                                             showMonthDropdown

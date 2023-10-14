@@ -12,10 +12,11 @@ const DataGrid = ({ activityHistories }) => {
 
     const { data } = useActivityIndex(activityHistories)
 
-
-    return <Grid item xs={12}>
-        <TableServerSide activityHistories={data} />
-    </Grid>
+    return (
+        <Grid item xs={12}>
+            <TableServerSide activityHistories={data} />
+        </Grid>
+    )
 }
 
 export default DataGrid
