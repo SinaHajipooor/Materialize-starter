@@ -20,11 +20,12 @@ import { Box, Switch, Typography, Stack } from '@mui/material'
 // ** Third Party Imports
 import DatePicker from 'react-datepicker'
 import { useForm, Controller } from 'react-hook-form'
+import { registerLocale } from "react-datepicker";
 
 // import fa from 'date-fns/locale/fa-IR'
 import fa from 'date-fns/locale/fa-IR'
 
-// import { registerLocale } from "react-datepicker";
+registerLocale('fa', fa)
 
 // ** Icon Imports
 import Link from 'next/link'

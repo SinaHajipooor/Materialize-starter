@@ -44,6 +44,7 @@ import BlankLayout from 'src/@core/layouts/BlankLayout'
 import FooterIllustrationsV2 from 'src/views/pages/auth/FooterIllustrationsV2'
 import { useRouter } from 'next/router'
 import toast from 'react-hot-toast'
+import { useRef } from 'react'
 
 // ** Styled Components
 const LoginIllustrationWrapper = styled(Box)(({ theme }) => ({
@@ -156,8 +157,8 @@ const LoginPage = () => {
 
     // onLogin handler
     async function onLoginHandler(e) {
-        setIsLoading(true)
         e.preventDefault()
+        setIsLoading(true)
         const response = await signIn('credentials', { username: user.username, password: user.password, redirect: false });
         if (response?.error) {
             toast.error('اطلاعات وارد شده نادرست است')
