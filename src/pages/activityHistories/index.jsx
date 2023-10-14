@@ -4,7 +4,6 @@ import Grid from '@mui/material/Grid'
 // ** Demo Components Imports
 import TableServerSide from 'src/views/table/data-grid/TableServerSide'
 
-// import useActivityIndex from './hooks/useActivityIndex'
 import { apiFetchAllActivityHistories } from 'src/api/activityHistories/apiActivityHistories'
 import useActivityIndex from 'src/hooks/activity-history/useActivityIndex'
 
