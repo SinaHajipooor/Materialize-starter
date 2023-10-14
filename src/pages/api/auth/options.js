@@ -35,11 +35,6 @@ export const options = {
             return token
         },
     },
-    session: {
-        generateSessionToken: () => {
-            return randomUUID?.() ?? randomBytes(32).toString("hex")
-        }
-    },
     pages: {
         signIn: '/login',
     },
