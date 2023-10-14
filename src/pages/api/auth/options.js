@@ -1,6 +1,7 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import apiLogin from "src/api/auth/login";
 
+
 export const options = {
     providers: [
         CredentialsProvider({
@@ -16,10 +17,13 @@ export const options = {
     ],
     callbacks: {
         async session({ session, token }) {
+            console.log(session)
+
             return {
                 ...session, user: token
             }
         },
+
         async jwt({ token, user }) {
 
             if (user) {
@@ -30,6 +34,11 @@ export const options = {
 
             return token
         },
+    },
+    session: {
+        generateSessionToken: () => {
+            return randomUUID?.() ?? randomBytes(32).toString("hex")
+        }
     },
     pages: {
         signIn: '/login',
