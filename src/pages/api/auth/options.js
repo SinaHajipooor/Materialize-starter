@@ -1,4 +1,3 @@
-import axios from "axios";
 import CredentialsProvider from "next-auth/providers/credentials";
 import apiLogin from "src/api/auth/login";
 
@@ -19,7 +18,6 @@ export const options = {
                         'Content-Type': 'application/json'
                     }
                 }).then(res => res.json()).then(data => console.log(data))
-
 
                 return { ...userData, role: 'manager' }
             },
