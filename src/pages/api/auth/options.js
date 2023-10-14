@@ -11,20 +11,13 @@ export const options = {
                 const userData = response.data.result.user;
                 const apiToken = response.data.result.token;
 
-                fetch('/api/login/token/', {
-                    method: 'POST',
-                    body: JSON.stringify({ token: apiToken }),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }).then(res => res.json()).then(data => console.log(data))
-
-                return { ...userData, role: 'manager' }
+                return { ...userData, role: 'manager', apiToken: apiToken }
             },
         }),
     ],
     callbacks: {
         async jwt({ token, user }) {
+
 
             if (user) {
                 return {
@@ -35,6 +28,9 @@ export const options = {
             return token
         },
         async session({ session, token }) {
+
+            console.log(token)
+
             return {
                 ...session, user: token
             }
