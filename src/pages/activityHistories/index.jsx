@@ -5,9 +5,7 @@ import Grid from '@mui/material/Grid'
 import TableServerSide from 'src/views/table/data-grid/TableServerSide'
 
 // import useActivityIndex from './hooks/useActivityIndex'
-import Spinner from 'src/components/Spinner'
 import { apiFetchAllActivityHistories } from 'src/api/activityHistories/apiActivityHistories'
-import { useQuery } from '@tanstack/react-query'
 import useActivityIndex from 'src/hooks/activity-history/useActivityIndex'
 
 
