@@ -39,11 +39,9 @@ export const options = {
             return token
         },
     },
-
     pages: {
         signIn: '/login',
     },
-
 }
 
 
