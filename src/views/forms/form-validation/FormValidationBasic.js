@@ -19,10 +19,6 @@ import { Box, Switch, Typography, Stack } from '@mui/material'
 import persian_fa from "react-date-object/locales/persian_fa"
 import persian from "react-date-object/calendars/persian"
 
-// import "react-multi-date-picker/styles/colors/teal.css"
-
-
-
 
 // ** Third Party Imports
 import DatePicker from 'react-multi-date-picker'
@@ -34,6 +30,7 @@ import Link from 'next/link'
 import { useSettings } from 'src/@core/hooks/useSettings'
 import useCreateActivity from 'src/hooks/activity-history/useCreateActivity'
 import DatePickerWrapper from 'src/@core/styles/libs/react-datepicker'
+import "react-multi-date-picker/styles/backgrounds/bg-dark.css"
 
 
 const defaultValues = {
@@ -59,6 +56,8 @@ const FormValidationBasic = () => {
     const [file, setFile] = useState(null);
     const { settings } = useSettings()
     const { mutate, isLoading } = useCreateActivity(file)
+    const weekDays = ['شنبه', '1ش', '2ش', '3ش', '4ش', '5ش', 'جمعه']
+
 
     // methods
     const handleFileUpload = (event) => {
@@ -266,15 +265,11 @@ const FormValidationBasic = () => {
                                         <DatePicker
                                             locale={persian_fa}
                                             value={value}
+                                            className={settings.mode === 'dark' ? 'bg-dark' : null}
                                             calendar={persian}
-                                            clas
-
-                                            //     selected={value}
-                                            //     showYearDropdown
-                                            //     showMonthDropdown
                                             onChange={e => onChange(e)}
                                             placeholderText='MM/DD/YYYY'
-
+                                            weekDays={weekDays}
                                             render={
                                                 <CustomInput
                                                     value={value}
@@ -300,12 +295,10 @@ const FormValidationBasic = () => {
                                     rules={{ required: true }}
                                     render={({ field: { value, onChange } }) => (
                                         <DatePicker
-
-                                            //     locale='fa'
-
-                                            //     selected={value}
-                                            //     showYearDropdown
-                                            //     showMonthDropdown
+                                            className={settings.mode === 'dark' ? 'bg-dark' : null}
+                                            locale={persian_fa}
+                                            value={value}
+                                            calendar={persian}
                                             onChange={e => onChange(e)}
                                             placeholderText='MM/DD/YYYY'
                                             render={
