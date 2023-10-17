@@ -297,16 +297,13 @@ const FormValidationBasic = () => {
                                             weekDays={weekDays}
 
                                             onChange={(date) => {
-                                                onChange(date?.isValid ? date.format() : null);
+                                                onChange(date?.isValid ? date?.format() : null);
                                             }}
 
-                                            //     onChange={onchange}
                                             format="YYYY/MM/DD"
                                             render={
                                                 <CustomInput
-
                                                     value={startDate}
-
                                                     onChange={() => { }}
                                                     label='تاریخ شروع'
                                                     error={Boolean(errors.start_date)}
@@ -333,15 +330,13 @@ const FormValidationBasic = () => {
                                             locale={persian_fa}
                                             value={endDate}
                                             calendar={persian}
-
                                             onChange={(date) => {
-                                                onChange(date?.isValid ? date.format() : null);
+                                                onChange(date?.isValid ? date?.format() : null);
                                             }}
                                             placeholderText='MM/DD/YYYY'
                                             render={
                                                 <CustomInput
                                                     value={value}
-
                                                     onChange={() => { }}
                                                     label='تاریخ پایان'
                                                     error={Boolean(errors.end_date)}
