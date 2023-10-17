@@ -9,7 +9,7 @@ export default function useCreateActivity(file) {
 
     // mutate activity histories 
     const { mutate, isLoading } = useMutation({
-        mutationFn: (newActivityHistory) => apiCreateActivityHistory(newActivityHistory, file),
+        mutationFn: apiCreateActivityHistory,
         onSuccess: () => {
             queryClient.invalidateQueries({
                 queryKey: ['activity-histories']

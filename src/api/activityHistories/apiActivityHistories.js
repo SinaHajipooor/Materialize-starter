@@ -29,13 +29,12 @@ export async function apiDeleteActivityHistory(id) {
 
 
 // create 
-export async function apiCreateActivityHistory(newActivityHistory, file) {
+export async function apiCreateActivityHistory(newActivityHistory) {
     try {
         const formData = new FormData();
         Object.entries(newActivityHistory).forEach(([key, value]) => {
             formData.append(key, value);
         });
-        // formData.append('file', file[0]);
 
         const response = await axiosConfig.post(`${ACTIVITY_BASE_URL}/store`, formData, {
             headers: {}
