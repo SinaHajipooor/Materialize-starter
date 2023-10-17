@@ -16,22 +16,25 @@ import FormControl from '@mui/material/FormControl'
 import FormHelperText from '@mui/material/FormHelperText'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import { Box, Switch, Typography, Stack } from '@mui/material'
+import persian_fa from "react-date-object/locales/persian_fa"
+import persian from "react-date-object/calendars/persian"
+
+// import "react-multi-date-picker/styles/colors/teal.css"
+
+
+
 
 // ** Third Party Imports
-import DatePicker from 'react-datepicker'
+import DatePicker from 'react-multi-date-picker'
 import { useForm, Controller } from 'react-hook-form'
-import { registerLocale } from "react-datepicker";
 
-// import fa from 'date-fns/locale/fa-IR'
-import fa from 'date-fns/locale/fa-IR'
-
-registerLocale('fa', fa)
 
 // ** Icon Imports
 import Link from 'next/link'
 import { useSettings } from 'src/@core/hooks/useSettings'
 import useCreateActivity from 'src/hooks/activity-history/useCreateActivity'
 import DatePickerWrapper from 'src/@core/styles/libs/react-datepicker'
+
 
 const defaultValues = {
     title: '',
@@ -204,70 +207,7 @@ const FormValidationBasic = () => {
                                     )}
                                 </FormControl>
                             </Grid>
-                            <Grid item xs={12} sm={4}>
-                                <Controller
-                                    name='start_date'
-                                    control={control}
-                                    rules={{ required: true }}
-                                    render={({ field: { value, onChange } }) => (
-                                        <DatePicker
-                                            locale={fa}
-                                            selected={value}
-                                            showYearDropdown
-                                            showMonthDropdown
-                                            onChange={e => onChange(e)}
-                                            placeholderText='MM/DD/YYYY'
-                                            customInput={
-                                                <CustomInput
-                                                    value={value}
-                                                    onChange={onChange}
-                                                    label='تاریخ شروع'
-                                                    error={Boolean(errors.start_date)}
-                                                    aria-describedby='validation-basic-dob'
-                                                />
-                                            }
-                                        />
-                                    )}
-                                />
-                                {errors.start_date && (
-                                    <FormHelperText sx={{ mx: 3.5, color: 'error.main' }} id='validation-basic-dob'>
-                                        تاریخ شروع اجباری است
-                                    </FormHelperText>
-                                )}
-                            </Grid>
-                            <Grid item xs={12} sm={4}>
-                                <Controller
-                                    name='end_date'
-                                    control={control}
-                                    rules={{ required: true }}
-                                    render={({ field: { value, onChange } }) => (
-                                        <DatePicker
-
-                                            locale={fa}
-                                            selected={value}
-                                            showYearDropdown
-                                            showMonthDropdown
-                                            onChange={e => onChange(e)}
-                                            placeholderText='MM/DD/YYYY'
-                                            customInput={
-                                                <CustomInput
-                                                    value={value}
-                                                    onChange={onChange}
-                                                    label='تاریخ پایان'
-                                                    error={Boolean(errors.end_date)}
-                                                    aria-describedby='validation-basic-dob'
-                                                />
-                                            }
-                                        />
-                                    )}
-                                />
-                                {errors.end_date && (
-                                    <FormHelperText sx={{ mx: 3.5, color: 'error.main' }} id='validation-basic-dob'>
-                                        تاریخ پایان اجباری است
-                                    </FormHelperText>
-                                )}
-                            </Grid>
-                            <Grid item xs={12} sm={4} mt={3}>
+                            <Grid item xs={12} sm={4} >
                                 <Grid>
                                     <Box
                                         border={0.3}
@@ -317,9 +257,104 @@ const FormValidationBasic = () => {
 
                                 </Grid>
                             </Grid>
+                            <Grid item xs={12} sm={2}>
+                                <Controller
+                                    name='start_date'
+                                    control={control}
+                                    rules={{ required: true }}
+                                    render={({ field: { value, onChange } }) => (
+                                        <DatePicker
+                                            locale={persian_fa}
+                                            value={value}
+                                            calendar={persian}
+                                            clas
 
-                            <Grid container spacing={3} sm={8} item mt={4}>
-                                <Grid item xs={12} sm={4} ml={7}>
+                                            //     selected={value}
+                                            //     showYearDropdown
+                                            //     showMonthDropdown
+                                            onChange={e => onChange(e)}
+                                            placeholderText='MM/DD/YYYY'
+
+                                            render={
+                                                <CustomInput
+                                                    value={value}
+                                                    onChange={onChange}
+                                                    label='تاریخ شروع'
+                                                    error={Boolean(errors.start_date)}
+                                                    aria-describedby='validation-basic-dob'
+                                                />
+                                            }
+                                        />
+                                    )}
+                                />
+                                {errors.start_date && (
+                                    <FormHelperText sx={{ mx: 3.5, color: 'error.main' }} id='validation-basic-dob'>
+                                        تاریخ شروع اجباری است
+                                    </FormHelperText>
+                                )}
+                            </Grid>
+                            <Grid item xs={12} sm={2}>
+                                <Controller
+                                    name='end_date'
+                                    control={control}
+                                    rules={{ required: true }}
+                                    render={({ field: { value, onChange } }) => (
+                                        <DatePicker
+
+                                            //     locale='fa'
+
+                                            //     selected={value}
+                                            //     showYearDropdown
+                                            //     showMonthDropdown
+                                            onChange={e => onChange(e)}
+                                            placeholderText='MM/DD/YYYY'
+                                            render={
+                                                <CustomInput
+                                                    value={value}
+                                                    onChange={onChange}
+                                                    label='تاریخ پایان'
+                                                    error={Boolean(errors.end_date)}
+                                                    aria-describedby='validation-basic-dob'
+                                                />
+                                            }
+                                        />
+                                    )}
+                                />
+                                {errors.end_date && (
+                                    <FormHelperText sx={{ mx: 3.5, color: 'error.main' }} id='validation-basic-dob'>
+                                        تاریخ پایان اجباری است
+                                    </FormHelperText>
+                                )}
+                            </Grid>
+
+                            <Grid item xs={12} mt={2}>
+                                <FormControl fullWidth>
+                                    <Controller
+                                        name='address'
+                                        control={control}
+                                        rules={{ required: true }}
+                                        render={({ field }) => (
+                                            <TextField
+                                                placeholder='ادرس را وارد کنید'
+                                                rows={4}
+                                                multiline
+                                                {...field}
+                                                label='آدرس'
+                                                error={Boolean(errors.address)}
+                                                aria-describedby='validation-basic-textarea'
+                                            />
+                                        )}
+                                    />
+                                    {errors.address && (
+                                        <FormHelperText sx={{ color: 'error.main' }} id='validation-basic-textarea'>
+                                            وارد کردن آدرس اجباری است
+                                        </FormHelperText>
+                                    )}
+                                </FormControl>
+                            </Grid>
+
+                            <Grid container spacing={3} sm={12} item mt={4}>
+                                <Grid item xs={12} sm={3} >
                                     <FormControl fullWidth>
                                         <Controller
                                             name='has_certificate'
@@ -341,7 +376,7 @@ const FormValidationBasic = () => {
 
                                     </FormControl>
                                 </Grid>
-                                <Grid item xs={12} sm={4} ml={0}>
+                                <Grid item xs={12} sm={3} >
                                     <FormControl fullWidth>
                                         <Controller
                                             name='is_related'
@@ -385,55 +420,32 @@ const FormValidationBasic = () => {
 
                                     </FormControl>
                                 </Grid>
+                                <Grid item xs={12} sm={3} >
+                                    <FormControl fullWidth>
+                                        <Controller
+                                            name='status'
+                                            control={control}
+                                            rules={{ required: false }}
+                                            render={({ field: { value, onChange } }) => (
+                                                <FormControlLabel
+                                                    name='status'
+                                                    control={
+                                                        <Switch
+                                                            checked={value}
+                                                            onChange={onChange}
+                                                        />
+                                                    }
+                                                    label={'وضعیت'}
+                                                />
+                                            )}
+                                        />
+
+                                    </FormControl>
+                                </Grid>
                             </Grid>
 
-                            <Grid item xs={12} mt={2}>
-                                <FormControl fullWidth>
-                                    <Controller
-                                        name='address'
-                                        control={control}
-                                        rules={{ required: true }}
-                                        render={({ field }) => (
-                                            <TextField
-                                                placeholder='ادرس را وارد کنید'
-                                                rows={4}
-                                                multiline
-                                                {...field}
-                                                label='آدرس'
-                                                error={Boolean(errors.address)}
-                                                aria-describedby='validation-basic-textarea'
-                                            />
-                                        )}
-                                    />
-                                    {errors.address && (
-                                        <FormHelperText sx={{ color: 'error.main' }} id='validation-basic-textarea'>
-                                            وارد کردن آدرس اجباری است
-                                        </FormHelperText>
-                                    )}
-                                </FormControl>
-                            </Grid>
-                            <Grid item xs={12} sm={3} ml={3}>
-                                <FormControl fullWidth>
-                                    <Controller
-                                        name='status'
-                                        control={control}
-                                        rules={{ required: false }}
-                                        render={({ field: { value, onChange } }) => (
-                                            <FormControlLabel
-                                                name='status'
-                                                control={
-                                                    <Switch
-                                                        checked={value}
-                                                        onChange={onChange}
-                                                    />
-                                                }
-                                                label={'وضعیت'}
-                                            />
-                                        )}
-                                    />
 
-                                </FormControl>
-                            </Grid>
+
                             <Grid item xs={12}>
                                 <Stack
                                     direction={{ xs: 'column', sm: 'row' }}
