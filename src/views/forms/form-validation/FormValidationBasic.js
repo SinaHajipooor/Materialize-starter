@@ -264,15 +264,18 @@ const FormValidationBasic = () => {
                                     rules={{ required: true }}
                                     render={({ field: { value, onChange } }) => (
                                         <DatePicker
+                                            inputClass=''
                                             locale={persian_fa}
                                             value={value}
-                                            className={settings.mode === 'dark' ? 'bg-dark' : null}
+                                            className={settings.mode === 'dark' ? 'bg-dark' : 'teal'}
                                             calendar={persian}
                                             onChange={e => onChange(e)}
                                             placeholderText='MM/DD/YYYY'
                                             weekDays={weekDays}
+
                                             render={
                                                 <CustomInput
+
                                                     value={value}
                                                     onChange={onChange}
                                                     label='تاریخ شروع'
