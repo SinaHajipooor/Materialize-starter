@@ -172,41 +172,7 @@ const FormValidationBasic = () => {
                                     )}
                                 </FormControl>
                             </Grid>
-                            <Grid item xs={12} sm={4}>
-                                <FormControl fullWidth>
-                                    <InputLabel
-                                        id='validation-basic-select'
-                                        error={Boolean(errors.select)}
-                                        htmlFor='validation-basic-select'
-                                    >
-                                        نوع همکاری
-                                    </InputLabel>
-                                    <Controller
-                                        name='work_type_id'
-                                        control={control}
-                                        rules={{ required: true }}
-                                        render={({ field: { value, onChange } }) => (
-                                            <Select
-                                                value={value}
-                                                label='نوع همکاری'
-                                                onChange={onChange}
-                                                error={Boolean(errors.work_type_id)}
-                                                labelId='validation-basic-select'
-                                                aria-describedby='validation-basic-select'
-                                            >
-                                                <MenuItem value={1}>تمام وقت</MenuItem>
-                                                <MenuItem value={2}>پاره وقت</MenuItem>
-                                            </Select>
-                                        )}
-                                    />
-                                    {errors.work_type_id && (
-                                        <FormHelperText sx={{ color: 'error.main' }} id='validation-basic-select'>
-                                            انتخاب نوع همکاری اجباری است
-                                        </FormHelperText>
-                                    )}
-                                </FormControl>
-                            </Grid>
-                            <Grid item xs={12} sm={4} >
+                            <Grid item xs={12} sm={4} mt={3} >
                                 <Grid>
                                     <Box
                                         border={0.3}
@@ -256,7 +222,42 @@ const FormValidationBasic = () => {
 
                                 </Grid>
                             </Grid>
-                            <Grid item xs={12} sm={2}>
+                            <Grid item xs={12} sm={4} mt={3}>
+                                <FormControl fullWidth>
+                                    <InputLabel
+                                        id='validation-basic-select'
+                                        error={Boolean(errors.select)}
+                                        htmlFor='validation-basic-select'
+                                    >
+                                        نوع همکاری
+                                    </InputLabel>
+                                    <Controller
+                                        name='work_type_id'
+                                        control={control}
+                                        rules={{ required: true }}
+                                        render={({ field: { value, onChange } }) => (
+                                            <Select
+                                                value={value}
+                                                label='نوع همکاری'
+                                                onChange={onChange}
+                                                error={Boolean(errors.work_type_id)}
+                                                labelId='validation-basic-select'
+                                                aria-describedby='validation-basic-select'
+                                            >
+                                                <MenuItem value={1}>تمام وقت</MenuItem>
+                                                <MenuItem value={2}>پاره وقت</MenuItem>
+                                            </Select>
+                                        )}
+                                    />
+                                    {errors.work_type_id && (
+                                        <FormHelperText sx={{ color: 'error.main' }} id='validation-basic-select'>
+                                            انتخاب نوع همکاری اجباری است
+                                        </FormHelperText>
+                                    )}
+                                </FormControl>
+                            </Grid>
+
+                            <Grid item xs={12} sm={2} mt={3}>
                                 <Controller
                                     name='start_date'
                                     control={control}
@@ -288,7 +289,7 @@ const FormValidationBasic = () => {
                                     </FormHelperText>
                                 )}
                             </Grid>
-                            <Grid item xs={12} sm={2}>
+                            <Grid item xs={12} sm={2} mt={3}>
                                 <Controller
                                     name='end_date'
                                     control={control}
@@ -320,7 +321,7 @@ const FormValidationBasic = () => {
                                 )}
                             </Grid>
 
-                            <Grid item xs={12} mt={2}>
+                            <Grid item xs={12} mt={3}>
                                 <FormControl fullWidth>
                                     <Controller
                                         name='address'
