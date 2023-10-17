@@ -45,6 +45,7 @@ const defaultValues = {
     is_related: false,
     current_position: false,
     status: false,
+    file: null
 }
 
 const CustomInput = forwardRef(({ ...props }, ref) => {
@@ -66,8 +67,10 @@ const FormValidationBasic = () => {
         const selectedFile = event.target.files[0];
         if (selectedFile) {
             setFile(selectedFile);
+            setValue('file', selectedFile);
         } else {
             setFile(null);
+            setValue('file', null);
         }
     };
 
@@ -75,15 +78,17 @@ const FormValidationBasic = () => {
     const {
         control,
         handleSubmit,
-        formState: { errors }
+        formState: { errors },
+        setValue
     } = useForm({ defaultValues })
 
 
     const onSubmit = (values) => {
         setStartDate(values.start_date);
         setEndDate(values.end_date)
-        const newActivityHistory = { ...values, user_id: 1, start_date: '1402-09-20', end_date: '1402-09-10', work_type_id: 1 }
-        mutate(newActivityHistory, file)
+        console.log(values.file)
+        const newActivityHistory = { ...values, file: values.file[0], user_id: 1, start_date: '1402-09-20', end_date: '1402-09-10', work_type_id: 1 }
+        mutate(newActivityHistory)
     }
 
 
@@ -178,54 +183,69 @@ const FormValidationBasic = () => {
                                 </FormControl>
                             </Grid>
                             <Grid item xs={12} sm={4} mt={3} >
-                                <Grid>
-                                    <Box
-                                        border={0.3}
-                                        borderRadius={0.8}
-                                        overflow="hidden"
-                                        display="flex"
-                                        justifyContent="start"
-                                        height={51}
-                                        borderColor={settings.mode === 'dark' ? '#57596C' : '#BFBFD5'}
-                                    >
-                                        <label htmlFor="file-input">
-                                            <Button
-                                                variant="contained"
-                                                component="span"
-                                                style={{
-                                                    height: '100%', overflow: 'hidden', width: '105px', borderTopRightRadius: 1,
-                                                    borderBottomRightRadius: 1,
-                                                    borderTopLeftRadius: 0,
-                                                    borderBottomLeftRadius: 0,
+                                <FormControl fullWidth>
+                                    <Controller
+                                        name='file'
+                                        control={control}
+                                        rules={{ required: 'فایل اجباری است' }}
+                                        render={({ field }) => (
+                                            <Grid>
+                                                <Box
+                                                    border={0.3}
+                                                    borderRadius={0.8}
+                                                    overflow="hidden"
+                                                    display="flex"
+                                                    justifyContent="start"
+                                                    height={51}
+                                                    borderColor={settings.mode === 'dark' ? '#57596C' : '#BFBFD5'}
+                                                >
+                                                    <label htmlFor="file-input">
+                                                        <Button
+                                                            variant="contained"
+                                                            component="span"
+                                                            style={{
+                                                                height: '100%', overflow: 'hidden', width: '105px', borderTopRightRadius: 1,
+                                                                borderBottomRightRadius: 1,
+                                                                borderTopLeftRadius: 0,
+                                                                borderBottomLeftRadius: 0,
 
-                                                }}
-                                            >
-                                                آپلود فایل
-                                            </Button>
-                                        </label>
-                                        <span
-                                            style={{
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                justifyContent: 'start',
-                                                paddingRight: '18px',
-                                                paddingLeft: '8px',
-                                                fontSize: '13px',
-                                                color: 'grey'
-                                            }}
-                                        >
-                                            {file ? 'فایل مورد نظر انتخاب شد' : 'یک فایل انتخاب کنید'}
-                                        </span>
-                                        <TextField
-                                            name="file"
-                                            type="file"
-                                            id="file-input"
-                                            onChange={handleFileUpload}
-                                            style={{ display: 'none' }}
-                                        />
-                                    </Box>
+                                                            }}
+                                                        >
+                                                            آپلود فایل
+                                                        </Button>
+                                                    </label>
+                                                    <span
+                                                        style={{
+                                                            display: 'flex',
+                                                            alignItems: 'center',
+                                                            justifyContent: 'start',
+                                                            paddingRight: '18px',
+                                                            paddingLeft: '8px',
+                                                            fontSize: '13px',
+                                                            color: 'grey'
+                                                        }}
+                                                    >
+                                                        {file ? 'فایل مورد نظر انتخاب شد' : 'یک فایل انتخاب کنید'}
+                                                    </span>
+                                                    <TextField
+                                                        name="file"
+                                                        type="file"
+                                                        id="file-input"
+                                                        onChange={handleFileUpload}
+                                                        style={{ display: 'none' }}
 
-                                </Grid>
+                                                    />
+                                                </Box>
+
+                                            </Grid>
+                                        )}
+                                    />
+                                    {errors.file && (
+                                        <FormHelperText sx={{ color: 'error.main' }} id='validation-basic-file'>
+                                            انتخاب فایل اجباری است
+                                        </FormHelperText>
+                                    )}
+                                </FormControl>
                             </Grid>
                             <Grid item xs={12} sm={4} mt={3}>
                                 <FormControl fullWidth>
