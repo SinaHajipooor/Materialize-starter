@@ -295,8 +295,9 @@ const FormValidationBasic = () => {
                                             calendar={persian}
                                             placeholderText='MM/DD/YYYY'
                                             weekDays={weekDays}
+
                                             onChange={(date) => {
-                                                onChange(date.format());
+                                                onChange(date?.isValid ? date.format() : null);
                                             }}
 
                                             //     onChange={onchange}
@@ -304,9 +305,9 @@ const FormValidationBasic = () => {
                                             render={
                                                 <CustomInput
 
-                                                    //     value={startDate}
+                                                    value={startDate}
 
-                                                    //     onChange={onchange}
+                                                    onChange={() => { }}
                                                     label='تاریخ شروع'
                                                     error={Boolean(errors.start_date)}
                                                     aria-describedby='validation-basic-dob'
@@ -334,14 +335,14 @@ const FormValidationBasic = () => {
                                             calendar={persian}
 
                                             onChange={(date) => {
-                                                onChange(date.format());
+                                                onChange(date?.isValid ? date.format() : null);
                                             }}
                                             placeholderText='MM/DD/YYYY'
                                             render={
                                                 <CustomInput
                                                     value={value}
 
-                                                    onChange={onChange}
+                                                    onChange={() => { }}
                                                     label='تاریخ پایان'
                                                     error={Boolean(errors.end_date)}
                                                     aria-describedby='validation-basic-dob'
