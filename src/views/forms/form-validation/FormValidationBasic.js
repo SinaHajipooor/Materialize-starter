@@ -44,7 +44,7 @@ const defaultValues = {
     has_certificate: false,
     is_related: false,
     current_position: false,
-    status: false
+    status: false,
 }
 
 const CustomInput = forwardRef(({ ...props }, ref) => {
@@ -57,6 +57,8 @@ const FormValidationBasic = () => {
     const { settings } = useSettings()
     const { mutate, isLoading } = useCreateActivity(file)
     const weekDays = ['شنبه', '1ش', '2ش', '3ش', '4ش', '5ش', 'جمعه']
+    const [startDate, setStartDate] = useState()
+    const [endDate, setEndDate] = useState()
 
 
     // methods
@@ -78,10 +80,13 @@ const FormValidationBasic = () => {
 
 
     const onSubmit = (values) => {
-        console.log(file)
+        setStartDate(values.start_date);
+        setEndDate(values.end_date)
         const newActivityHistory = { ...values, user_id: 1, start_date: '1402-09-20', end_date: '1402-09-10', work_type_id: 1 }
         mutate(newActivityHistory, file)
     }
+
+
 
     return (
         <DatePickerWrapper>
@@ -262,22 +267,26 @@ const FormValidationBasic = () => {
                                     name='start_date'
                                     control={control}
                                     rules={{ required: true }}
-                                    render={({ field: { value, onChange } }) => (
+                                    render={({ field: { onChange, name, value } }) => (
                                         <DatePicker
-                                            inputClass=''
                                             locale={persian_fa}
-                                            value={value}
+                                            value={startDate}
                                             className={settings.mode === 'dark' ? 'bg-dark' : 'teal'}
                                             calendar={persian}
-                                            onChange={e => onChange(e)}
                                             placeholderText='MM/DD/YYYY'
                                             weekDays={weekDays}
+                                            onChange={(date) => {
+                                                onChange(date.format());
+                                            }}
 
+                                            //     onChange={onchange}
+                                            format="YYYY/MM/DD"
                                             render={
                                                 <CustomInput
 
-                                                    value={value}
-                                                    onChange={onChange}
+                                                    //     value={startDate}
+
+                                                    //     onChange={onchange}
                                                     label='تاریخ شروع'
                                                     error={Boolean(errors.start_date)}
                                                     aria-describedby='validation-basic-dob'
@@ -301,13 +310,17 @@ const FormValidationBasic = () => {
                                         <DatePicker
                                             className={settings.mode === 'dark' ? 'bg-dark' : null}
                                             locale={persian_fa}
-                                            value={value}
+                                            value={endDate}
                                             calendar={persian}
-                                            onChange={e => onChange(e)}
+
+                                            onChange={(date) => {
+                                                onChange(date.format());
+                                            }}
                                             placeholderText='MM/DD/YYYY'
                                             render={
                                                 <CustomInput
                                                     value={value}
+
                                                     onChange={onChange}
                                                     label='تاریخ پایان'
                                                     error={Boolean(errors.end_date)}
