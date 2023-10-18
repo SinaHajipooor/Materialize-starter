@@ -1,5 +1,6 @@
 import axios from "axios";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { redirect } from "next/link";
 import apiLogin from "src/api/auth/login";
 
 
@@ -14,6 +15,7 @@ export const options = {
 
                 return { ...userData, role: 'manager', apiToken: apiToken }
             },
+
         }),
     ],
     callbacks: {
@@ -38,10 +40,14 @@ export const options = {
 
             return token
         },
+
     },
     pages: {
         signIn: '/login',
     },
+    session: {
+        maxAge: 60 * 60 * 2
+    }
 }
 
 
