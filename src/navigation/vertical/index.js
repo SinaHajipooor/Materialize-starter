@@ -32,12 +32,12 @@ const navigation = () => {
         },
 
         {
-            title: 'سوابق فعالیت',
+            title: 'SSG',
             path: '/activityHistories',
             icon: 'mdi:person-outline',
         },
         {
-            title: 'ssr',
+            title: 'SSR',
             path: '/ssr',
             icon: 'mdi:home-outline',
         },
