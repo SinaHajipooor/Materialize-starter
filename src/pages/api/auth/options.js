@@ -1,6 +1,4 @@
-import axios from "axios";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { redirect } from "next/link";
 import apiLogin from "src/api/auth/login";
 
 
