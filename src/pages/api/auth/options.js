@@ -29,7 +29,6 @@ export const options = {
         },
 
         async jwt({ token, user }) {
-
             if (user) {
                 return {
                     ...token, ...user
@@ -39,13 +38,14 @@ export const options = {
             return token
         },
 
+
     },
     pages: {
         signIn: '/login',
     },
     session: {
         maxAge: 60 * 60 * 2
-    }
+    },
 }
 
 
