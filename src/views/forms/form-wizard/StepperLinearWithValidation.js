@@ -151,7 +151,8 @@ const StepperLinearWithValidation = () => {
         personalReset({ country: '', language: [], 'last-name': '', 'first-name': '' })
     }
 
-    const onSubmit = () => {
+    const onSubmit = (values) => {
+        console.log(values)
         setActiveStep(activeStep + 1)
         if (activeStep === steps.length - 1) {
             toast.success('Form Submitted')
@@ -607,10 +608,10 @@ const StepperLinearWithValidation = () => {
         if (activeStep === steps.length) {
             return (
                 <Fragment>
-                    <Typography>All steps are completed!</Typography>
+                    <Typography>تمام مراحل انجام شده است</Typography>
                     <Box sx={{ mt: 4, display: 'flex', justifyContent: 'flex-end' }}>
-                        <Button size='large' variant='contained' onClick={handleReset}>
-                            Reset
+                        <Button sx={{ fontFamily: 'inherit' }} size='large' variant='contained' onClick={handleReset}>
+                            مجدد
                         </Button>
                     </Box>
                 </Fragment>
