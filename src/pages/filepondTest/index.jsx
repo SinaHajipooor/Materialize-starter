@@ -15,6 +15,7 @@ import FilePondPluginImagePreview from 'filepond-plugin-image-preview'
 import FilePondPluginImageResize from "filepond-plugin-image-resize";
 import FilePondPluginImageCrop from "filepond-plugin-image-crop";
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css'
+import { Box, Card, CardHeader, Divider } from '@mui/material'
 
 // Register the plugins
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview, FilePondPluginImageResize, FilePondPluginImageCrop)
@@ -28,23 +29,33 @@ export default function App() {
 
 
     return (
-        <FilePond
+        <Card>
+            <CardHeader subheader='فایل های مورد نظر خود را انتخاب کنید' >
+            </CardHeader>
+            <Divider />
+            <Box width='30%' mt={7}>
+                <FilePond
+                    stylePanelLayout=''
+                    imagePreviewHeight={400}
+                    files={files}
+                    onupdatefiles={setFiles}
+                    allowMultiple={true}
+                    maxFiles={20}
+                    allowImageTransform
+                    imageCropAspectRatio={"1:1"}
+                    imageResizeTargetWidth={100}
+                    imageResizeTargetHeight={400}
+                    imageResizeMode={"cover"}
+                    name="files"
+                    labelIdle='انتخاب فایل'
+                    labelFileProcessingError='خطایی رخ داد'
+                    labelTapToRetry='دوباره تلاش کن'
+                    styleItemPanelAspectRatio='0.6'
+                    itemInsertLocation='after'
+                    imagePreviewMarkupShow
 
-            imagePreviewHeight={200}
-            files={files}
-            onupdatefiles={setFiles}
-            allowMultiple={true}
-            maxFiles={20}
-            allowImageTransform
-            imageCropAspectRatio={"1:1"}
-            imageResizeTargetWidth={100}
-            imageResizeTargetHeight={100}
-            imageResizeMode={"cover"}
-            name="files"
-            labelIdle='فایل های مورد نظر خود را انتخاب کنید'
-            labelFileProcessingError='خطایی رخ داد'
-            labelTapToRetry='دوباره تلاش کن'
-            styleItemPanelAspectRatio='0.25'
-        />
+                />
+            </Box>
+        </Card>
     )
 }
