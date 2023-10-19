@@ -321,9 +321,10 @@ const StepperLinearWithValidation = () => {
                                 </FormControl>
                             </Grid>
                             <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                                <Button sx={{ fontFamily: 'inherit' }} size='large' variant='outlined' color='secondary' disabled>
+                                {/* <Button sx={{ fontFamily: 'inherit' }} size='large' variant='outlined' color='secondary' disabled>
                                     برگشت
-                                </Button>
+                                </Button> */}
+                                <Grid></Grid>
                                 <Button sx={{ fontFamily: 'inherit' }} size='large' type='submit' variant='contained'>
                                     بعدی
                                 </Button>
