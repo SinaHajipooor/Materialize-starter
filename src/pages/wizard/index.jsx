@@ -9,7 +9,7 @@ const FormWizard = () => {
     return (
         <Grid container spacing={6}>
             <Grid item xs={12}>
-                <Typography variant='h6'>Linear Stepper with Validation</Typography>
+                <Typography variant='h6'>فرم چند مرحله‌ای</Typography>
             </Grid>
             <Grid item xs={12}>
                 <StepperLinearWithValidation />
