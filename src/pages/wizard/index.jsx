@@ -8,9 +8,9 @@ import StepperLinearWithValidation from 'src/views/forms/form-wizard/StepperLine
 const FormWizard = () => {
     return (
         <Grid container spacing={6}>
-            <Grid item xs={12}>
+            {/* <Grid item xs={12}>
                 <Typography variant='h6'>فرم چند مرحله‌ای</Typography>
-            </Grid>
+            </Grid> */}
             <Grid item xs={12}>
                 <StepperLinearWithValidation />
             </Grid>
