@@ -6,6 +6,7 @@ import { FilePond, File, registerPlugin } from 'react-filepond'
 // Import FilePond styles
 import 'filepond/dist/filepond.min.css'
 
+
 // Import the Image EXIF Orientation and Image Preview plugins
 // Note: These need to be installed separately
 // `npm i filepond-plugin-image-preview filepond-plugin-image-exif-orientation --save`
@@ -28,25 +29,17 @@ export default function App() {
 
     return (
         <FilePond
+
             imagePreviewHeight={200}
             files={files}
             onupdatefiles={setFiles}
             allowMultiple={true}
             maxFiles={20}
-
             allowImageTransform
-
-            //     imagePreviewHeight={400}
-
             imageCropAspectRatio={"1:1"}
             imageResizeTargetWidth={100}
             imageResizeTargetHeight={100}
             imageResizeMode={"cover"}
-
-            //     imageResizeMode='cover'
-
-            //     server="/api"
-
             name="files"
             labelIdle='فایل های مورد نظر خود را انتخاب کنید'
             labelFileProcessingError='خطایی رخ داد'
