@@ -42,6 +42,11 @@ const navigation = () => {
             icon: 'mdi:home-outline',
         },
         {
+            title: 'فرم چند مرحله‌ای',
+            path: '/wizard',
+            icon: 'mdi:home-outline',
+        },
+        {
             title: 'نقشه',
             path: '/map',
             icon: 'mdi:map-outline',
