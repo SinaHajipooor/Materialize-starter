@@ -24,9 +24,6 @@ registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview, F
 export default function App() {
     const [files, setFiles] = useState([])
 
-    console.log(files)
-
-
 
     return (
         <Card>
