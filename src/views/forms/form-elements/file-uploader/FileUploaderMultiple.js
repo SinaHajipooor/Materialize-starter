@@ -64,7 +64,7 @@ const FileUploaderMultiple = () => {
     }
 
     const fileList = files.map(file => (
-        <ListItem key={file.name}>
+        <ListItem key={file.name} >
             <div className='file-details'>
                 <div className='file-preview'>{renderFilePreview(file)}</div>
                 <div>
@@ -95,15 +95,15 @@ const FileUploaderMultiple = () => {
             <div {...getRootProps({ className: 'dropzone' })}>
                 <input {...getInputProps()} />
                 <Box sx={{ display: 'flex', flexDirection: ['column', 'column', 'row'], alignItems: 'center' }}>
-                    {/* <Img width={300} alt='Upload img' src='/images/misc/upload.png' /> */}
+                    <Img width={300} alt='Upload img' src='/images/misc/upload.png' />
                     <Box sx={{ display: 'flex', flexDirection: 'column', textAlign: ['center', 'center', 'inherit'] }}>
-                        <HeadingTypography variant='h5'>Drop files here or click to upload.</HeadingTypography>
+                        <HeadingTypography variant='h5'>فایل ها را اینجا رها کنید یا برای آپلود کلیک کنید</HeadingTypography>
                         <Typography color='textSecondary'>
-                            Drop files here or click{' '}
+                            فایل ها را اینجا رها کنید یا بر روی {' '}
                             <Link href='/' onClick={handleLinkClick}>
-                                browse
+                                جستجو
                             </Link>{' '}
-                            thorough your machine
+                            کلیک کنید
                         </Typography>
                     </Box>
                 </Box>
@@ -112,10 +112,10 @@ const FileUploaderMultiple = () => {
                 <Fragment>
                     <List>{fileList}</List>
                     <div className='buttons'>
-                        <Button color='error' variant='outlined' onClick={handleRemoveAllFiles}>
-                            Remove All
+                        <Button sx={{ fontFamily: 'inherit' }} color='error' variant='outlined' onClick={handleRemoveAllFiles}>
+                            حذف همه
                         </Button>
-                        <Button variant='contained'>Upload Files</Button>
+                        <Button sx={{ fontFamily: 'inherit' }} variant='contained'>بارگذاری فایل ها</Button>
                     </div>
                 </Fragment>
             ) : null}
@@ -124,3 +124,5 @@ const FileUploaderMultiple = () => {
 }
 
 export default FileUploaderMultiple
+
+
