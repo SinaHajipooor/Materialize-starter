@@ -16,7 +16,6 @@ import FilePondPluginImageResize from "filepond-plugin-image-resize";
 import FilePondPluginImageCrop from "filepond-plugin-image-crop";
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css'
 import { Box, Card, CardHeader, Divider } from '@mui/material'
-import styles from './filepond.module.css'
 
 // Register the plugins
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview, FilePondPluginImageResize, FilePondPluginImageCrop)
@@ -36,7 +35,6 @@ export default function App() {
             <Divider />
             <Box width='30%' mt={7}>
                 <FilePond
-                    className={styles.filePond}
                     imagePreviewHeight={400}
                     files={files}
                     onupdatefiles={setFiles}
