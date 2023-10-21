@@ -1,7 +1,4 @@
-// ** React Imports
 import { Fragment, useState } from 'react'
-
-// ** MUI Imports
 import Box from '@mui/material/Box'
 import Link from '@mui/material/Link'
 import List from '@mui/material/List'
@@ -10,18 +7,15 @@ import ListItem from '@mui/material/ListItem'
 import { styled } from '@mui/material/styles'
 import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
-
-// ** Icon Imports
-import Icon from 'src/@core/components/icon'
-
-// ** Third Party Imports
-import { useDropzone } from 'react-dropzone'
 import { Grow } from '@mui/material'
+import Icon from 'src/@core/components/icon'
+import { useDropzone } from 'react-dropzone'
 
-// Styled component for the upload image inside the dropzone area
 const Img = styled('img')(({ theme }) => ({
     [theme.breakpoints.up('md')]: {
-        marginRight: theme.spacing(10)
+        marginRight: theme.spacing(10),
+        width: 200, // Increase width to 200px
+        height: 200, // Increase height to 200px
     },
     [theme.breakpoints.down('md')]: {
         marginBottom: theme.spacing(4)
@@ -31,7 +25,6 @@ const Img = styled('img')(({ theme }) => ({
     }
 }))
 
-// Styled component for the heading inside the dropzone area
 const HeadingTypography = styled(Typography)(({ theme }) => ({
     marginBottom: theme.spacing(5),
     [theme.breakpoints.down('sm')]: {
@@ -40,10 +33,8 @@ const HeadingTypography = styled(Typography)(({ theme }) => ({
 }))
 
 const FileUploaderMultiple = () => {
-    // ** State
     const [files, setFiles] = useState([])
 
-    // ** Hooks
     const { getRootProps, getInputProps } = useDropzone({
         onDrop: acceptedFiles => {
             setFiles(acceptedFiles.map(file => Object.assign(file)))
@@ -68,7 +59,23 @@ const FileUploaderMultiple = () => {
         <Grow key={file.name} in timeout={(i + 1) * 700}>
             <ListItem >
                 <div className='file-details'>
-                    <div className='file-preview'>{renderFilePreview(file)}</div>
+                    <div className='file-preview'>
+                        {/* Apply gradient black color to the image */}
+                        <Box
+                            sx={{
+                                backgroundImage: 'linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7))',
+                                backgroundPosition: 'center',
+                                backgroundSize: 'cover',
+                                width: 200,
+                                height: 200,
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                            }}
+                        >
+                            {renderFilePreview(file)}
+                        </Box>
+                    </div>
                     <div>
                         <Typography className='file-name'>{file.name}</Typography>
                         <Typography className='file-size' variant='body2'>
@@ -98,7 +105,7 @@ const FileUploaderMultiple = () => {
             <div {...getRootProps({ className: 'dropzone' })}>
                 <input {...getInputProps()} />
                 <Box sx={{ display: 'flex', flexDirection: ['column', 'column', 'row'], alignItems: 'center' }}>
-                    <Img width={300} alt='Upload img' src='/images/misc/upload.png' />
+                    <Img alt='Upload img' src='/images/misc/upload.png' />
                     <Box sx={{ display: 'flex', flexDirection: 'column', textAlign: ['center', 'center', 'inherit'] }}>
                         <HeadingTypography variant='h5'>فایل ها را اینجا رها کنید یا برای آپلود کلیک کنید</HeadingTypography>
                         <Typography color='textSecondary'>
@@ -113,7 +120,21 @@ const FileUploaderMultiple = () => {
             </div>
             {files.length ? (
                 <Fragment>
-                    <List>{fileList}</List>
+                    {/* Wrap each row of 5 items in a Box component */}
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', marginBottom: '1rem' }}>
+                        {fileList.reduce((rows, listItem, index) => {
+                            if (index % 5 === 0) {
+                                rows.push([]);
+                            }
+                            rows[Math.floor(index / 5)].push(listItem);
+
+                            return rows;
+                        }, []).map((row, rowIndex) => (
+                            <Box key={rowIndex} sx={{ display: 'flex', flexDirection: 'row', gap: '1rem' }}>
+                                {row}
+                            </Box>
+                        ))}
+                    </Box>
                     <div className='buttons'>
                         <Button sx={{ fontFamily: 'inherit' }} color='error' variant='outlined' onClick={handleRemoveAllFiles}>
                             حذف همه
@@ -127,5 +148,3 @@ const FileUploaderMultiple = () => {
 }
 
 export default FileUploaderMultiple
-
-
