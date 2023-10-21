@@ -56,6 +56,11 @@ const navigation = () => {
             path: '/filepondTest',
             icon: 'mdi:upload-outline',
         },
+        {
+            title: 'فیلتر',
+            path: '/filterTable',
+            icon: 'mdi:filter-outline',
+        },
     ]
 }
 
