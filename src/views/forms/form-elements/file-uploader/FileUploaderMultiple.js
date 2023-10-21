@@ -50,13 +50,13 @@ const FileUploaderMultiple = () => {
         }
     })
 
-    const renderFilePreview = file => {
+    const renderFilePreview = (file) => {
         if (file.type.startsWith('image')) {
-            return <img width={38} height={38} alt={file.name} src={URL.createObjectURL(file)} />
+            return URL.createObjectURL(file);
         } else {
-            return <Icon icon='mdi:file-document-outline' />
+            return <Icon icon='mdi:file-document-outline' />;
         }
-    }
+    };
 
     const handleRemoveFile = file => {
         const uploadedFiles = files
@@ -66,52 +66,52 @@ const FileUploaderMultiple = () => {
 
     const fileList = files.map((file, i) => (
         <Grow key={file.name} in timeout={(i + 1) * 700}>
-            <ListItem>
-                <Box
-                    sx={{
+            <ListItem
+                style={{
+                    position: 'relative',
+                    width: '200px',
+                    height: '200px',
+                    borderRadius: '8px',
+                    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                    overflow: 'hidden'
+                }}
+            >
+                <div
+                    style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                        backgroundImage: `url(${renderFilePreview(file)})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
                         display: 'flex',
                         flexDirection: 'column',
-                        alignItems: 'center',
-                        width: '200px',
-                        height: '200px',
-                        borderRadius: '8px',
-                        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-                        backgroundImage: 'linear-gradient(to bottom, #ffffff, #f1f1f1)',
-                        overflow: 'hidden'
+                        justifyContent: 'flex-end'
                     }}
                 >
                     <div
                         style={{
-                            width: '100%',
-                            height: '100%',
                             display: 'flex',
-                            flexDirection: 'column',
-                            justifyContent: 'space-between'
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            padding: '8px',
+                            textAlign: 'center',
+                            background: 'linear-gradient(to top, rgba(0,0,0,0.6), transparent)',
+                            color: '#fff'
                         }}
                     >
-                        <div style={{ flex: '1' }}>{renderFilePreview(file)}</div>
-                        <div
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                padding: '8px',
-                                textAlign: 'center',
-                                background: 'linear-gradient(to top, rgba(0,0,0,0.6), transparent)',
-                                color: '#fff'
-                            }}
-                        >
-                            <Typography variant='subtitle1' style={{ fontWeight: 'bold', fontSize: '14px', marginBottom: '4px' }}>
-                                {file.name}
-                            </Typography>
-                            <Typography variant='body2' style={{ fontSize: '12px' }}>
-                                {Math.round(file.size / 100) / 10 > 1000
-                                    ? `${(Math.round(file.size / 100) / 10000).toFixed(1)} mb`
-                                    : `${(Math.round(file.size / 100) / 10).toFixed(1)} kb`}
-                            </Typography>
-                        </div>
+                        <Typography variant='subtitle1' style={{ fontWeight: 'bold', fontSize: '14px', marginBottom: '4px' }}>
+                            {file.name}
+                        </Typography>
+                        <Typography variant='body2' style={{ fontSize: '12px' }}>
+                            {Math.round(file.size / 100) / 10 > 1000
+                                ? `${(Math.round(file.size / 100) / 10000).toFixed(1)} mb`
+                                : `${(Math.round(file.size / 100) / 10).toFixed(1)} kb`}
+                        </Typography>
                     </div>
-                </Box>
+                </div>
                 <IconButton onClick={() => handleRemoveFile(file)}>
                     <Icon icon='mdi:close' fontSize={20} />
                 </IconButton>
