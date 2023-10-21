@@ -233,7 +233,16 @@ const TableColumns = () => {
 
     return (
         <Card>
-            <CardHeader title='Quick Filter' />
+            <Box
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    minHeight: '4rem',
+                }}
+            >
+                <Typography fontWeight={600} fontSize={19}>فهرست سوابق فعالیت</Typography>
+            </Box>
             <DataGrid
                 autoHeight
                 columns={columns}
