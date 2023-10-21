@@ -16,6 +16,7 @@ import Icon from 'src/@core/components/icon'
 
 // ** Third Party Imports
 import { useDropzone } from 'react-dropzone'
+import { Grow } from '@mui/material'
 
 // Styled component for the upload image inside the dropzone area
 const Img = styled('img')(({ theme }) => ({
@@ -63,23 +64,25 @@ const FileUploaderMultiple = () => {
         setFiles([...filtered])
     }
 
-    const fileList = files.map(file => (
-        <ListItem key={file.name} >
-            <div className='file-details'>
-                <div className='file-preview'>{renderFilePreview(file)}</div>
-                <div>
-                    <Typography className='file-name'>{file.name}</Typography>
-                    <Typography className='file-size' variant='body2'>
-                        {Math.round(file.size / 100) / 10 > 1000
-                            ? `${(Math.round(file.size / 100) / 10000).toFixed(1)} mb`
-                            : `${(Math.round(file.size / 100) / 10).toFixed(1)} kb`}
-                    </Typography>
+    const fileList = files.map((file, i) => (
+        <Grow key={file.name} in timeout={(i + 1) * 700}>
+            <ListItem >
+                <div className='file-details'>
+                    <div className='file-preview'>{renderFilePreview(file)}</div>
+                    <div>
+                        <Typography className='file-name'>{file.name}</Typography>
+                        <Typography className='file-size' variant='body2'>
+                            {Math.round(file.size / 100) / 10 > 1000
+                                ? `${(Math.round(file.size / 100) / 10000).toFixed(1)} mb`
+                                : `${(Math.round(file.size / 100) / 10).toFixed(1)} kb`}
+                        </Typography>
+                    </div>
                 </div>
-            </div>
-            <IconButton onClick={() => handleRemoveFile(file)}>
-                <Icon icon='mdi:close' fontSize={20} />
-            </IconButton>
-        </ListItem>
+                <IconButton onClick={() => handleRemoveFile(file)}>
+                    <Icon icon='mdi:close' fontSize={20} />
+                </IconButton>
+            </ListItem>
+        </Grow>
     ))
 
     const handleLinkClick = event => {
