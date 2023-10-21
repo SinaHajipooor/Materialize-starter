@@ -245,7 +245,9 @@ const TableColumns = () => {
             </Box>
             <DataGrid
                 autoHeight
+                hideFooterSelectedRowCount
                 columns={columns}
+                disableSelectionOnClick
                 pageSize={pageSize}
                 rowsPerPageOptions={[7, 10, 25, 50]}
                 components={{ Toolbar: QuickSearchToolbar }}
