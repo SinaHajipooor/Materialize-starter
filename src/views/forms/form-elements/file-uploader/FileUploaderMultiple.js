@@ -66,56 +66,90 @@ const FileUploaderMultiple = () => {
 
     const fileList = files.map((file, i) => (
         <Grow key={file.name} in timeout={(i + 1) * 700}>
-            <ListItem
-                style={{
-                    position: 'relative',
-                    width: '200px',
-                    height: '200px',
-                    borderRadius: '8px',
-                    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-                    overflow: 'hidden'
+            <Box
+                sx={{
+                    display: 'inline-flex',
+                    flexDirection: 'column',
+                    justifyContent: 'flex-start',
+                    alignItems: 'center',
+                    margin: '8px'
                 }}
             >
-                <div
+                <ListItem
                     style={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        width: '100%',
-                        height: '100%',
-                        backgroundImage: `url(${renderFilePreview(file)})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'flex-end'
+                        position: 'relative',
+                        width: '145px',
+                        height: '172px',
+                        borderRadius: '8px',
+                        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                        overflow: 'hidden'
                     }}
                 >
                     <div
                         style={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            width: '100%',
+                            height: '100%',
+                            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), transparent  , rgba(0, 0, 0, 0.6)), url(${renderFilePreview(file)})`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
                             display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            padding: '8px',
-                            textAlign: 'center',
-                            background: 'linear-gradient(to top, rgba(0,0,0,0.6), transparent)',
-                            color: '#fff'
+                            flexDirection: 'column',
+                            justifyContent: 'flex-end'
                         }}
                     >
-                        <Typography variant='subtitle1' style={{ fontWeight: 'bold', fontSize: '14px', marginBottom: '4px' }}>
-                            {file.name}
-                        </Typography>
-                        <Typography variant='body2' style={{ fontSize: '12px' }}>
-                            {Math.round(file.size / 100) / 10 > 1000
-                                ? `${(Math.round(file.size / 100) / 10000).toFixed(1)} mb`
-                                : `${(Math.round(file.size / 100) / 10).toFixed(1)} kb`}
-                        </Typography>
+                        <div
+                            style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                padding: '4px',
+                                textAlign: 'center',
+                                background: 'linear-gradient(to top, rgba(0,0,0,0.6), transparent)',
+                                color: '#fff'
+                            }}
+                        >
+                            <Typography
+                                variant='subtitle1'
+                                style={{
+                                    fontWeight: 'bold',
+                                    fontSize: '10px',
+                                    marginBottom: '1px',
+                                    display: '-webkit-box',
+                                    '-webkit-line-clamp': 1,
+                                    '-webkit-box-orient': 'vertical',
+                                    overflow: 'hidden',
+                                    textOverflow: 'ellipsis',
+                                    color: 'white',
+
+                                }}
+                            >
+                                {file.name}
+                            </Typography>
+                            {/* <Typography variant='body2' style={{ fontSize: '12px' }}>
+                                {Math.round(file.size / 100) / 10 > 1000
+                                    ? `${(Math.round(file.size / 100) / 10000).toFixed(1)} mb`
+                                    : `${(Math.round(file.size / 100) / 10).toFixed(1)} kb`}
+                            </Typography> */}
+                        </div>
+                        <IconButton
+                            style={{
+                                position: 'absolute',
+                                top: '1px',
+                                left: '1px',
+                                zIndex: 1,
+                                color: 'white'
+                            }}
+                            onClick={() => handleRemoveFile(file)}
+                        >
+                            <Icon icon='mdi:close' fontSize={20} />
+                        </IconButton>
                     </div>
-                </div>
-                <IconButton onClick={() => handleRemoveFile(file)}>
-                    <Icon icon='mdi:close' fontSize={20} />
-                </IconButton>
-            </ListItem>
+                </ListItem>
+            </Box>
         </Grow>
     ));
 
@@ -129,10 +163,10 @@ const FileUploaderMultiple = () => {
 
     return (
         <Fragment>
-            <div {...getRootProps({ className: 'dropzone' })}>
+            <div  {...getRootProps({ className: 'dropzone' })}>
                 <input {...getInputProps()} />
                 <Box sx={{ display: 'flex', flexDirection: ['column', 'column', 'row'], alignItems: 'center' }}>
-                    <Img width={300} alt='Upload img' src='/images/misc/upload.png' />
+                    <Img width={250} alt='Upload img' src='/images/misc/upload.png' />
                     <Box sx={{ display: 'flex', flexDirection: 'column', textAlign: ['center', 'center', 'inherit'] }}>
                         <HeadingTypography variant='h5'>فایل ها را اینجا رها کنید یا برای آپلود کلیک کنید</HeadingTypography>
                         <Typography color='textSecondary'>
