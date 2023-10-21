@@ -11,7 +11,6 @@ import {
     MenuItem,
     IconButton,
     ListItemIcon,
-    Divider,
 } from '@mui/material';
 import { IconDotsVertical, IconEdit, IconEye, IconTrash } from '@tabler/icons-react';
 
