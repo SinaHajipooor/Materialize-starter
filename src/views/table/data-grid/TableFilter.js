@@ -28,6 +28,7 @@ import { getInitials } from 'src/@core/utils/get-initials'
 // ** Data Import
 import { rows } from 'src/@fake-db/table/static-data'
 
+
 // ** renders client column
 const renderClient = params => {
     const { row } = params
