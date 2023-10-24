@@ -2,22 +2,13 @@
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
 import IconButton from '@mui/material/IconButton'
-import { GridToolbarFilterButton } from '@mui/x-data-grid'
 
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
 import { Button } from '@mui/material'
 import Link from 'next/link'
-import { useSession } from 'next-auth/react'
-import axios from 'axios'
 
 const QuickSearchToolbar = props => {
-
-
-    async function testApi() {
-        const response = await axios.get('/api/auth/apiToken')
-        console.log(response)
-    }
 
     return (
         <Box
@@ -31,7 +22,7 @@ const QuickSearchToolbar = props => {
             }}
         >
             {/* <GridToolbarFilterButton /> */}
-            <Button onClick={testApi} variant='contained' LinkComponent={Link} href=''>ایجاد</Button>
+            <Button variant='contained' LinkComponent={Link} href=''>ایجاد</Button>
             <TextField
                 size='small'
                 value={props.value}

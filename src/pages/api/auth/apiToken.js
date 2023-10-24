@@ -1,12 +1,4 @@
-// export default async function handler(req, res) {
-//     if (req.method === 'POST') {
-//         const { token } = req.body;
-//         console.log(token)
-//     }
-// }
-
 import { getServerSession } from "next-auth";
-import { NextRequest, NextResponse } from "next/server";
 import { options } from "./options";
 
 export default async function handler(req, res) {
