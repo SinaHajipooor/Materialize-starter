@@ -44,11 +44,18 @@ const FileUploaderMultiple = () => {
     const [files, setFiles] = useState([])
 
     // ** Hooks
+    //     const { getRootProps, getInputProps } = useDropzone({
+    //         onDrop: acceptedFiles => {
+    //             setFiles(acceptedFiles.map(file => Object.assign(file)))
+    //         }
+    //     })
+
     const { getRootProps, getInputProps } = useDropzone({
         onDrop: acceptedFiles => {
-            setFiles(acceptedFiles.map(file => Object.assign(file)))
+            setFiles(prevFiles => [...prevFiles, ...acceptedFiles]);
         }
-    })
+    });
+
 
     const renderFilePreview = (file) => {
         if (file.type.startsWith('image')) {
