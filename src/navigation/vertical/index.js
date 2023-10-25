@@ -13,19 +13,19 @@ const navigation = () => {
             icon: 'mdi:calendar-outline',
         },
         {
-            title: 'اعضای سیستم',
+            title: 'مجوز ها',
             icon: 'mdi:users-outline',
             children: [
                 {
-                    title: 'مدیر',
+                    title: 'اپدیت',
                     path: '/authorize/manager'
                 },
                 {
-                    title: 'ادمین',
+                    title: 'ایجاد',
                     path: '/authorize/admin'
                 },
                 {
-                    title: 'کاربر',
+                    title: 'حذف',
                     path: '/authorize/user'
                 },
             ]

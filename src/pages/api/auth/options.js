@@ -11,7 +11,7 @@ export const options = {
                 const userData = response.data.result.user;
                 const apiToken = response.data.result.token;
 
-                return { ...userData, role: 'manager', apiToken: apiToken }
+                return { ...userData, role: 'user', apiToken: apiToken }
             },
 
         }),
