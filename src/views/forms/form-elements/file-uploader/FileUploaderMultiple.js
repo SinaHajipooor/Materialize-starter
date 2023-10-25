@@ -52,10 +52,12 @@ const FileUploaderMultiple = () => {
 
     const { getRootProps, getInputProps } = useDropzone({
         onDrop: acceptedFiles => {
-            setFiles(prevFiles => [...prevFiles, ...acceptedFiles]);
+            const uniqueFiles = acceptedFiles.filter(file => {
+                return !files.some(existingFile => existingFile.name === file.name);
+            });
+            setFiles(prevFiles => [...prevFiles, ...uniqueFiles]);
         }
     });
-
 
     const renderFilePreview = (file) => {
         if (file.type.startsWith('image')) {
@@ -72,7 +74,7 @@ const FileUploaderMultiple = () => {
     }
 
     const fileList = files.map((file, i) => (
-        <Grow key={file.name} in timeout={(i + 1) * 700}>
+        <Grow key={file.name} in timeout={(i + 1) * 200}>
             <Box
                 sx={{
                     display: 'inline-flex',
