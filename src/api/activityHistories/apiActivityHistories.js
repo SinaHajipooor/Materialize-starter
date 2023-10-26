@@ -2,7 +2,6 @@ import axiosConfig from "src/utils/axios";
 
 const ACTIVITY_BASE_URL = '/api/profile/activity-history'
 
-
 // index
 export async function apiFetchAllActivityHistories() {
     try {
