@@ -14,7 +14,10 @@ export default function useDeleteActivity() {
             });
             toast.success('با موفقیت حذف شد')
         },
-        onError: () => toast.error('امکان حذف وجود ندارد')
+        onError: (err) => {
+            console.log(err)
+            toast.error('امکان حذف وجود ندارد')
+        }
     });
 
     return { isLoading, mutate }
