@@ -1,5 +1,5 @@
 import CredentialsProvider from "next-auth/providers/credentials";
-import apiLogin from "src/api/auth/login";
+import apiLogin from "src/api/auth/apiAuth";
 
 
 export const options = {
