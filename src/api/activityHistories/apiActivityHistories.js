@@ -15,8 +15,6 @@ export async function apiFetchAllActivityHistories() {
     }
 }
 
-
-
 // delete 
 export async function apiDeleteActivityHistory(id) {
     try {
@@ -27,7 +25,6 @@ export async function apiDeleteActivityHistory(id) {
         throw new Error(error.message)
     }
 }
-
 
 // create 
 export async function apiCreateActivityHistory(newActivityHistory) {
@@ -46,7 +43,6 @@ export async function apiCreateActivityHistory(newActivityHistory) {
         throw new Error(error.message)
     }
 }
-
 
 // update 
 export async function apiUpdateActivityHistory(updatedActivityHistory, file, id) {
@@ -67,7 +63,6 @@ export async function apiUpdateActivityHistory(updatedActivityHistory, file, id)
         throw new Error(error.message)
     }
 }
-
 
 // show detail
 export async function apiShowActivityHistory(id) {
