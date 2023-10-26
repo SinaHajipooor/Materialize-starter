@@ -1,5 +1,6 @@
 import axiosConfig from "src/utils/axios";
 
+// base url
 const ACTIVITY_BASE_URL = '/api/profile/activity-history'
 
 // index
