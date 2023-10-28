@@ -469,9 +469,6 @@ const FormValidationBasic = () => {
                                     </FormControl>
                                 </Grid>
                             </Grid>
-
-
-
                             <Grid item xs={12}>
                                 <Stack
                                     direction={{ xs: 'column', sm: 'row' }}
