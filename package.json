@@ -12,6 +12,7 @@
         "build:icons": "tsc -b src/iconify-bundle && node src/iconify-bundle/bundle-icons-react.js"
     },
     "dependencies": {
+        "@apollo/server": "^4.9.5",
         "@babel/core": "7.20.2",
         "@babel/eslint-parser": "7.19.1",
         "@casl/ability": "6.3.2",
