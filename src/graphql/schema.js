@@ -12,7 +12,7 @@ type Query {
 }
 
 
-type Mutation {
+type Mutations {
     createUser (name: String!, email: String!, password: String!): User
     updateUser (id: ID! , name: String , email: String , password: String) : User
 }
