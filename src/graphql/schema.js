@@ -19,26 +19,5 @@ type Mutations {
 `;
 
 
-// // //------------------------------------
-// export const typeDefs = `#graphql
 
-
-// type User {
-//     id: String
-//     name:  String
-// }
-
-
-// type Query {
-//     getUser(id: ID): User
-//     getUsers : [User]
-// }
-
-// type Mutations {
-//     createUser(name: String) : User
-//     updateUser(id: ID, name : String): User
-//     deleteUser(id: ID): User
-// }
-
-
-// `;
+// // // //------------------------------------
